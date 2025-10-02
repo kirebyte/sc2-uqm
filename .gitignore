@@ -1,9 +1,109 @@
-.DS_Store
+# Build directories and artifacts
+build/
+obj/
+bin/
+Release/
+Debug/
+RelWithDebInfo/
+MinSizeRel/
+sc2/obj/
+sc2/build/
+sc2/bin/
+
+# Compiled Object files
+*.o
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
 *.app
-build.vars
-config.state
-config_unix.h
-sc2/obj
+uqm-debug
+uqm-refactored
+simple-test
+foundation-test
 sc2/uqm-debug
 sc2/uqm-wrapper
 sc2/uqm
+sc2/simple-test
+sc2/foundation-test
+
+# Build configuration files
+build.vars
+config.state
+config_unix.h
+
+# Package files
+*.deb
+*.rpm
+*.tar.gz
+*.zip
+
+# IDE files
+.vscode/
+.vs/
+*.vcxproj*
+*.sln
+*.suo
+*.user
+.idea/
+*.cbp
+*.depend
+*.layout
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# Backup files
+*.bak
+*.swp
+*.swo
+*.tmp
+*.temp
+
+# Log files
+*.log
+
+# Coverage files
+coverage.info
+coverage_html/
+*.gcov
+*.gcda
+*.gcno
+
+# Doxygen generated documentation
+doc/html/
+doc/latex/
+doc/man/
+
+# Test results
+test_results/
+TestResults/
+
+# Memory dumps
+core
+core.*
+*.dmp

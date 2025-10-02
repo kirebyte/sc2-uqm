@@ -1,0 +1,300 @@
+# ClangTidy configuration for The Ur-Quan Masters Refactored
+# Modern static analysis configuration following 2025 best practices
+
+---
+# Inheritance and base configuration
+InheritParentConfig: false
+
+# Check selection - comprehensive modern C analysis
+Checks: 'cert-*,bugprone-*,clang-analyzer-*,concurrency-*,misc-*,modernize-*,performance-*,portability-*,readability-*,-modernize-use-trailing-return-type,-readability-else-after-return,-readability-static-accessed-through-instance,-readability-avoid-const-params-in-decls,-cert-err33-c,-bugprone-reserved-identifier,-cert-dcl37-c,-cert-dcl51-cpp,-readability-magic-numbers,-modernize-avoid-c-arrays,-bugprone-easily-swappable-parameters,-misc-no-recursion'
+
+# Warning-as-error
+WarningsAsErrors: >
+  cert-*,
+  bugprone-*,
+  performance-*,
+  portability-*
+
+# Header filter - only analyze our code
+HeaderFilterRegex: '^.*/(src|include)/.*\.(h|hpp)$'
+
+# Analysis timeout
+AnalyzeTemporaryDtors: false
+
+# Format style
+FormatStyle: file
+
+# User configuration
+User: uqm-refactored
+
+# Check-specific options
+CheckOptions:
+  # Readability checks
+  - key: readability-identifier-naming.NamespaceCase
+    value: lower_case
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key: readability-identifier-naming.StructCase
+    value: CamelCase
+  - key: readability-identifier-naming.FunctionCase
+    value: camelBack
+  - key: readability-identifier-naming.VariableCase
+    value: lower_case
+  - key: readability-identifier-naming.ParameterCase
+    value: lower_case
+  - key: readability-identifier-naming.EnumCase
+    value: CamelCase
+  - key: readability-identifier-naming.EnumConstantCase
+    value: UPPER_CASE
+  - key: readability-identifier-naming.ConstantCase
+    value: UPPER_CASE
+  - key: readability-identifier-naming.GlobalConstantCase
+    value: UPPER_CASE
+  - key: readability-identifier-naming.StaticConstantCase
+    value: UPPER_CASE
+  - key: readability-identifier-naming.StaticVariableCase
+    value: lower_case
+  - key: readability-identifier-naming.MacroDefinitionCase
+    value: UPPER_CASE
+  - key: readability-identifier-naming.TypedefCase
+    value: CamelCase
+  
+  # UQM-specific naming conventions
+  - key: readability-identifier-naming.FunctionPrefix
+    value: 'UQM_'
+  - key: readability-identifier-naming.StructPrefix
+    value: 'UQM_'
+  - key: readability-identifier-naming.EnumPrefix
+    value: 'UQM_'
+  - key: readability-identifier-naming.TypedefPrefix
+    value: 'UQM_'
+  - key: readability-identifier-naming.MacroDefinitionPrefix
+    value: 'UQM_'
+  
+  # Function length and complexity
+  - key: readability-function-size.LineThreshold
+    value: '100'
+  - key: readability-function-size.StatementThreshold
+    value: '50'
+  - key: readability-function-size.BranchThreshold
+    value: '10'
+  - key: readability-function-size.ParameterThreshold
+    value: '8'
+  - key: readability-function-size.NestingThreshold
+    value: '4'
+  - key: readability-function-size.VariableThreshold
+    value: '20'
+
+  # Performance checks
+  - key: performance-for-range-copy.WarnOnAllAutoCopies
+    value: true
+  - key: performance-for-range-copy.AllowedTypes
+    value: ''
+  - key: performance-inefficient-string-concatenation.StrictMode
+    value: true
+  - key: performance-inefficient-vector-operation.VectorLikeClasses
+    value: '::std::vector'
+  - key: performance-move-const-arg.CheckTriviallyCopyableMove
+    value: true
+  - key: performance-no-automatic-move.AllowedTypes
+    value: ''
+  - key: performance-type-promotion-in-math-fn.IncludeStyle
+    value: 'llvm'
+  - key: performance-unnecessary-copy-initialization.AllowedTypes
+    value: ''
+  - key: performance-unnecessary-value-param.ParameterMatcher
+    value: '.*'
+  - key: performance-unnecessary-value-param.IgnoreType
+    value: ''
+
+  # Modernization checks
+  - key: modernize-loop-convert.MinConfidence
+    value: 'reasonable'
+  - key: modernize-loop-convert.NamingStyle
+    value: 'CamelCase'
+  - key: modernize-pass-by-value.IncludeStyle
+    value: 'llvm'
+  - key: modernize-replace-auto-ptr.IncludeStyle
+    value: 'llvm'
+  - key: modernize-use-auto.MinTypeNameLength
+    value: '5'
+  - key: modernize-use-auto.RemoveStars
+    value: false
+  - key: modernize-use-default-member-init.UseAssignment
+    value: false
+  - key: modernize-use-default-member-init.IgnoreArrays
+    value: false
+  - key: modernize-use-emplace.ContainersWithPushBack
+    value: '::std::vector;::std::list;::std::deque'
+  - key: modernize-use-emplace.SmartPointers
+    value: '::std::shared_ptr;::std::unique_ptr;::std::auto_ptr;::std::weak_ptr'
+  - key: modernize-use-emplace.TupleMakeFunctions
+    value: '::std::make_pair;::std::make_tuple'
+  - key: modernize-use-emplace.TupleTypes
+    value: '::std::pair;::std::tuple'
+  - key: modernize-use-equals-default.IgnoreMacros
+    value: true
+  - key: modernize-use-equals-delete.IgnoreMacros
+    value: true
+  - key: modernize-use-nodiscard.ReplacementString
+    value: '[[nodiscard]]'
+  - key: modernize-use-nullptr.NullMacros
+    value: 'NULL'
+  - key: modernize-use-override.IgnoreDestructors
+    value: false
+  - key: modernize-use-override.AllowOverrideAndFinal
+    value: false
+  - key: modernize-use-override.OverrideSpelling
+    value: 'override'
+  - key: modernize-use-override.FinalSpelling
+    value: 'final'
+  - key: modernize-use-transparent-functors.SafeMode
+    value: false
+  - key: modernize-use-using.IgnoreMacros
+    value: true
+
+  # Bugprone checks
+  - key: bugprone-argument-comment.StrictMode
+    value: false
+  - key: bugprone-argument-comment.IgnoreSingleArgument
+    value: false
+  - key: bugprone-argument-comment.CommentBoolLiterals
+    value: false
+  - key: bugprone-argument-comment.CommentIntegerLiterals
+    value: false
+  - key: bugprone-argument-comment.CommentFloatLiterals
+    value: false
+  - key: bugprone-argument-comment.CommentStringLiterals
+    value: false
+  - key: bugprone-argument-comment.CommentCharacterLiterals
+    value: false
+  - key: bugprone-argument-comment.CommentNullPtrs
+    value: false
+  - key: bugprone-assert-side-effect.AssertMacros
+    value: 'assert,NSAssert,NSCAssert'
+  - key: bugprone-assert-side-effect.CheckFunctionCalls
+    value: false
+  - key: bugprone-dangling-handle.HandleClasses
+    value: 'std::basic_string_view;std::experimental::basic_string_view'
+  - key: bugprone-exception-escape.FunctionsThatShouldNotThrow
+    value: ''
+  - key: bugprone-exception-escape.IgnoredExceptions
+    value: ''
+  - key: bugprone-fold-init-type.CheckIdempotentOperations
+    value: true
+  - key: bugprone-forward-declaration-namespace.CheckAliases
+    value: false
+  - key: bugprone-implicit-widening-of-multiplication-result.CheckCasts
+    value: true
+  - key: bugprone-implicit-widening-of-multiplication-result.UseCXXStaticCastsInCppSources
+    value: true
+  - key: bugprone-implicit-widening-of-multiplication-result.UseCXXHeadersInCppSources
+    value: true
+  - key: bugprone-incorrect-roundings.CheckIncreaseFromZero
+    value: true
+  - key: bugprone-infinite-loop.CheckIncrementFromZero
+    value: true
+  - key: bugprone-macro-parentheses.CheckPrivateMacros
+    value: true
+  - key: bugprone-macro-repeated-side-effects.CheckPrivateMacros
+    value: true
+  - key: bugprone-misplaced-widening-cast.CheckImplicitCasts
+    value: false
+  - key: bugprone-not-null-terminated-result.WantToUseSafeFunctions
+    value: true
+  - key: bugprone-posix-return.CheckOverflowBeforeReturnType
+    value: false
+  - key: bugprone-redundant-branch-condition.CheckOverlapJoint
+    value: true
+  - key: bugprone-reserved-identifier.Invert
+    value: false
+  - key: bugprone-reserved-identifier.AllowedIdentifiers
+    value: ''
+  - key: bugprone-sizeof-expression.WarnOnSizeOfConstant
+    value: true
+  - key: bugprone-sizeof-expression.WarnOnSizeOfIntegerExpression
+    value: false
+  - key: bugprone-sizeof-expression.WarnOnSizeOfThis
+    value: true
+  - key: bugprone-sizeof-expression.WarnOnSizeOfCompareToConstant
+    value: true
+  - key: bugprone-string-constructor.LargeLengthThreshold
+    value: '0x800000'
+  - key: bugprone-string-integer-assignment.StringClasses
+    value: '::std::basic_string'
+  - key: bugprone-suspicious-enum-usage.StrictMode
+    value: false
+  - key: bugprone-suspicious-missing-comma.SizeThreshold
+    value: '5'
+  - key: bugprone-suspicious-missing-comma.RatioThreshold
+    value: '0.2'
+  - key: bugprone-suspicious-missing-comma.MaxConcatenatedTokens
+    value: '5'
+  - key: bugprone-suspicious-string-compare.WarnOnImplicitComparison
+    value: true
+  - key: bugprone-suspicious-string-compare.WarnOnLogicalNotComparison
+    value: false
+  - key: bugprone-suspicious-string-compare.StringCompareLikeFunctions
+    value: ''
+  - key: bugprone-too-small-loop-variable.MagnitudeBitsUpperLimit
+    value: '16'
+  - key: bugprone-unhandled-self-assignment.WarnOnlyIfThisHasSuspiciousField
+    value: true
+  - key: bugprone-unused-raii.AllowedTypes
+    value: ''
+
+  # CERT checks
+  - key: cert-dcl16-c.NewSuffixes
+    value: 'L;LL;LU;LLU'
+  - key: cert-oop54-cpp.WarnOnlyIfThisHasSuspiciousField
+    value: false
+  - key: cert-str34-c.DiagnoseSuspiciousUsage
+    value: false
+
+  # Miscellaneous checks
+  - key: misc-const-correctness.WarnGenericConstCorrectnessViolation
+    value: false
+  - key: misc-const-correctness.AnalyzeValues
+    value: true
+  - key: misc-const-correctness.AnalyzeReferences
+    value: true
+  - key: misc-const-correctness.WarnPointersAsValues
+    value: false
+  - key: misc-const-correctness.TransformValues
+    value: true
+  - key: misc-const-correctness.TransformReferences
+    value: true
+  - key: misc-const-correctness.TransformPointersAsValues
+    value: false
+  - key: misc-definitions-in-headers.UseHeaderFileExtension
+    value: true
+  - key: misc-definitions-in-headers.HeaderFileExtensions
+    value: ';h;hh;hpp;hxx'
+  - key: misc-include-cleaner.IgnoreHeaders
+    value: ''
+  - key: misc-throw-by-value-catch-by-reference.CheckThrowTemporary
+    value: true
+  - key: misc-throw-by-value-catch-by-reference.WarnOnLargeObjects
+    value: false
+  - key: misc-throw-by-value-catch-by-reference.MaxSize
+    value: '-1'
+  - key: misc-uniqueptr-reset-release.IncludeStyle
+    value: 'llvm'
+  - key: misc-unused-parameters.StrictMode
+    value: false
+
+  # Portability checks
+  - key: portability-restrict-system-includes.Includes
+    value: '*'
+  - key: portability-restrict-system-includes.AllowedIncludes
+    value: ''
+  - key: portability-simd-intrinsics.Suggest
+    value: false
+  - key: portability-simd-intrinsics.Std
+    value: ''
+
+# Excluded paths
+ExcludeHeaderFilterRegex: ''
+SystemHeaders: false
+UseColor: true
+...

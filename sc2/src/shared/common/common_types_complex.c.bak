@@ -1,0 +1,511 @@
+/**
+ * @file common_types.c
+ * @brief Implementation of Common Types and Utilities for UQM
+ * 
+ * This file provides implementations for utility functions and initialization
+ * routines for the common types system.
+ * 
+ * @author The Ur-Quan Masters Refactoring Team
+ * @version 2.0.0
+ * @date 2025-01-27
+ * 
+ * @copyright Copyright (c) 2002 Toys for Bob, Inc.
+ * @license GNU General Public License v2.0
+ */
+
+#include "common_types.h"
+#include <string.h>
+#include <stdio.h>
+#include <math.h>
+#include <time.h>
+
+/* ========================================================================== */
+/*                          PLATFORM DETECTION                               */
+/* ========================================================================== */
+
+/**
+ * @brief Get platform information string
+ * @return String describing the current platform
+ */
+const char* UQM_GetPlatformString(void) {
+#ifdef UQM_PLATFORM_WINDOWS
+    return "Windows";
+#elif defined(UQM_PLATFORM_MACOS)
+    return "macOS";
+#elif defined(UQM_PLATFORM_LINUX)
+    return "Linux";
+#elif defined(UQM_PLATFORM_FREEBSD)
+    return "FreeBSD";
+#elif defined(UQM_PLATFORM_OPENBSD)
+    return "OpenBSD";
+#elif defined(UQM_PLATFORM_NETBSD)
+    return "NetBSD";
+#elif defined(UQM_PLATFORM_UNIX)
+    return "Unix";
+#else
+    return "Unknown";
+#endif
+}
+
+/**
+ * @brief Get compiler information string
+ * @return String describing the compiler used
+ */
+const char* UQM_GetCompilerString(void) {
+#ifdef UQM_COMPILER_GCC
+    return "GCC " __VERSION__;
+#elif defined(UQM_COMPILER_CLANG)
+    return "Clang " __clang_version__;
+#elif defined(UQM_COMPILER_MSVC)
+    return "MSVC";
+#else
+    return "Unknown Compiler";
+#endif
+}
+
+/**
+ * @brief Get architecture information string
+ * @return String describing the target architecture
+ */
+const char* UQM_GetArchitectureString(void) {
+#ifdef UQM_ARCH_X86_64
+    return "x86_64";
+#elif defined(UQM_ARCH_X86)
+    return "x86";
+#elif defined(UQM_ARCH_ARM64)
+    return "ARM64";
+#elif defined(UQM_ARCH_ARM)
+    return "ARM";
+#else
+    return "Unknown Architecture";
+#endif
+}
+
+/* ========================================================================== */
+/*                         GEOMETRY UTILITIES                                */
+/* ========================================================================== */
+
+/**
+ * @brief Calculate distance between two points
+ * @param p1 First point
+ * @param p2 Second point
+ * @return Distance between points
+ */
+float UQM_Point2D_Distance(const UQM_Point2D* p1, const UQM_Point2D* p2) {
+    if (!p1 || !p2) return 0.0f;
+    
+    float dx = p2->x - p1->x;
+    float dy = p2->y - p1->y;
+    return sqrtf(dx * dx + dy * dy);
+}
+
+/**
+ * @brief Calculate squared distance between two points (faster than distance)
+ * @param p1 First point
+ * @param p2 Second point
+ * @return Squared distance between points
+ */
+float UQM_Point2D_DistanceSquared(const UQM_Point2D* p1, const UQM_Point2D* p2) {
+    if (!p1 || !p2) return 0.0f;
+    
+    float dx = p2->x - p1->x;
+    float dy = p2->y - p1->y;
+    return dx * dx + dy * dy;
+}
+
+/**
+ * @brief Add two points
+ * @param result Result point
+ * @param p1 First point
+ * @param p2 Second point
+ */
+void UQM_Point2D_Add(UQM_Point2D* result, const UQM_Point2D* p1, const UQM_Point2D* p2) {
+    if (!result || !p1 || !p2) return;
+    
+    result->x = p1->x + p2->x;
+    result->y = p1->y + p2->y;
+}
+
+/**
+ * @brief Subtract two points
+ * @param result Result point
+ * @param p1 First point
+ * @param p2 Second point to subtract
+ */
+void UQM_Point2D_Subtract(UQM_Point2D* result, const UQM_Point2D* p1, const UQM_Point2D* p2) {
+    if (!result || !p1 || !p2) return;
+    
+    result->x = p1->x - p2->x;
+    result->y = p1->y - p2->y;
+}
+
+/**
+ * @brief Scale a point by a factor
+ * @param result Result point
+ * @param point Point to scale
+ * @param scale Scale factor
+ */
+void UQM_Point2D_Scale(UQM_Point2D* result, const UQM_Point2D* point, float scale) {
+    if (!result || !point) return;
+    
+    result->x = point->x * scale;
+    result->y = point->y * scale;
+}
+
+/**
+ * @brief Calculate area of a rectangle
+ * @param rect Rectangle
+ * @return Area of the rectangle
+ */
+float UQM_Rect_Area(const UQM_Rect* rect) {
+    if (!rect || rect->width < 0 || rect->height < 0) return 0.0f;
+    
+    return rect->width * rect->height;
+}
+
+/**
+ * @brief Check if a point is inside a rectangle
+ * @param rect Rectangle
+ * @param point Point to test
+ * @return true if point is inside rectangle, false otherwise
+ */
+bool UQM_Rect_ContainsPoint(const UQM_Rect* rect, const UQM_Point2D* point) {
+    if (!rect || !point) return false;
+    
+    return (point->x >= rect->x && 
+            point->x < rect->x + rect->width &&
+            point->y >= rect->y && 
+            point->y < rect->y + rect->height);
+}
+
+/**
+ * @brief Check if two rectangles intersect
+ * @param rect1 First rectangle
+ * @param rect2 Second rectangle
+ * @return true if rectangles intersect, false otherwise
+ */
+bool UQM_Rect_Intersects(const UQM_Rect* rect1, const UQM_Rect* rect2) {
+    if (!rect1 || !rect2) return false;
+    
+    return !(rect1->x >= rect2->x + rect2->width ||
+             rect1->x + rect1->width <= rect2->x ||
+             rect1->y >= rect2->y + rect2->height ||
+             rect1->y + rect1->height <= rect2->y);
+}
+
+/**
+ * @brief Calculate intersection of two rectangles
+ * @param result Result rectangle (intersection)
+ * @param rect1 First rectangle
+ * @param rect2 Second rectangle
+ * @return true if rectangles intersect, false otherwise
+ */
+bool UQM_Rect_Intersection(UQM_Rect* result, const UQM_Rect* rect1, const UQM_Rect* rect2) {
+    if (!result || !rect1 || !rect2) return false;
+    
+    if (!UQM_Rect_Intersects(rect1, rect2)) {
+        memset(result, 0, sizeof(UQM_Rect));
+        return false;
+    }
+    
+    float left = UQM_MAX(rect1->x, rect2->x);
+    float top = UQM_MAX(rect1->y, rect2->y);
+    float right = UQM_MIN(rect1->x + rect1->width, rect2->x + rect2->width);
+    float bottom = UQM_MIN(rect1->y + rect1->height, rect2->y + rect2->height);
+    
+    result->x = left;
+    result->y = top;
+    result->width = right - left;
+    result->height = bottom - top;
+    
+    return true;
+}
+
+/* ========================================================================== */
+/*                           COLOR UTILITIES                                 */
+/* ========================================================================== */
+
+/**
+ * @brief Create color from RGB values
+ * @param r Red component (0-255)
+ * @param g Green component (0-255) 
+ * @param b Blue component (0-255)
+ * @return Color structure
+ */
+UQM_Color UQM_Color_RGB(uint8_t r, uint8_t g, uint8_t b) {
+    UQM_Color color = {r, g, b, 255};
+    return color;
+}
+
+/**
+ * @brief Create color from RGBA values
+ * @param r Red component (0-255)
+ * @param g Green component (0-255)
+ * @param b Blue component (0-255)
+ * @param a Alpha component (0-255)
+ * @return Color structure
+ */
+UQM_Color UQM_Color_RGBA(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
+    UQM_Color color = {r, g, b, a};
+    return color;
+}
+
+/**
+ * @brief Create color from HSV values
+ * @param h Hue (0-360)
+ * @param s Saturation (0-1)
+ * @param v Value (0-1)
+ * @return Color structure
+ */
+UQM_Color UQM_Color_HSV(float h, float s, float v) {
+    UQM_Color color = {0, 0, 0, 255};
+    
+    if (s <= 0.0f) {
+        color.r = color.g = color.b = (uint8_t)(v * 255);
+        return color;
+    }
+    
+    float hh = h;
+    if (hh >= 360.0f) hh = 0.0f;
+    hh /= 60.0f;
+    
+    int i = (int)hh;
+    float ff = hh - i;
+    float p = v * (1.0f - s);
+    float q = v * (1.0f - (s * ff));
+    float t = v * (1.0f - (s * (1.0f - ff)));
+    
+    switch (i) {
+        case 0:
+            color.r = (uint8_t)(v * 255);
+            color.g = (uint8_t)(t * 255);
+            color.b = (uint8_t)(p * 255);
+            break;
+        case 1:
+            color.r = (uint8_t)(q * 255);
+            color.g = (uint8_t)(v * 255);
+            color.b = (uint8_t)(p * 255);
+            break;
+        case 2:
+            color.r = (uint8_t)(p * 255);
+            color.g = (uint8_t)(v * 255);
+            color.b = (uint8_t)(t * 255);
+            break;
+        case 3:
+            color.r = (uint8_t)(p * 255);
+            color.g = (uint8_t)(q * 255);
+            color.b = (uint8_t)(v * 255);
+            break;
+        case 4:
+            color.r = (uint8_t)(t * 255);
+            color.g = (uint8_t)(p * 255);
+            color.b = (uint8_t)(v * 255);
+            break;
+        default:
+        case 5:
+            color.r = (uint8_t)(v * 255);
+            color.g = (uint8_t)(p * 255);
+            color.b = (uint8_t)(q * 255);
+            break;
+    }
+    
+    return color;
+}
+
+/**
+ * @brief Blend two colors using alpha blending
+ * @param src Source color
+ * @param dst Destination color
+ * @return Blended color
+ */
+UQM_Color UQM_Color_Blend(const UQM_Color* src, const UQM_Color* dst) {
+    if (!src || !dst) return (UQM_Color){0, 0, 0, 0};
+    
+    float alpha = src->a / 255.0f;
+    float inv_alpha = 1.0f - alpha;
+    
+    UQM_Color result;
+    result.r = (uint8_t)(src->r * alpha + dst->r * inv_alpha);
+    result.g = (uint8_t)(src->g * alpha + dst->g * inv_alpha);
+    result.b = (uint8_t)(src->b * alpha + dst->b * inv_alpha);
+    result.a = (uint8_t)UQM_MAX(src->a, dst->a);
+    
+    return result;
+}
+
+/**
+ * @brief Convert color to 32-bit integer (RGBA format)
+ * @param color Color to convert
+ * @return 32-bit color value
+ */
+uint32_t UQM_Color_ToUint32(const UQM_Color* color) {
+    if (!color) return 0;
+    
+    return ((uint32_t)color->r << 24) |
+           ((uint32_t)color->g << 16) |
+           ((uint32_t)color->b << 8) |
+           ((uint32_t)color->a);
+}
+
+/**
+ * @brief Convert 32-bit integer to color (RGBA format)
+ * @param value 32-bit color value
+ * @return Color structure
+ */
+UQM_Color UQM_Color_FromUint32(uint32_t value) {
+    UQM_Color color;
+    color.r = (uint8_t)((value >> 24) & 0xFF);
+    color.g = (uint8_t)((value >> 16) & 0xFF);
+    color.b = (uint8_t)((value >> 8) & 0xFF);
+    color.a = (uint8_t)(value & 0xFF);
+    return color;
+}
+
+/* ========================================================================== */
+/*                          STRING UTILITIES                                 */
+/* ========================================================================== */
+
+/**
+ * @brief Safe string copy
+ * @param dst Destination buffer
+ * @param src Source string
+ * @param dst_size Size of destination buffer
+ * @return Length of copied string
+ */
+size_t UQM_StringCopy(char* dst, const char* src, size_t dst_size) {
+    if (!dst || !src || dst_size == 0) {
+        if (dst && dst_size > 0) dst[0] = '\0';
+        return 0;
+    }
+    
+    size_t src_len = strlen(src);
+    size_t copy_len = UQM_MIN(src_len, dst_size - 1);
+    
+    memcpy(dst, src, copy_len);
+    dst[copy_len] = '\0';
+    
+    return copy_len;
+}
+
+/**
+ * @brief Case-insensitive string comparison
+ * @param str1 First string
+ * @param str2 Second string
+ * @return 0 if equal, <0 if str1 < str2, >0 if str1 > str2
+ */
+int UQM_StringCompareIgnoreCase(const char* str1, const char* str2) {
+    if (!str1 && !str2) return 0;
+    if (!str1) return -1;
+    if (!str2) return 1;
+    
+    while (*str1 && *str2) {
+        char c1 = (*str1 >= 'A' && *str1 <= 'Z') ? *str1 + 32 : *str1;
+        char c2 = (*str2 >= 'A' && *str2 <= 'Z') ? *str2 + 32 : *str2;
+        
+        if (c1 != c2) {
+            return c1 - c2;
+        }
+        
+        str1++;
+        str2++;
+    }
+    
+    return *str1 - *str2;
+}
+
+/**
+ * @brief Check if string starts with prefix
+ * @param str String to check
+ * @param prefix Prefix to look for
+ * @return true if string starts with prefix, false otherwise
+ */
+bool UQM_StringStartsWith(const char* str, const char* prefix) {
+    if (!str || !prefix) return false;
+    
+    size_t str_len = strlen(str);
+    size_t prefix_len = strlen(prefix);
+    
+    if (prefix_len > str_len) return false;
+    
+    return memcmp(str, prefix, prefix_len) == 0;
+}
+
+/**
+ * @brief Check if string ends with suffix
+ * @param str String to check
+ * @param suffix Suffix to look for
+ * @return true if string ends with suffix, false otherwise
+ */
+bool UQM_StringEndsWith(const char* str, const char* suffix) {
+    if (!str || !suffix) return false;
+    
+    size_t str_len = strlen(str);
+    size_t suffix_len = strlen(suffix);
+    
+    if (suffix_len > str_len) return false;
+    
+    return memcmp(str + str_len - suffix_len, suffix, suffix_len) == 0;
+}
+
+/* ========================================================================== */
+/*                           SYSTEM UTILITIES                                */
+/* ========================================================================== */
+
+/**
+ * @brief Initialize common types system
+ * @return Success status
+ */
+bool UQM_CommonTypes_Initialize(void) {
+    // No specific initialization needed for common types
+    // This function exists for consistency with other systems
+    return true;
+}
+
+/**
+ * @brief Shutdown common types system
+ */
+void UQM_CommonTypes_Shutdown(void) {
+    // No specific cleanup needed for common types
+    // This function exists for consistency with other systems
+}
+
+/**
+ * @brief Get system endianness
+ * @return UQM_ENDIAN_LITTLE or UQM_ENDIAN_BIG
+ */
+UQM_Endian UQM_GetSystemEndianness(void) {
+    uint32_t test = 0x12345678;
+    uint8_t* bytes = (uint8_t*)&test;
+    
+    if (bytes[0] == 0x78) {
+        return UQM_ENDIAN_LITTLE;
+    } else {
+        return UQM_ENDIAN_BIG;
+    }
+}
+
+/**
+ * @brief Get current time in milliseconds since epoch
+ * @return Time in milliseconds
+ */
+uint64_t UQM_GetTimeMilliseconds(void) {
+    struct timespec ts;
+    if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0) {
+        return 0;
+    }
+    
+    return (uint64_t)ts.tv_sec * 1000 + (uint64_t)ts.tv_nsec / 1000000;
+}
+
+/**
+ * @brief Get current time in microseconds since epoch
+ * @return Time in microseconds
+ */
+uint64_t UQM_GetTimeMicroseconds(void) {
+    struct timespec ts;
+    if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0) {
+        return 0;
+    }
+    
+    return (uint64_t)ts.tv_sec * 1000000 + (uint64_t)ts.tv_nsec / 1000;
+}
