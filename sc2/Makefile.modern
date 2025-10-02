@@ -9,7 +9,7 @@
 # PROJECT CONFIGURATION
 # ============================================================================
 
-PROJECT_NAME := simple-test
+PROJECT_NAME := logging-test
 VERSION_MAJOR := 2
 VERSION_MINOR := 0
 VERSION_PATCH := 0
@@ -134,14 +134,15 @@ LDFLAGS := $(LDFLAGS_DEBUG) $(LDFLAGS_OPTIMIZE) $(LDFLAGS_PKG) \
 # SOURCE FILES
 # ============================================================================
 
-# Phase 1: Basic foundation test - only common_types for now
+# Phase 2: Foundation + Logging System
 SHARED_SOURCES := \
-	$(SRC_DIR)/shared/common/common_types.c
+	$(SRC_DIR)/shared/common/common_types.c \
+	$(SRC_DIR)/shared/logging/modern_logger.c
 
-# Simple test program
-TEST_MAIN := $(SRC_DIR)/simple_test.c
+# Test program for Phase 2
+TEST_MAIN := $(SRC_DIR)/test_logging.c
 
-# For Phase 1, we compile only basic types + simple test
+# For Phase 2 Week 1, we compile foundation + logging + tests
 ALL_SOURCES := $(SHARED_SOURCES) $(TEST_MAIN)
 
 # Generate object file paths

@@ -75,11 +75,11 @@ typedef struct {
  * @details Thread-safe counters for monitoring logger health and performance.
  */
 typedef struct {
-    atomic_uint64_t messages_logged;    ///< Total messages processed
-    atomic_uint64_t messages_dropped;   ///< Messages lost due to queue full
-    atomic_uint64_t format_errors;      ///< Format string errors encountered
-    atomic_uint64_t output_errors;      ///< Output function errors
-    atomic_uint64_t total_bytes;        ///< Total bytes written
+    _Atomic(uint64_t) messages_logged;    ///< Total messages processed
+    _Atomic(uint64_t) messages_dropped;   ///< Messages lost due to queue full
+    _Atomic(uint64_t) format_errors;      ///< Format string errors encountered
+    _Atomic(uint64_t) output_errors;      ///< Output function errors
+    _Atomic(uint64_t) total_bytes;        ///< Total bytes written
 } UQM_LogStatistics;
 
 /**
@@ -230,6 +230,7 @@ static void ring_buffer_destroy(UQM_LogRingBuffer* buffer) {
  * @param buffer Ring buffer to check
  * @return true if empty, false otherwise
  */
+__attribute__((unused))
 static bool ring_buffer_is_empty(const UQM_LogRingBuffer* buffer) {
     size_t head = atomic_load(&buffer->head);
     size_t tail = atomic_load(&buffer->tail);
@@ -241,6 +242,7 @@ static bool ring_buffer_is_empty(const UQM_LogRingBuffer* buffer) {
  * @param buffer Ring buffer to check
  * @return Number of entries currently in the buffer
  */
+__attribute__((unused))
 static size_t ring_buffer_size(const UQM_LogRingBuffer* buffer) {
     size_t head = atomic_load(&buffer->head);
     size_t tail = atomic_load(&buffer->tail);
@@ -252,6 +254,7 @@ static size_t ring_buffer_size(const UQM_LogRingBuffer* buffer) {
  * @param buffer Ring buffer to check
  * @return true if full, false otherwise
  */
+__attribute__((unused))
 static bool ring_buffer_is_full(const UQM_LogRingBuffer* buffer) {
     size_t head = atomic_load(&buffer->head);
     size_t tail = atomic_load(&buffer->tail);
@@ -333,9 +336,9 @@ static int format_plain(const UQM_LogEntry* entry, char* buffer, size_t buffer_s
 static int format_timestamped(const UQM_LogEntry* entry, char* buffer, size_t buffer_size) {
     // Convert nanoseconds to seconds and nanoseconds
     uint64_t seconds = entry->timestamp_ns / 1000000000ULL;
-    uint32_t nanoseconds = entry->timestamp_ns % 1000000000ULL;
+    uint32_t nanoseconds = (uint32_t)(entry->timestamp_ns % 1000000000ULL);
     
-    return snprintf(buffer, buffer_size, "[%lu.%09u] [%s] %s: %s\\n",
+    return snprintf(buffer, buffer_size, "[%lu.%09u] [%s] %s: %s\n",
                     seconds, nanoseconds,
                     uqm_log_level_to_string(entry->level),
                     entry->context,
@@ -351,11 +354,11 @@ static int format_timestamped(const UQM_LogEntry* entry, char* buffer, size_t bu
  */
 static int format_structured(const UQM_LogEntry* entry, char* buffer, size_t buffer_size) {
     uint64_t seconds = entry->timestamp_ns / 1000000000ULL;
-    uint32_t nanoseconds = entry->timestamp_ns % 1000000000ULL;
+    uint32_t nanoseconds = (uint32_t)(entry->timestamp_ns % 1000000000ULL);
     
     return snprintf(buffer, buffer_size,
                     "timestamp=%lu.%09u level=%s context=%s thread=%u "
-                    "file=%s function=%s line=%u message=\"%s\"\\n",
+                    "file=%s function=%s line=%u message=\"%s\"\n",
                     seconds, nanoseconds,
                     uqm_log_level_to_string(entry->level),
                     entry->context,
@@ -375,7 +378,7 @@ static int format_structured(const UQM_LogEntry* entry, char* buffer, size_t buf
  */
 static int format_json(const UQM_LogEntry* entry, char* buffer, size_t buffer_size) {
     uint64_t seconds = entry->timestamp_ns / 1000000000ULL;
-    uint32_t nanoseconds = entry->timestamp_ns % 1000000000ULL;
+    uint32_t nanoseconds = (uint32_t)(entry->timestamp_ns % 1000000000ULL);
     
     return snprintf(buffer, buffer_size,
                     "{\"timestamp\":\"%lu.%09u\","
@@ -385,7 +388,7 @@ static int format_json(const UQM_LogEntry* entry, char* buffer, size_t buffer_si
                     "\"file\":\"%s\","
                     "\"function\":\"%s\","
                     "\"line\":%u,"
-                    "\"message\":\"%s\"}\\n",
+                    "\"message\":\"%s\"}\n",
                     seconds, nanoseconds,
                     uqm_log_level_to_string(entry->level),
                     entry->context,
@@ -738,7 +741,7 @@ void uqm_logger_log_va(UQM_Logger* logger,
     // Copy context safely
     if (context) {
         strncpy(entry.context, context, sizeof(entry.context) - 1);
-        entry.context[sizeof(entry.context) - 1] = '\\0';
+        entry.context[sizeof(entry.context) - 1] = '\0';
     } else {
         strcpy(entry.context, "general");
     }
