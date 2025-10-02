@@ -739,7 +739,7 @@ zip_fillDirStructureCentralProcessEntry(uio_GPDir *topGPDir,
 	uio_uint32 signature;
 	uio_uint16 lastModTime;
 	uio_uint16 lastModDate;
-	uio_uint32 crc;
+	uio_uint32 crc __attribute__((unused));
 	uio_uint16 fileNameLength;
 	uio_uint16 extraFieldLength;
 	uio_uint16 fileCommentLength;

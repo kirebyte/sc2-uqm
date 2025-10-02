@@ -261,6 +261,7 @@ ExitConversation (RESPONSE_REF R)
 				break;
 			case 7:
 				--NumVisits;
+				/* FALLTHROUGH */
 			default:
 				NPCPhrase (INSULTED_4);
 				setSegue (Segue_hostile);
@@ -367,6 +368,7 @@ OrzAllied (RESPONSE_REF R)
 			case 3:
 				NPCPhrase (GENERAL_INFO_ALLY_4);
 				--NumVisits;
+				/* FALLTHROUGH */
 				break;
 		}
 		SET_GAME_STATE (ORZ_GENERAL_INFO, NumVisits);
@@ -390,6 +392,7 @@ OrzAllied (RESPONSE_REF R)
 			case 3:
 				NPCPhrase (ABOUT_US_4);
 				--NumVisits;
+				/* FALLTHROUGH */
 				break;
 		}
 		SET_GAME_STATE (ORZ_PERSONAL_INFO, NumVisits);
@@ -592,6 +595,7 @@ OrzAngry (RESPONSE_REF R)
 			case 1:
 				NPCPhrase (GENERAL_INFO_ANGRY_2);
 				--NumVisits;
+				/* FALLTHROUGH */
 				break;
 		}
 		SET_GAME_STATE (ORZ_GENERAL_INFO, NumVisits);
@@ -665,6 +669,7 @@ Intro (void)
 			case 1:
 				NPCPhrase (HOSTILE_HELLO_2);
 				--NumVisits;
+				/* FALLTHROUGH */
 				break;
 		}
 		SET_GAME_STATE (ORZ_VISITS, NumVisits);
@@ -684,6 +689,7 @@ Intro (void)
 				case 1:
 					NPCPhrase (FRIENDLY_ALLIED_TAALO_HELLO_2);
 					--NumVisits;
+				/* FALLTHROUGH */
 					break;
 			}
 		}
@@ -697,6 +703,7 @@ Intro (void)
 				case 1:
 					NPCPhrase (ANGRY_TAALO_HELLO_2);
 					--NumVisits;
+				/* FALLTHROUGH */
 					break;
 			}
 		}
@@ -723,6 +730,7 @@ Intro (void)
 				case 3:
 					NPCPhrase (ALLIED_HOMEWORLD_HELLO_4);
 					--NumVisits;
+				/* FALLTHROUGH */
 					break;
 			}
 			SET_GAME_STATE (ORZ_HOME_VISITS, NumVisits);
@@ -744,6 +752,7 @@ Intro (void)
 				case 3:
 					NPCPhrase (ALLIED_SPACE_HELLO_4);
 					--NumVisits;
+				/* FALLTHROUGH */
 					break;
 			}
 			SET_GAME_STATE (ORZ_VISITS, NumVisits);
@@ -770,6 +779,7 @@ Intro (void)
 				case 3:
 					NPCPhrase (NEUTRAL_HOMEWORLD_HELLO_4);
 					--NumVisits;
+				/* FALLTHROUGH */
 					break;
 			}
 			SET_GAME_STATE (ORZ_HOME_VISITS, NumVisits);
@@ -791,6 +801,7 @@ Intro (void)
 				case 3:
 					NPCPhrase (NEUTRAL_SPACE_HELLO_4);
 					--NumVisits;
+				/* FALLTHROUGH */
 					break;
 			}
 			SET_GAME_STATE (ORZ_VISITS, NumVisits);
@@ -811,6 +822,7 @@ Intro (void)
 				case 1:
 					NPCPhrase (ANGRY_HOMEWORLD_HELLO_2);
 					--NumVisits;
+				/* FALLTHROUGH */
 					break;
 			}
 			SET_GAME_STATE (ORZ_HOME_VISITS, NumVisits);
@@ -826,6 +838,7 @@ Intro (void)
 				case 1:
 					NPCPhrase (ANGRY_SPACE_HELLO_2);
 					--NumVisits;
+				/* FALLTHROUGH */
 					break;
 			}
 			SET_GAME_STATE (ORZ_VISITS, NumVisits);

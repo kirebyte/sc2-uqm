@@ -46,7 +46,7 @@ static const UNICODE *describeWeapon (BYTE moduleType);
 void
 RepairSISBorder (void)
 {
-	RECT r;
+	RECT r __attribute__((unused));
 	CONTEXT OldContext;
 
 	OldContext = SetContext (ScreenContext);
@@ -81,7 +81,7 @@ RepairSISBorder (void)
 void
 ClearSISRect (BYTE ClearFlags)
 {
-	RECT r;
+	RECT r __attribute__((unused));
 	Color OldColor;
 	CONTEXT OldContext;
 
@@ -127,7 +127,7 @@ DrawSISTitle (UNICODE *pStr)
 {
 	TEXT t;
 	CONTEXT OldContext;
-	RECT r;
+	RECT r __attribute__((unused));
 
 	t.baseline.x = SIS_TITLE_WIDTH >> 1;
 	t.baseline.y = SIS_TITLE_HEIGHT - 2;
@@ -186,7 +186,7 @@ DrawSISMessageEx (const UNICODE *pStr, SIZE CurPos, SIZE ExPos, COUNT flags)
 	UNICODE buf[256];
 	CONTEXT OldContext;
 	TEXT t;
-	RECT r;
+	RECT r __attribute__((unused));
 
 	OldContext = SetContext (OffScreenContext);
 	// prepare the context
@@ -364,7 +364,7 @@ GetStatusMessageRect (RECT *r)
 void
 DrawStatusMessage (const UNICODE *pStr)
 {
-	RECT r;
+	RECT r __attribute__((unused));
 	RECT ctxRect;
 	TEXT t;
 	UNICODE buf[128];
@@ -447,7 +447,7 @@ SetStatusMessageMode (StatMsgMode newMode)
 void
 DrawCaptainsName (void)
 {
-	RECT r;
+	RECT r __attribute__((unused));
 	TEXT t;
 	CONTEXT OldContext;
 	FONT OldFont;
@@ -479,7 +479,7 @@ DrawCaptainsName (void)
 void
 DrawFlagshipName (BOOLEAN InStatusArea)
 {
-	RECT r;
+	RECT r __attribute__((unused));
 	TEXT t;
 	FONT OldFont;
 	Color OldColor;
@@ -540,7 +540,7 @@ DrawFlagshipName (BOOLEAN InStatusArea)
 void
 DrawFlagshipStats (void)
 {
-	RECT r;
+	RECT r __attribute__((unused));
 	TEXT t;
 	FONT OldFont;
 	Color OldColor;
@@ -726,7 +726,7 @@ DrawLanders (void)
 {
 	BYTE i;
 	SIZE width;
-	RECT r;
+	RECT r __attribute__((unused));
 	STAMP s;
 	CONTEXT OldContext;
 
@@ -761,7 +761,7 @@ void
 DrawStorageBays (BOOLEAN Refresh)
 {
 	BYTE i;
-	RECT r;
+	RECT r __attribute__((unused));
 	CONTEXT OldContext;
 
 	OldContext = SetContext (StatusContext);
@@ -839,7 +839,7 @@ static void
 DrawPC_SIS (void)
 {
 	TEXT t;
-	RECT r;
+	RECT r __attribute__((unused));
 
 	GetGaugeRect (&r, FALSE);
 	t.baseline.x = STATUS_WIDTH >> 1;
@@ -1003,7 +1003,7 @@ DeltaSISGauges_crewDelta (SIZE crew_delta)
 	{
 		TEXT t;
 		UNICODE buf[60];
-		RECT r;
+		RECT r __attribute__((unused));
 
 		snprintf (buf, sizeof buf, "%u", GLOBAL_SIS (CrewEnlisted));
 
@@ -1059,7 +1059,7 @@ DeltaSISGauges_fuelDelta (SIZE fuel_delta)
 	{
 		TEXT t;
 		UNICODE buf[60];
-		RECT r;
+		RECT r __attribute__((unused));
 
 		snprintf (buf, sizeof buf, "%u", new_coarse_fuel);
 
@@ -1097,7 +1097,7 @@ DeltaSISGauges_resunitDelta (SIZE resunit_delta)
 	}
 	else
 	{
-		RECT r;
+		RECT r __attribute__((unused));
 
 		r.corner.x = 2;
 		r.corner.y = 130;
@@ -1237,7 +1237,7 @@ GetCPodCapacity (POINT *ppt)
 	COUNT seatNr;
 
 	COUNT rowNr;
-	COUNT colNr;
+	COUNT colNr __attribute__((unused));
 				
 	static const Color crewRows[] = PC_CREW_COLOR_TABLE;
 
@@ -1339,7 +1339,7 @@ GetSBayCapacity (POINT *ppt)
 	COUNT cellNr;
 
 	COUNT rowNr;
-	COUNT colNr;
+	COUNT colNr __attribute__((unused));
 				
 	static const Color colorBars[] = STORAGE_BAY_COLOR_TABLE;
 

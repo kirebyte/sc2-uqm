@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-function-type"
 //Copyright Paul Reiche, Fred Ford. 1992-2002
 
 /*
@@ -405,3 +407,5 @@ AbandonShip (ELEMENT *ShipPtr, ELEMENT *TargetPtr,
 	}
 }
 
+
+#pragma GCC diagnostic pop

@@ -27,19 +27,37 @@
 ==============================================================================*/
 
 #ifdef HAVE_CONFIG_H
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include "config.h"
 #endif
 
 #ifdef HAVE_UNISTD_H
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include <unistd.h>
 #endif
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include <stdio.h>
 #ifdef HAVE_MEMORY_H
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include <memory.h>
 #endif
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include <string.h>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include "mikmod_internals.h"
 
 #ifdef SUNOS
@@ -380,3 +398,5 @@ MIKMODAPI MLOADER load_stm={
 };
 
 /* ex:set ts=4: */
+
+#pragma GCC diagnostic pop

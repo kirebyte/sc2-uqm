@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-function-type"
 //Copyright Paul Reiche, Fred Ford. 1992-2002
 
 /*
@@ -1745,3 +1747,5 @@ SaveSisHyperState (void)
 	UnlockElement (hSisElement);
 }
 
+
+#pragma GCC diagnostic pop

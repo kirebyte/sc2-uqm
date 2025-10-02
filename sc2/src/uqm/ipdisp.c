@@ -632,7 +632,7 @@ flag_ship_preprocess (ELEMENT *ElementPtr)
 		if ((hSuccElement = GetSuccElement (ElementPtr))
 				&& hSuccElement != GetTailElement ())
 		{
-			HELEMENT hPredElement;
+			HELEMENT hPredElement __attribute__((unused));
 			ELEMENT *TailPtr;
 
 			LockElement (GetTailElement (), &TailPtr);

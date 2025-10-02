@@ -28,8 +28,14 @@
 ==============================================================================*/
 
 #if defined(HAVE_CONFIG_H) && !defined(_IN_VIRTCH_) /* config.h isn't guarded */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include "config.h"
 #endif
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include "mikmod_internals.h"
 
 #ifndef NO_HQMIXER
@@ -473,3 +479,5 @@ ULONG VC1_VoiceRealVolume(UBYTE voice)
 #endif /* _IN_VIRTCH_ */
 
 /* ex:set ts=4: */
+
+#pragma GCC diagnostic pop

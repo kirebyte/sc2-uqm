@@ -1,0 +1,1012 @@
+'echo -n' capable echo found.
+Sed stream editor found.
+tr found.
+Make found.
+build/unix/build.sh: 253: build/unix/config_proginfo_host: libmikmod-config: not found
+build/unix/build.sh: 254: build/unix/config_proginfo_host: libmikmod-config: not found
+build/unix/build.sh: 255: build/unix/config_proginfo_host: libmikmod-config: not found
+GNU C compiler found.
+We have a C preprocessor.
+We have a C dependency generator.
+We have a C compiler.
+We have a C++ preprocessor.
+We have a C++ dependency generator.
+We have a C++ compiler.
+We have a linker.
+Little-endian machine detected.
+Simple DirectMedia Layer not found.
+Simple DirectMedia Layer version 2.x found.
+libpng found.
+Symbol 'readdir_r' found.
+Symbol 'setenv' found.
+Symbol 'strupr' not found.
+Symbol 'strcasecmp' found.
+Symbol 'stricmp' not found.
+Symbol 'acos' not found.
+Symbol 'iswgraph' found.
+Type 'wchar_t' found.
+Type 'wint_t' found.
+Symbol 'getopt_long' found.
+Header 'regex.h' found.
+Type '_Bool' found.
+Preprocessor macro 'WIN32' not found.
+Preprocessor macro '__MINGW32__' not found.
+pkg-config found.
+vorbisfile found.
+Platform-specific network libraries found.
+zlib found.
+
+  [1m-= Main menu =-[0m
+   1. Type of build                        Debugging build
+   2. Graphics Engine                      SDL2 with modern graphics support
+   3. Sound backend                        Use MixSDL for sound (internal)
+   4. Tracker music support                Included libmikmod
+   5. Ogg Vorbis codec                     Xiph libogg + libvorbis
+   6. Network Supermelee support           IPv4 and IPv6
+   7. Joystick support                     enabled
+   8. Supported file i/o methods           Direct & .zip file i/o
+   9. Graphics/Sound optimizations         Platform acceleration (asm, etc.)
+  10. Thread library                       SDL-controlled thread library
+  11. Installation paths                   [...]
+
+Press a number plus <ENTER> if you want to change something, 
+or just <ENTER> if everything is ok: 
+Configuration complete.
+Saving choices...
+Building file dependency index...
+  MKDEP    obj/debug/src/options.c.d
+  MKDEP    obj/debug/src/port.c.d
+  MKDEP    obj/debug/src/uqm.c.d
+  MKDEP    obj/debug/src/libs/callback/alarm.c.d
+  MKDEP    obj/debug/src/libs/callback/async.c.d
+  MKDEP    obj/debug/src/libs/callback/callback.c.d
+  MKDEP    obj/debug/src/libs/decomp/lzdecode.c.d
+  MKDEP    obj/debug/src/libs/decomp/lzencode.c.d
+  MKDEP    obj/debug/src/libs/decomp/update.c.d
+  MKDEP    obj/debug/src/libs/file/dirs.c.d
+  MKDEP    obj/debug/src/libs/file/files.c.d
+  MKDEP    obj/debug/src/libs/graphics/boxint.c.d
+  MKDEP    obj/debug/src/libs/graphics/clipline.c.d
+  MKDEP    obj/debug/src/libs/graphics/cmap.c.d
+  MKDEP    obj/debug/src/libs/graphics/context.c.d
+  MKDEP    obj/debug/src/libs/graphics/drawable.c.d
+  MKDEP    obj/debug/src/libs/graphics/filegfx.c.d
+  MKDEP    obj/debug/src/libs/graphics/bbox.c.d
+  MKDEP    obj/debug/src/libs/graphics/dcqueue.c.d
+  MKDEP    obj/debug/src/libs/graphics/gfxload.c.d
+  MKDEP    obj/debug/src/libs/graphics/font.c.d
+  MKDEP    obj/debug/src/libs/graphics/frame.c.d
+  MKDEP    obj/debug/src/libs/graphics/gfx_common.c.d
+  MKDEP    obj/debug/src/libs/graphics/intersec.c.d
+  MKDEP    obj/debug/src/libs/graphics/loaddisp.c.d
+  MKDEP    obj/debug/src/libs/graphics/pixmap.c.d
+  MKDEP    obj/debug/src/libs/graphics/resgfx.c.d
+  MKDEP    obj/debug/src/libs/graphics/tfb_draw.c.d
+  MKDEP    obj/debug/src/libs/graphics/tfb_prim.c.d
+  MKDEP    obj/debug/src/libs/graphics/widgets.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/opengl.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/palette.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/primitives.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/pure.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/sdl2_pure.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/sdl_common.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/sdl1_common.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/sdl2_common.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/scalers.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/2xscalers.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/2xscalers_mmx.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/2xscalers_sse.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/2xscalers_3dnow.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/nearest2x.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/bilinear2x.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/biadv2x.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/triscan2x.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/hq2x.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/canvas.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/png2sdl.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/sdluio.c.d
+  MKDEP    obj/debug/src/libs/graphics/sdl/rotozoom.c.d
+  MKDEP    obj/debug/src/libs/heap/heap.c.d
+  MKDEP    obj/debug/src/libs/input/input_common.c.d
+  MKDEP    obj/debug/src/libs/input/sdl/input.c.d
+  MKDEP    obj/debug/src/libs/input/sdl/keynames.c.d
+  MKDEP    obj/debug/src/libs/input/sdl/vcontrol.c.d
+  MKDEP    obj/debug/src/libs/list/list.c.d
+  MKDEP    obj/debug/src/libs/math/random.c.d
+  MKDEP    obj/debug/src/libs/math/random2.c.d
+  MKDEP    obj/debug/src/libs/math/sqrt.c.d
+  MKDEP    obj/debug/src/libs/memory/w_memlib.c.d
+  MKDEP    obj/debug/src/libs/resource/direct.c.d
+  MKDEP    obj/debug/src/libs/resource/filecntl.c.d
+  MKDEP    obj/debug/src/libs/resource/getres.c.d
+  MKDEP    obj/debug/src/libs/resource/loadres.c.d
+  MKDEP    obj/debug/src/libs/resource/stringbank.c.d
+  MKDEP    obj/debug/src/libs/resource/propfile.c.d
+  MKDEP    obj/debug/src/libs/resource/resinit.c.d
+  MKDEP    obj/debug/src/libs/sound/audiocore.c.d
+  MKDEP    obj/debug/src/libs/sound/fileinst.c.d
+  MKDEP    obj/debug/src/libs/sound/resinst.c.d
+  MKDEP    obj/debug/src/libs/sound/sound.c.d
+  MKDEP    obj/debug/src/libs/sound/sfx.c.d
+  MKDEP    obj/debug/src/libs/sound/music.c.d
+  MKDEP    obj/debug/src/libs/sound/stream.c.d
+  MKDEP    obj/debug/src/libs/sound/trackplayer.c.d
+  MKDEP    obj/debug/src/libs/sound/mixer/mixer.c.d
+  MKDEP    obj/debug/src/libs/sound/mixer/sdl/audiodrv_sdl.c.d
+  MKDEP    obj/debug/src/libs/sound/mixer/nosound/audiodrv_nosound.c.d
+  MKDEP    obj/debug/src/libs/sound/decoders/decoder.c.d
+  MKDEP    obj/debug/src/libs/sound/decoders/aiffaud.c.d
+  MKDEP    obj/debug/src/libs/sound/decoders/wav.c.d
+  MKDEP    obj/debug/src/libs/sound/decoders/dukaud.c.d
+  MKDEP    obj/debug/src/libs/sound/decoders/modaud.c.d
+  MKDEP    obj/debug/src/libs/sound/decoders/oggaud.c.d
+  MKDEP    obj/debug/src/libs/strings/getstr.c.d
+  MKDEP    obj/debug/src/libs/strings/sfileins.c.d
+  MKDEP    obj/debug/src/libs/strings/sresins.c.d
+  MKDEP    obj/debug/src/libs/strings/stringhashtable.c.d
+  MKDEP    obj/debug/src/libs/strings/strings.c.d
+  MKDEP    obj/debug/src/libs/strings/unicode.c.d
+  MKDEP    obj/debug/src/libs/task/tasklib.c.d
+  MKDEP    obj/debug/src/libs/threads/thrcommon.c.d
+  MKDEP    obj/debug/src/libs/threads/sdl/sdlthreads.c.d
+  MKDEP    obj/debug/src/libs/time/timecommon.c.d
+  MKDEP    obj/debug/src/libs/time/sdl/sdltime.c.d
+  MKDEP    obj/debug/src/libs/uio/charhashtable.c.d
+  MKDEP    obj/debug/src/libs/uio/defaultfs.c.d
+  MKDEP    obj/debug/src/libs/uio/fileblock.c.d
+  MKDEP    obj/debug/src/libs/uio/fstypes.c.d
+  MKDEP    obj/debug/src/libs/uio/gphys.c.d
+  MKDEP    obj/debug/src/libs/uio/io.c.d
+  MKDEP    obj/debug/src/libs/uio/ioaux.c.d
+  MKDEP    obj/debug/src/libs/uio/match.c.d
+  MKDEP    obj/debug/src/libs/uio/mount.c.d
+  MKDEP    obj/debug/src/libs/uio/mounttree.c.d
+  MKDEP    obj/debug/src/libs/uio/paths.c.d
+  MKDEP    obj/debug/src/libs/uio/physical.c.d
+  MKDEP    obj/debug/src/libs/uio/uiostream.c.d
+  MKDEP    obj/debug/src/libs/uio/uioutils.c.d
+  MKDEP    obj/debug/src/libs/uio/utils.c.d
+  MKDEP    obj/debug/src/libs/uio/debug.c.d
+  MKDEP    obj/debug/src/libs/uio/stdio/stdio.c.d
+  MKDEP    obj/debug/src/libs/uio/zip/zip.c.d
+  MKDEP    obj/debug/src/libs/video/vfileins.c.d
+  MKDEP    obj/debug/src/libs/video/vresins.c.d
+  MKDEP    obj/debug/src/libs/video/video.c.d
+  MKDEP    obj/debug/src/libs/video/videodec.c.d
+  MKDEP    obj/debug/src/libs/video/vidplayer.c.d
+  MKDEP    obj/debug/src/libs/video/dukvid.c.d
+  MKDEP    obj/debug/src/libs/video/legacyplayer.c.d
+  MKDEP    obj/debug/src/libs/log/uqmlog.c.d
+  MKDEP    obj/debug/src/libs/log/msgbox_stub.c.d
+  MKDEP    obj/debug/src/libs/mikmod/drv_nos.c.d
+  MKDEP    obj/debug/src/libs/mikmod/load_it.c.d
+  MKDEP    obj/debug/src/libs/mikmod/load_mod.c.d
+  MKDEP    obj/debug/src/libs/mikmod/load_s3m.c.d
+  MKDEP    obj/debug/src/libs/mikmod/load_stm.c.d
+  MKDEP    obj/debug/src/libs/mikmod/load_xm.c.d
+  MKDEP    obj/debug/src/libs/mikmod/mdreg.c.d
+  MKDEP    obj/debug/src/libs/mikmod/mdriver.c.d
+  MKDEP    obj/debug/src/libs/mikmod/mdulaw.c.d
+  MKDEP    obj/debug/src/libs/mikmod/mloader.c.d
+  MKDEP    obj/debug/src/libs/mikmod/mlreg.c.d
+  MKDEP    obj/debug/src/libs/mikmod/mlutil.c.d
+  MKDEP    obj/debug/src/libs/mikmod/mmalloc.c.d
+  MKDEP    obj/debug/src/libs/mikmod/mmerror.c.d
+  MKDEP    obj/debug/src/libs/mikmod/mmio.c.d
+  MKDEP    obj/debug/src/libs/mikmod/mplayer.c.d
+  MKDEP    obj/debug/src/libs/mikmod/munitrk.c.d
+  MKDEP    obj/debug/src/libs/mikmod/mwav.c.d
+  MKDEP    obj/debug/src/libs/mikmod/npertab.c.d
+  MKDEP    obj/debug/src/libs/mikmod/sloader.c.d
+  MKDEP    obj/debug/src/libs/mikmod/virtch.c.d
+  MKDEP    obj/debug/src/libs/mikmod/virtch2.c.d
+  MKDEP    obj/debug/src/libs/mikmod/virtch_common.c.d
+  MKDEP    obj/debug/src/libs/network/netport.c.d
+  MKDEP    obj/debug/src/libs/network/network_bsd.c.d
+  MKDEP    obj/debug/src/libs/network/connect/connect.c.d
+  MKDEP    obj/debug/src/libs/network/connect/listen.c.d
+  MKDEP    obj/debug/src/libs/network/connect/resolve.c.d
+  MKDEP    obj/debug/src/libs/network/netmanager/ndesc.c.d
+  MKDEP    obj/debug/src/libs/network/netmanager/netmanager_bsd.c.d
+  MKDEP    obj/debug/src/libs/network/socket/socket.c.d
+  MKDEP    obj/debug/src/libs/network/socket/socket_bsd.c.d
+  MKDEP    obj/debug/src/uqm/battle.c.d
+  MKDEP    obj/debug/src/uqm/battlecontrols.c.d
+  MKDEP    obj/debug/src/uqm/border.c.d
+  MKDEP    obj/debug/src/uqm/build.c.d
+  MKDEP    obj/debug/src/uqm/cleanup.c.d
+  MKDEP    obj/debug/src/uqm/clock.c.d
+  MKDEP    obj/debug/src/uqm/cnctdlg.c.d
+  MKDEP    obj/debug/src/uqm/collide.c.d
+  MKDEP    obj/debug/src/uqm/comm.c.d
+  MKDEP    obj/debug/src/uqm/commanim.c.d
+  MKDEP    obj/debug/src/uqm/commglue.c.d
+  MKDEP    obj/debug/src/uqm/confirm.c.d
+  MKDEP    obj/debug/src/uqm/credits.c.d
+  MKDEP    obj/debug/src/uqm/cyborg.c.d
+  MKDEP    obj/debug/src/uqm/demo.c.d
+  MKDEP    obj/debug/src/uqm/displist.c.d
+  MKDEP    obj/debug/src/uqm/dummy.c.d
+  MKDEP    obj/debug/src/uqm/encount.c.d
+  MKDEP    obj/debug/src/uqm/flash.c.d
+  MKDEP    obj/debug/src/uqm/fmv.c.d
+  MKDEP    obj/debug/src/uqm/galaxy.c.d
+  MKDEP    obj/debug/src/uqm/gameev.c.d
+  MKDEP    obj/debug/src/uqm/gameinp.c.d
+  MKDEP    obj/debug/src/uqm/gameopt.c.d
+  MKDEP    obj/debug/src/uqm/gendef.c.d
+  MKDEP    obj/debug/src/uqm/getchar.c.d
+  MKDEP    obj/debug/src/uqm/globdata.c.d
+  MKDEP    obj/debug/src/uqm/gravity.c.d
+  MKDEP    obj/debug/src/uqm/cons_res.c.d
+  MKDEP    obj/debug/src/uqm/grpinfo.c.d
+  MKDEP    obj/debug/src/uqm/hyper.c.d
+  MKDEP    obj/debug/src/uqm/init.c.d
+  MKDEP    obj/debug/src/uqm/intel.c.d
+  MKDEP    obj/debug/src/uqm/intro.c.d
+  MKDEP    obj/debug/src/uqm/ipdisp.c.d
+  MKDEP    obj/debug/src/uqm/load.c.d
+  MKDEP    obj/debug/src/uqm/load_legacy.c.d
+  MKDEP    obj/debug/src/uqm/loadship.c.d
+  MKDEP    obj/debug/src/uqm/master.c.d
+  MKDEP    obj/debug/src/uqm/menu.c.d
+  MKDEP    obj/debug/src/uqm/misc.c.d
+  MKDEP    obj/debug/src/uqm/oscill.c.d
+  MKDEP    obj/debug/src/uqm/outfit.c.d
+  MKDEP    obj/debug/src/uqm/pickship.c.d
+  MKDEP    obj/debug/src/uqm/plandata.c.d
+  MKDEP    obj/debug/src/uqm/process.c.d
+  MKDEP    obj/debug/src/uqm/restart.c.d
+  MKDEP    obj/debug/src/uqm/save.c.d
+  MKDEP    obj/debug/src/uqm/settings.c.d
+  MKDEP    obj/debug/src/uqm/setup.c.d
+  MKDEP    obj/debug/src/uqm/setupmenu.c.d
+  MKDEP    obj/debug/src/uqm/ship.c.d
+  MKDEP    obj/debug/src/uqm/shipstat.c.d
+  MKDEP    obj/debug/src/uqm/shipyard.c.d
+  MKDEP    obj/debug/src/uqm/sis.c.d
+  MKDEP    obj/debug/src/uqm/sounds.c.d
+  MKDEP    obj/debug/src/uqm/starbase.c.d
+  MKDEP    obj/debug/src/uqm/starcon.c.d
+  MKDEP    obj/debug/src/uqm/starmap.c.d
+  MKDEP    obj/debug/src/uqm/state.c.d
+  MKDEP    obj/debug/src/uqm/status.c.d
+  MKDEP    obj/debug/src/uqm/tactrans.c.d
+  MKDEP    obj/debug/src/uqm/trans.c.d
+  MKDEP    obj/debug/src/uqm/uqmdebug.c.d
+  MKDEP    obj/debug/src/uqm/util.c.d
+  MKDEP    obj/debug/src/uqm/velocity.c.d
+  MKDEP    obj/debug/src/uqm/weapon.c.d
+  MKDEP    obj/debug/src/uqm/comm/arilou/arilouc.c.d
+  MKDEP    obj/debug/src/uqm/comm/blackur/blackurc.c.d
+  MKDEP    obj/debug/src/uqm/comm/chmmr/chmmrc.c.d
+  MKDEP    obj/debug/src/uqm/comm/comandr/comandr.c.d
+  MKDEP    obj/debug/src/uqm/comm/druuge/druugec.c.d
+  MKDEP    obj/debug/src/uqm/comm/ilwrath/ilwrathc.c.d
+  MKDEP    obj/debug/src/uqm/comm/melnorm/melnorm.c.d
+  MKDEP    obj/debug/src/uqm/comm/mycon/myconc.c.d
+  MKDEP    obj/debug/src/uqm/comm/orz/orzc.c.d
+  MKDEP    obj/debug/src/uqm/comm/pkunk/pkunkc.c.d
+  MKDEP    obj/debug/src/uqm/comm/rebel/rebel.c.d
+  MKDEP    obj/debug/src/uqm/comm/shofixt/shofixt.c.d
+  MKDEP    obj/debug/src/uqm/comm/slyhome/slyhome.c.d
+  MKDEP    obj/debug/src/uqm/comm/slyland/slyland.c.d
+  MKDEP    obj/debug/src/uqm/comm/spahome/spahome.c.d
+  MKDEP    obj/debug/src/uqm/comm/spathi/spathic.c.d
+  MKDEP    obj/debug/src/uqm/comm/starbas/starbas.c.d
+  MKDEP    obj/debug/src/uqm/comm/supox/supoxc.c.d
+  MKDEP    obj/debug/src/uqm/comm/syreen/syreenc.c.d
+  MKDEP    obj/debug/src/uqm/comm/talkpet/talkpet.c.d
+  MKDEP    obj/debug/src/uqm/comm/thradd/thraddc.c.d
+  MKDEP    obj/debug/src/uqm/comm/umgah/umgahc.c.d
+  MKDEP    obj/debug/src/uqm/comm/urquan/urquanc.c.d
+  MKDEP    obj/debug/src/uqm/comm/utwig/utwigc.c.d
+  MKDEP    obj/debug/src/uqm/comm/vux/vuxc.c.d
+  MKDEP    obj/debug/src/uqm/comm/yehat/yehatc.c.d
+  MKDEP    obj/debug/src/uqm/comm/zoqfot/zoqfotc.c.d
+  MKDEP    obj/debug/src/uqm/planets/calc.c.d
+  MKDEP    obj/debug/src/uqm/planets/cargo.c.d
+  MKDEP    obj/debug/src/uqm/planets/devices.c.d
+  MKDEP    obj/debug/src/uqm/planets/gentopo.c.d
+  MKDEP    obj/debug/src/uqm/planets/lander.c.d
+  MKDEP    obj/debug/src/uqm/planets/orbits.c.d
+  MKDEP    obj/debug/src/uqm/planets/oval.c.d
+  MKDEP    obj/debug/src/uqm/planets/pl_stuff.c.d
+  MKDEP    obj/debug/src/uqm/planets/planets.c.d
+  MKDEP    obj/debug/src/uqm/planets/plangen.c.d
+  MKDEP    obj/debug/src/uqm/planets/pstarmap.c.d
+  MKDEP    obj/debug/src/uqm/planets/report.c.d
+  MKDEP    obj/debug/src/uqm/planets/roster.c.d
+  MKDEP    obj/debug/src/uqm/planets/scan.c.d
+  MKDEP    obj/debug/src/uqm/planets/solarsys.c.d
+  MKDEP    obj/debug/src/uqm/planets/surface.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/gendefault.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genand.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genburv.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genchmmr.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/gencol.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/gendru.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genilw.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genmel.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genmyc.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genorz.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genpet.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genpku.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genrain.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/gensam.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genshof.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/gensly.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/gensol.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genspa.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/gensup.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/gensyr.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genthrad.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/gentrap.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genutw.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genvault.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genvux.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genwreck.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genyeh.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genzfpscout.c.d
+  MKDEP    obj/debug/src/uqm/planets/generate/genzoq.c.d
+  MKDEP    obj/debug/src/uqm/ships/androsyn/androsyn.c.d
+  MKDEP    obj/debug/src/uqm/ships/arilou/arilou.c.d
+  MKDEP    obj/debug/src/uqm/ships/blackurq/blackurq.c.d
+  MKDEP    obj/debug/src/uqm/ships/chenjesu/chenjesu.c.d
+  MKDEP    obj/debug/src/uqm/ships/chmmr/chmmr.c.d
+  MKDEP    obj/debug/src/uqm/ships/druuge/druuge.c.d
+  MKDEP    obj/debug/src/uqm/ships/human/human.c.d
+  MKDEP    obj/debug/src/uqm/ships/ilwrath/ilwrath.c.d
+  MKDEP    obj/debug/src/uqm/ships/lastbat/lastbat.c.d
+  MKDEP    obj/debug/src/uqm/ships/melnorme/melnorme.c.d
+  MKDEP    obj/debug/src/uqm/ships/mmrnmhrm/mmrnmhrm.c.d
+  MKDEP    obj/debug/src/uqm/ships/mycon/mycon.c.d
+  MKDEP    obj/debug/src/uqm/ships/orz/orz.c.d
+  MKDEP    obj/debug/src/uqm/ships/pkunk/pkunk.c.d
+  MKDEP    obj/debug/src/uqm/ships/probe/probe.c.d
+  MKDEP    obj/debug/src/uqm/ships/shofixti/shofixti.c.d
+  MKDEP    obj/debug/src/uqm/ships/sis_ship/sis_ship.c.d
+  MKDEP    obj/debug/src/uqm/ships/slylandr/slylandr.c.d
+  MKDEP    obj/debug/src/uqm/ships/spathi/spathi.c.d
+  MKDEP    obj/debug/src/uqm/ships/supox/supox.c.d
+  MKDEP    obj/debug/src/uqm/ships/syreen/syreen.c.d
+  MKDEP    obj/debug/src/uqm/ships/thradd/thradd.c.d
+  MKDEP    obj/debug/src/uqm/ships/umgah/umgah.c.d
+  MKDEP    obj/debug/src/uqm/ships/urquan/urquan.c.d
+  MKDEP    obj/debug/src/uqm/ships/utwig/utwig.c.d
+  MKDEP    obj/debug/src/uqm/ships/vux/vux.c.d
+  MKDEP    obj/debug/src/uqm/ships/yehat/yehat.c.d
+  MKDEP    obj/debug/src/uqm/ships/zoqfot/zoqfot.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/buildpick.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/loadmele.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/melee.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/meleesetup.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/pickmele.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/checkbuf.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/checksum.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/crc.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/netconnection.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/netinput.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/netmelee.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/netmisc.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/netoptions.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/netrcv.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/netsend.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/netstate.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/notify.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/notifyall.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/packet.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/packethandlers.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/packetsenders.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/packetq.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/proto/npconfirm.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/proto/ready.c.d
+  MKDEP    obj/debug/src/uqm/supermelee/netplay/proto/reset.c.d
+  CC       obj/debug/src/options.c.o
+  CC       obj/debug/src/port.c.o
+  CC       obj/debug/src/uqm.c.o
+  CC       obj/debug/src/libs/callback/alarm.c.o
+  CC       obj/debug/src/libs/callback/async.c.o
+  CC       obj/debug/src/libs/callback/callback.c.o
+  CC       obj/debug/src/libs/decomp/lzdecode.c.o
+  CC       obj/debug/src/libs/decomp/lzencode.c.o
+  CC       obj/debug/src/libs/decomp/update.c.o
+  CC       obj/debug/src/libs/file/dirs.c.o
+  CC       obj/debug/src/libs/file/files.c.o
+  CC       obj/debug/src/libs/graphics/boxint.c.o
+  CC       obj/debug/src/libs/graphics/clipline.c.o
+  CC       obj/debug/src/libs/graphics/cmap.c.o
+  CC       obj/debug/src/libs/graphics/context.c.o
+  CC       obj/debug/src/libs/graphics/drawable.c.o
+  CC       obj/debug/src/libs/graphics/filegfx.c.o
+  CC       obj/debug/src/libs/graphics/bbox.c.o
+  CC       obj/debug/src/libs/graphics/dcqueue.c.o
+  CC       obj/debug/src/libs/graphics/gfxload.c.o
+  CC       obj/debug/src/libs/graphics/font.c.o
+  CC       obj/debug/src/libs/graphics/frame.c.o
+  CC       obj/debug/src/libs/graphics/gfx_common.c.o
+  CC       obj/debug/src/libs/graphics/intersec.c.o
+  CC       obj/debug/src/libs/graphics/loaddisp.c.o
+  CC       obj/debug/src/libs/graphics/pixmap.c.o
+  CC       obj/debug/src/libs/graphics/resgfx.c.o
+  CC       obj/debug/src/libs/graphics/tfb_draw.c.o
+  CC       obj/debug/src/libs/graphics/tfb_prim.c.o
+  CC       obj/debug/src/libs/graphics/widgets.c.o
+src/libs/graphics/widgets.c: In function ‘Widget_DrawMenuScreen’:
+src/libs/graphics/widgets.c:206:40: warning: variable ‘selected’ set but not used [-Wunused-but-set-variable]
+  206 |         Color inactive, default_color, selected;
+      |                                        ^~~~~~~~
+src/libs/graphics/widgets.c:206:25: warning: variable ‘default_color’ set but not used [-Wunused-but-set-variable]
+  206 |         Color inactive, default_color, selected;
+      |                         ^~~~~~~~~~~~~
+src/libs/graphics/widgets.c:206:15: warning: variable ‘inactive’ set but not used [-Wunused-but-set-variable]
+  206 |         Color inactive, default_color, selected;
+      |               ^~~~~~~~
+src/libs/graphics/widgets.c: In function ‘Widget_DrawSlider’:
+src/libs/graphics/widgets.c:405:15: warning: variable ‘inactive’ set but not used [-Wunused-but-set-variable]
+  405 |         Color inactive, default_color, selected;
+      |               ^~~~~~~~
+src/libs/graphics/widgets.c: In function ‘Widget_DrawControlEntry’:
+src/libs/graphics/widgets.c:615:15: warning: variable ‘inactive’ set but not used [-Wunused-but-set-variable]
+  615 |         Color inactive, default_color, selected;
+      |               ^~~~~~~~
+  CC       obj/debug/src/libs/graphics/sdl/opengl.c.o
+  CC       obj/debug/src/libs/graphics/sdl/palette.c.o
+  CC       obj/debug/src/libs/graphics/sdl/primitives.c.o
+  CC       obj/debug/src/libs/graphics/sdl/pure.c.o
+  CC       obj/debug/src/libs/graphics/sdl/sdl2_pure.c.o
+src/libs/graphics/sdl/sdl2_pure.c:39:12: warning: ‘ScreenFilterMode’ defined but not used [-Wunused-variable]
+   39 | static int ScreenFilterMode;
+      |            ^~~~~~~~~~~~~~~~
+  CC       obj/debug/src/libs/graphics/sdl/sdl_common.c.o
+src/libs/graphics/sdl/sdl_common.c: In function ‘TFB_InitGraphics’:
+src/libs/graphics/sdl/sdl_common.c:57:14: warning: unused variable ‘caption’ [-Wunused-variable]
+   57 |         char caption[200];
+      |              ^~~~~~~
+src/libs/graphics/sdl/sdl_common.c:56:13: warning: variable ‘result’ set but not used [-Wunused-but-set-variable]
+   56 |         int result, i;
+      |             ^~~~~~
+  CC       obj/debug/src/libs/graphics/sdl/sdl1_common.c.o
+  CC       obj/debug/src/libs/graphics/sdl/sdl2_common.c.o
+src/libs/graphics/sdl/sdl2_common.c: In function ‘TFB_SetGamma’:
+src/libs/graphics/sdl/sdl2_common.c:104:21: warning: unused parameter ‘gamma’ [-Wunused-parameter]
+  104 | TFB_SetGamma (float gamma)
+      |               ~~~~~~^~~~~
+  CC       obj/debug/src/libs/graphics/sdl/scalers.c.o
+In file included from src/libs/graphics/sdl/scalers.c:22:
+src/libs/graphics/sdl/scaleint.h: In function ‘Scale_DiffYUV’:
+src/libs/graphics/sdl/scaleint.h:253:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  253 |         delta = abs ((yuv1 & 0xff0000) - (yuv2 & 0xff0000));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:257:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  257 |         delta = abs ((yuv1 & 0x00ff00) - (yuv2 & 0x00ff00));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:261:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  261 |         delta = abs ((yuv1 & 0x0000ff) - (yuv2 & 0x0000ff));
+      |                 ^~~
+  CC       obj/debug/src/libs/graphics/sdl/2xscalers.c.o
+In file included from src/libs/graphics/sdl/2xscalers.c:20:
+src/libs/graphics/sdl/scaleint.h: In function ‘Scale_DiffYUV’:
+src/libs/graphics/sdl/scaleint.h:253:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  253 |         delta = abs ((yuv1 & 0xff0000) - (yuv2 & 0xff0000));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:257:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  257 |         delta = abs ((yuv1 & 0x00ff00) - (yuv2 & 0x00ff00));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:261:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  261 |         delta = abs ((yuv1 & 0x0000ff) - (yuv2 & 0x0000ff));
+      |                 ^~~
+  CC       obj/debug/src/libs/graphics/sdl/2xscalers_mmx.c.o
+In file included from src/libs/graphics/sdl/2xscalers_mmx.c:25:
+src/libs/graphics/sdl/scaleint.h: In function ‘Scale_DiffYUV’:
+src/libs/graphics/sdl/scaleint.h:253:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  253 |         delta = abs ((yuv1 & 0xff0000) - (yuv2 & 0xff0000));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:257:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  257 |         delta = abs ((yuv1 & 0x00ff00) - (yuv2 & 0x00ff00));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:261:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  261 |         delta = abs ((yuv1 & 0x0000ff) - (yuv2 & 0x0000ff));
+      |                 ^~~
+  CC       obj/debug/src/libs/graphics/sdl/2xscalers_sse.c.o
+In file included from src/libs/graphics/sdl/2xscalers_sse.c:25:
+src/libs/graphics/sdl/scaleint.h: In function ‘Scale_DiffYUV’:
+src/libs/graphics/sdl/scaleint.h:253:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  253 |         delta = abs ((yuv1 & 0xff0000) - (yuv2 & 0xff0000));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:257:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  257 |         delta = abs ((yuv1 & 0x00ff00) - (yuv2 & 0x00ff00));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:261:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  261 |         delta = abs ((yuv1 & 0x0000ff) - (yuv2 & 0x0000ff));
+      |                 ^~~
+  CC       obj/debug/src/libs/graphics/sdl/2xscalers_3dnow.c.o
+In file included from src/libs/graphics/sdl/2xscalers_3dnow.c:25:
+src/libs/graphics/sdl/scaleint.h: In function ‘Scale_DiffYUV’:
+src/libs/graphics/sdl/scaleint.h:253:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  253 |         delta = abs ((yuv1 & 0xff0000) - (yuv2 & 0xff0000));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:257:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  257 |         delta = abs ((yuv1 & 0x00ff00) - (yuv2 & 0x00ff00));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:261:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  261 |         delta = abs ((yuv1 & 0x0000ff) - (yuv2 & 0x0000ff));
+      |                 ^~~
+  CC       obj/debug/src/libs/graphics/sdl/nearest2x.c.o
+In file included from src/libs/graphics/sdl/nearest2x.c:25:
+src/libs/graphics/sdl/scaleint.h: In function ‘Scale_DiffYUV’:
+src/libs/graphics/sdl/scaleint.h:253:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  253 |         delta = abs ((yuv1 & 0xff0000) - (yuv2 & 0xff0000));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:257:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  257 |         delta = abs ((yuv1 & 0x00ff00) - (yuv2 & 0x00ff00));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:261:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  261 |         delta = abs ((yuv1 & 0x0000ff) - (yuv2 & 0x0000ff));
+      |                 ^~~
+  CC       obj/debug/src/libs/graphics/sdl/bilinear2x.c.o
+In file included from src/libs/graphics/sdl/bilinear2x.c:25:
+src/libs/graphics/sdl/scaleint.h: In function ‘Scale_DiffYUV’:
+src/libs/graphics/sdl/scaleint.h:253:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  253 |         delta = abs ((yuv1 & 0xff0000) - (yuv2 & 0xff0000));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:257:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  257 |         delta = abs ((yuv1 & 0x00ff00) - (yuv2 & 0x00ff00));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:261:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  261 |         delta = abs ((yuv1 & 0x0000ff) - (yuv2 & 0x0000ff));
+      |                 ^~~
+  CC       obj/debug/src/libs/graphics/sdl/biadv2x.c.o
+In file included from src/libs/graphics/sdl/biadv2x.c:27:
+src/libs/graphics/sdl/scaleint.h: In function ‘Scale_DiffYUV’:
+src/libs/graphics/sdl/scaleint.h:253:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  253 |         delta = abs ((yuv1 & 0xff0000) - (yuv2 & 0xff0000));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:257:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  257 |         delta = abs ((yuv1 & 0x00ff00) - (yuv2 & 0x00ff00));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:261:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  261 |         delta = abs ((yuv1 & 0x0000ff) - (yuv2 & 0x0000ff));
+      |                 ^~~
+  CC       obj/debug/src/libs/graphics/sdl/triscan2x.c.o
+In file included from src/libs/graphics/sdl/triscan2x.c:26:
+src/libs/graphics/sdl/scaleint.h: In function ‘Scale_DiffYUV’:
+src/libs/graphics/sdl/scaleint.h:253:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  253 |         delta = abs ((yuv1 & 0xff0000) - (yuv2 & 0xff0000));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:257:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  257 |         delta = abs ((yuv1 & 0x00ff00) - (yuv2 & 0x00ff00));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:261:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  261 |         delta = abs ((yuv1 & 0x0000ff) - (yuv2 & 0x0000ff));
+      |                 ^~~
+  CC       obj/debug/src/libs/graphics/sdl/hq2x.c.o
+In file included from src/libs/graphics/sdl/hq2x.c:33:
+src/libs/graphics/sdl/scaleint.h: In function ‘Scale_DiffYUV’:
+src/libs/graphics/sdl/scaleint.h:253:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  253 |         delta = abs ((yuv1 & 0xff0000) - (yuv2 & 0xff0000));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:257:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  257 |         delta = abs ((yuv1 & 0x00ff00) - (yuv2 & 0x00ff00));
+      |                 ^~~
+src/libs/graphics/sdl/scaleint.h:261:17: warning: taking the absolute value of unsigned type ‘Uint32’ {aka ‘unsigned int’} has no effect [-Wabsolute-value]
+  261 |         delta = abs ((yuv1 & 0x0000ff) - (yuv2 & 0x0000ff));
+      |                 ^~~
+  CC       obj/debug/src/libs/graphics/sdl/canvas.c.o
+  CC       obj/debug/src/libs/graphics/sdl/png2sdl.c.o
+  CC       obj/debug/src/libs/graphics/sdl/sdluio.c.o
+  CC       obj/debug/src/libs/graphics/sdl/rotozoom.c.o
+src/libs/graphics/sdl/rotozoom.c: In function ‘zoomSurfaceRGBA’:
+src/libs/graphics/sdl/rotozoom.c:36:9: warning: variable ‘sgap’ set but not used [-Wunused-but-set-variable]
+   36 |     int sgap, dgap;
+      |         ^~~~
+src/libs/graphics/sdl/rotozoom.c: In function ‘transformSurfaceY’:
+src/libs/graphics/sdl/rotozoom.c:506:53: warning: variable ‘sh’ set but not used [-Wunused-but-set-variable]
+  506 |     int x, y, dx, dy, xd, yd, sdx, sdy, ax, ay, sw, sh;
+      |                                                     ^~
+src/libs/graphics/sdl/rotozoom.c:506:49: warning: variable ‘sw’ set but not used [-Wunused-but-set-variable]
+  506 |     int x, y, dx, dy, xd, yd, sdx, sdy, ax, ay, sw, sh;
+      |                                                 ^~
+  CC       obj/debug/src/libs/heap/heap.c.o
+  CC       obj/debug/src/libs/input/input_common.c.o
+  CC       obj/debug/src/libs/input/sdl/input.c.o
+  CC       obj/debug/src/libs/input/sdl/keynames.c.o
+  CC       obj/debug/src/libs/input/sdl/vcontrol.c.o
+src/libs/input/sdl/vcontrol.c: In function ‘key_init’:
+src/libs/input/sdl/vcontrol.c:198:13: warning: unused variable ‘num_keys’ [-Wunused-variable]
+  198 |         int num_keys; // Temp to match type of param for SDL_GetKeyState().
+      |             ^~~~~~~~
+  CC       obj/debug/src/libs/list/list.c.o
+  CC       obj/debug/src/libs/math/random.c.o
+  CC       obj/debug/src/libs/math/random2.c.o
+  CC       obj/debug/src/libs/math/sqrt.c.o
+  CC       obj/debug/src/libs/memory/w_memlib.c.o
+  CC       obj/debug/src/libs/resource/direct.c.o
+  CC       obj/debug/src/libs/resource/filecntl.c.o
+  CC       obj/debug/src/libs/resource/getres.c.o
+  CC       obj/debug/src/libs/resource/loadres.c.o
+  CC       obj/debug/src/libs/resource/stringbank.c.o
+  CC       obj/debug/src/libs/resource/propfile.c.o
+  CC       obj/debug/src/libs/resource/resinit.c.o
+  CC       obj/debug/src/libs/sound/audiocore.c.o
+  CC       obj/debug/src/libs/sound/fileinst.c.o
+  CC       obj/debug/src/libs/sound/resinst.c.o
+  CC       obj/debug/src/libs/sound/sound.c.o
+  CC       obj/debug/src/libs/sound/sfx.c.o
+src/libs/sound/sfx.c: In function ‘_GetSoundBankData’:
+src/libs/sound/sfx.c:162:15: warning: variable ‘opos’ set but not used [-Wunused-but-set-variable]
+  162 |         DWORD opos;
+      |               ^~~~
+  CC       obj/debug/src/libs/sound/music.c.o
+  CC       obj/debug/src/libs/sound/stream.c.o
+  CC       obj/debug/src/libs/sound/trackplayer.c.o
+  CC       obj/debug/src/libs/sound/mixer/mixer.c.o
+  CC       obj/debug/src/libs/sound/mixer/sdl/audiodrv_sdl.c.o
+  CC       obj/debug/src/libs/sound/mixer/nosound/audiodrv_nosound.c.o
+  CC       obj/debug/src/libs/sound/decoders/decoder.c.o
+  CC       obj/debug/src/libs/sound/decoders/aiffaud.c.o
+  CC       obj/debug/src/libs/sound/decoders/wav.c.o
+  CC       obj/debug/src/libs/sound/decoders/dukaud.c.o
+  CC       obj/debug/src/libs/sound/decoders/modaud.c.o
+  CC       obj/debug/src/libs/sound/decoders/oggaud.c.o
+  CC       obj/debug/src/libs/strings/getstr.c.o
+src/libs/strings/getstr.c: In function ‘_GetConversationData’:
+src/libs/strings/getstr.c:122:13: warning: variable ‘num_data_sets’ set but not used [-Wunused-but-set-variable]
+  122 |         int num_data_sets;
+      |             ^~~~~~~~~~~~~
+  CC       obj/debug/src/libs/strings/sfileins.c.o
+  CC       obj/debug/src/libs/strings/sresins.c.o
+  CC       obj/debug/src/libs/strings/stringhashtable.c.o
+  CC       obj/debug/src/libs/strings/strings.c.o
+  CC       obj/debug/src/libs/strings/unicode.c.o
+src/libs/strings/unicode.c: In function ‘getStringFromChar’:
+src/libs/strings/unicode.c:441:36: warning: this statement may fall through [-Wimplicit-fallthrough=]
+  441 |                                 ch >>= 6;
+      |                                 ~~~^~~~~
+src/libs/strings/unicode.c:442:17: note: here
+  442 |                 case 4: ptr[4] = (ch & 0x3f) | 0x80;
+      |                 ^~~~
+src/libs/strings/unicode.c:443:36: warning: this statement may fall through [-Wimplicit-fallthrough=]
+  443 |                                 ch >>= 6;
+      |                                 ~~~^~~~~
+src/libs/strings/unicode.c:444:17: note: here
+  444 |                 case 3: ptr[3] = (ch & 0x3f) | 0x80;
+      |                 ^~~~
+src/libs/strings/unicode.c:445:36: warning: this statement may fall through [-Wimplicit-fallthrough=]
+  445 |                                 ch >>= 6;
+      |                                 ~~~^~~~~
+src/libs/strings/unicode.c:446:17: note: here
+  446 |                 case 2: ptr[2] = (ch & 0x3f) | 0x80;
+      |                 ^~~~
+src/libs/strings/unicode.c:447:36: warning: this statement may fall through [-Wimplicit-fallthrough=]
+  447 |                                 ch >>= 6;
+      |                                 ~~~^~~~~
+src/libs/strings/unicode.c:448:17: note: here
+  448 |                 case 1: ptr[1] = (ch & 0x3f) | 0x80;
+      |                 ^~~~
+src/libs/strings/unicode.c:449:36: warning: this statement may fall through [-Wimplicit-fallthrough=]
+  449 |                                 ch >>= 6;
+      |                                 ~~~^~~~~
+src/libs/strings/unicode.c:450:17: note: here
+  450 |                 case 0: ptr[0] = (ch & def->mask) | def->marker;
+      |                 ^~~~
+  CC       obj/debug/src/libs/task/tasklib.c.o
+  CC       obj/debug/src/libs/threads/thrcommon.c.o
+  CC       obj/debug/src/libs/threads/sdl/sdlthreads.c.o
+  CC       obj/debug/src/libs/time/timecommon.c.o
+  CC       obj/debug/src/libs/time/sdl/sdltime.c.o
+  CC       obj/debug/src/libs/uio/charhashtable.c.o
+  CC       obj/debug/src/libs/uio/defaultfs.c.o
+  CC       obj/debug/src/libs/uio/fileblock.c.o
+  CC       obj/debug/src/libs/uio/fstypes.c.o
+  CC       obj/debug/src/libs/uio/gphys.c.o
+  CC       obj/debug/src/libs/uio/io.c.o
+  CC       obj/debug/src/libs/uio/ioaux.c.o
+  CC       obj/debug/src/libs/uio/match.c.o
+  CC       obj/debug/src/libs/uio/mount.c.o
+  CC       obj/debug/src/libs/uio/mounttree.c.o
+  CC       obj/debug/src/libs/uio/paths.c.o
+  CC       obj/debug/src/libs/uio/physical.c.o
+  CC       obj/debug/src/libs/uio/uiostream.c.o
+src/libs/uio/uiostream.c: In function ‘uio_fopen’:
+src/libs/uio/uiostream.c:68:35: warning: this statement may fall through [-Wimplicit-fallthrough=]
+   68 |                         openFlags = O_WRONLY| O_CREAT | O_APPEND;
+      |                                   ^
+src/libs/uio/uiostream.c:69:17: note: here
+   69 |                 default:
+      |                 ^~~~~~~
+  CC       obj/debug/src/libs/uio/uioutils.c.o
+  CC       obj/debug/src/libs/uio/utils.c.o
+src/libs/uio/utils.c: In function ‘uio_getStdioAccess’:
+src/libs/uio/utils.c:209:53: warning: argument to ‘sizeof’ in ‘snprintf’ call is the same expression as the destination; did you mean to provide an explicit length? [-Wsizeof-pointer-memaccess]
+  209 |                         snprintf(tempDirName, sizeof(tempDirName), "%08lx", (unsigned long) dirNum + i);
+      |                                                     ^
+src/libs/uio/utils.c:209:69: warning: ‘%08lx’ directive output may be truncated writing between 8 and 9 bytes into a region of size 8 [-Wformat-truncation=]
+  209 |                         snprintf(tempDirName, sizeof(tempDirName), "%08lx", (unsigned long) dirNum + i);
+      |                                                                     ^~~~~
+src/libs/uio/utils.c:209:68: note: directive argument in the range [0, 4294967310]
+  209 |                         snprintf(tempDirName, sizeof(tempDirName), "%08lx", (unsigned long) dirNum + i);
+      |                                                                    ^~~~~~~
+src/libs/uio/utils.c:209:25: note: ‘snprintf’ output between 9 and 10 bytes into a destination of size 8
+  209 |                         snprintf(tempDirName, sizeof(tempDirName), "%08lx", (unsigned long) dirNum + i);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  CC       obj/debug/src/libs/uio/debug.c.o
+  CC       obj/debug/src/libs/uio/stdio/stdio.c.o
+  CC       obj/debug/src/libs/uio/zip/zip.c.o
+  CC       obj/debug/src/libs/video/vfileins.c.o
+  CC       obj/debug/src/libs/video/vresins.c.o
+  CC       obj/debug/src/libs/video/video.c.o
+  CC       obj/debug/src/libs/video/videodec.c.o
+  CC       obj/debug/src/libs/video/vidplayer.c.o
+  CC       obj/debug/src/libs/video/dukvid.c.o
+  CC       obj/debug/src/libs/video/legacyplayer.c.o
+  CC       obj/debug/src/libs/log/uqmlog.c.o
+  CC       obj/debug/src/libs/log/msgbox_stub.c.o
+  CC       obj/debug/src/libs/mikmod/drv_nos.c.o
+  CC       obj/debug/src/libs/mikmod/load_it.c.o
+  CC       obj/debug/src/libs/mikmod/load_mod.c.o
+  CC       obj/debug/src/libs/mikmod/load_s3m.c.o
+  CC       obj/debug/src/libs/mikmod/load_stm.c.o
+  CC       obj/debug/src/libs/mikmod/load_xm.c.o
+  CC       obj/debug/src/libs/mikmod/mdreg.c.o
+  CC       obj/debug/src/libs/mikmod/mdriver.c.o
+  CC       obj/debug/src/libs/mikmod/mdulaw.c.o
+  CC       obj/debug/src/libs/mikmod/mloader.c.o
+  CC       obj/debug/src/libs/mikmod/mlreg.c.o
+  CC       obj/debug/src/libs/mikmod/mlutil.c.o
+  CC       obj/debug/src/libs/mikmod/mmalloc.c.o
+  CC       obj/debug/src/libs/mikmod/mmerror.c.o
+  CC       obj/debug/src/libs/mikmod/mmio.c.o
+  CC       obj/debug/src/libs/mikmod/mplayer.c.o
+src/libs/mikmod/mplayer.c: In function ‘DoPTEffect9’:
+src/libs/mikmod/mplayer.c:792:48: warning: comparison of integer expressions of different signedness: ‘SLONG’ {aka ‘int’} and ‘ULONG’ {aka ‘unsigned int’} [-Wsign-compare]
+  792 |                 if ((a->main.s)&&(a->main.start>a->main.s->length))
+      |                                                ^
+src/libs/mikmod/mplayer.c: In function ‘DoITEffectS0’:
+src/libs/mikmod/mplayer.c:2015:56: warning: comparison of integer expressions of different signedness: ‘SLONG’ {aka ‘int’} and ‘ULONG’ {aka ‘unsigned int’} [-Wsign-compare]
+ 2015 |                         if ((a->main.s)&&(a->main.start>a->main.s->length))
+      |                                                        ^
+src/libs/mikmod/mplayer.c: In function ‘DoULTEffect9’:
+src/libs/mikmod/mplayer.c:2102:40: warning: comparison of integer expressions of different signedness: ‘SLONG’ {aka ‘int’} and ‘ULONG’ {aka ‘unsigned int’} [-Wsign-compare]
+ 2102 |         if ((a->main.s)&&(a->main.start>a->main.s->length))
+      |                                        ^
+src/libs/mikmod/mplayer.c: In function ‘pt_UpdateVoices’:
+src/libs/mikmod/mplayer.c:2351:69: warning: operand of ‘?:’ changes signedness from ‘SLONG’ {aka ‘int’} to ‘ULONG’ {aka ‘unsigned int’} due to unsignedness of other operand [-Wsign-compare]
+ 2351 |                             ((s->flags&SF_UST_LOOP)?s->loopstart:0):aout->main.start);
+      |                                                                     ^~~~~~~~~~~~~~~~
+src/libs/mikmod/mplayer.c: In function ‘Player_ToggleMute_internal’:
+src/libs/mikmod/mplayer.c:3286:39: warning: comparison of integer expressions of different signedness: ‘ULONG’ {aka ‘unsigned int’} and ‘SLONG’ {aka ‘int’} [-Wsign-compare]
+ 3286 |                                 if ((t>=arg2) && (t<=arg3))
+      |                                       ^~
+src/libs/mikmod/mplayer.c:3286:52: warning: comparison of integer expressions of different signedness: ‘ULONG’ {aka ‘unsigned int’} and ‘SLONG’ {aka ‘int’} [-Wsign-compare]
+ 3286 |                                 if ((t>=arg2) && (t<=arg3))
+      |                                                    ^~
+  CC       obj/debug/src/libs/mikmod/munitrk.c.o
+  CC       obj/debug/src/libs/mikmod/mwav.c.o
+  CC       obj/debug/src/libs/mikmod/npertab.c.o
+  CC       obj/debug/src/libs/mikmod/sloader.c.o
+  CC       obj/debug/src/libs/mikmod/virtch.c.o
+  CC       obj/debug/src/libs/mikmod/virtch2.c.o
+  CC       obj/debug/src/libs/mikmod/virtch_common.c.o
+  CC       obj/debug/src/libs/network/netport.c.o
+  CC       obj/debug/src/libs/network/network_bsd.c.o
+  CC       obj/debug/src/libs/network/connect/connect.c.o
+  CC       obj/debug/src/libs/network/connect/listen.c.o
+  CC       obj/debug/src/libs/network/connect/resolve.c.o
+  CC       obj/debug/src/libs/network/netmanager/ndesc.c.o
+  CC       obj/debug/src/libs/network/netmanager/netmanager_bsd.c.o
+  CC       obj/debug/src/libs/network/socket/socket.c.o
+  CC       obj/debug/src/libs/network/socket/socket_bsd.c.o
+  CC       obj/debug/src/uqm/battle.c.o
+  CC       obj/debug/src/uqm/battlecontrols.c.o
+  CC       obj/debug/src/uqm/border.c.o
+  CC       obj/debug/src/uqm/build.c.o
+  CC       obj/debug/src/uqm/cleanup.c.o
+  CC       obj/debug/src/uqm/clock.c.o
+  CC       obj/debug/src/uqm/cnctdlg.c.o
+  CC       obj/debug/src/uqm/collide.c.o
+  CC       obj/debug/src/uqm/comm.c.o
+  CC       obj/debug/src/uqm/commanim.c.o
+  CC       obj/debug/src/uqm/commglue.c.o
+  CC       obj/debug/src/uqm/confirm.c.o
+  CC       obj/debug/src/uqm/credits.c.o
+  CC       obj/debug/src/uqm/cyborg.c.o
+  CC       obj/debug/src/uqm/demo.c.o
+  CC       obj/debug/src/uqm/displist.c.o
+  CC       obj/debug/src/uqm/dummy.c.o
+  CC       obj/debug/src/uqm/encount.c.o
+  CC       obj/debug/src/uqm/flash.c.o
+  CC       obj/debug/src/uqm/fmv.c.o
+  CC       obj/debug/src/uqm/galaxy.c.o
+  CC       obj/debug/src/uqm/gameev.c.o
+  CC       obj/debug/src/uqm/gameinp.c.o
+  CC       obj/debug/src/uqm/gameopt.c.o
+  CC       obj/debug/src/uqm/gendef.c.o
+  CC       obj/debug/src/uqm/getchar.c.o
+  CC       obj/debug/src/uqm/globdata.c.o
+  CC       obj/debug/src/uqm/gravity.c.o
+  CC       obj/debug/src/uqm/cons_res.c.o
+  CC       obj/debug/src/uqm/grpinfo.c.o
+  CC       obj/debug/src/uqm/hyper.c.o
+  CC       obj/debug/src/uqm/init.c.o
+  CC       obj/debug/src/uqm/intel.c.o
+  CC       obj/debug/src/uqm/intro.c.o
+  CC       obj/debug/src/uqm/ipdisp.c.o
+  CC       obj/debug/src/uqm/load.c.o
+  CC       obj/debug/src/uqm/load_legacy.c.o
+  CC       obj/debug/src/uqm/loadship.c.o
+  CC       obj/debug/src/uqm/master.c.o
+  CC       obj/debug/src/uqm/menu.c.o
+  CC       obj/debug/src/uqm/misc.c.o
+  CC       obj/debug/src/uqm/oscill.c.o
+  CC       obj/debug/src/uqm/outfit.c.o
+  CC       obj/debug/src/uqm/pickship.c.o
+  CC       obj/debug/src/uqm/plandata.c.o
+  CC       obj/debug/src/uqm/process.c.o
+  CC       obj/debug/src/uqm/restart.c.o
+  CC       obj/debug/src/uqm/save.c.o
+  CC       obj/debug/src/uqm/settings.c.o
+  CC       obj/debug/src/uqm/setup.c.o
+  CC       obj/debug/src/uqm/setupmenu.c.o
+  CC       obj/debug/src/uqm/ship.c.o
+  CC       obj/debug/src/uqm/shipstat.c.o
+  CC       obj/debug/src/uqm/shipyard.c.o
+  CC       obj/debug/src/uqm/sis.c.o
+  CC       obj/debug/src/uqm/sounds.c.o
+  CC       obj/debug/src/uqm/starbase.c.o
+  CC       obj/debug/src/uqm/starcon.c.o
+  CC       obj/debug/src/uqm/starmap.c.o
+  CC       obj/debug/src/uqm/state.c.o
+  CC       obj/debug/src/uqm/status.c.o
+  CC       obj/debug/src/uqm/tactrans.c.o
+  CC       obj/debug/src/uqm/trans.c.o
+  CC       obj/debug/src/uqm/uqmdebug.c.o
+  CC       obj/debug/src/uqm/util.c.o
+  CC       obj/debug/src/uqm/velocity.c.o
+  CC       obj/debug/src/uqm/weapon.c.o
+  CC       obj/debug/src/uqm/comm/arilou/arilouc.c.o
+  CC       obj/debug/src/uqm/comm/blackur/blackurc.c.o
+  CC       obj/debug/src/uqm/comm/chmmr/chmmrc.c.o
+  CC       obj/debug/src/uqm/comm/comandr/comandr.c.o
+  CC       obj/debug/src/uqm/comm/druuge/druugec.c.o
+  CC       obj/debug/src/uqm/comm/ilwrath/ilwrathc.c.o
+  CC       obj/debug/src/uqm/comm/melnorm/melnorm.c.o
+  CC       obj/debug/src/uqm/comm/mycon/myconc.c.o
+  CC       obj/debug/src/uqm/comm/orz/orzc.c.o
+  CC       obj/debug/src/uqm/comm/pkunk/pkunkc.c.o
+  CC       obj/debug/src/uqm/comm/rebel/rebel.c.o
+  CC       obj/debug/src/uqm/comm/shofixt/shofixt.c.o
+  CC       obj/debug/src/uqm/comm/slyhome/slyhome.c.o
+  CC       obj/debug/src/uqm/comm/slyland/slyland.c.o
+  CC       obj/debug/src/uqm/comm/spahome/spahome.c.o
+  CC       obj/debug/src/uqm/comm/spathi/spathic.c.o
+  CC       obj/debug/src/uqm/comm/starbas/starbas.c.o
+  CC       obj/debug/src/uqm/comm/supox/supoxc.c.o
+  CC       obj/debug/src/uqm/comm/syreen/syreenc.c.o
+  CC       obj/debug/src/uqm/comm/talkpet/talkpet.c.o
+  CC       obj/debug/src/uqm/comm/thradd/thraddc.c.o
+  CC       obj/debug/src/uqm/comm/umgah/umgahc.c.o
+  CC       obj/debug/src/uqm/comm/urquan/urquanc.c.o
+  CC       obj/debug/src/uqm/comm/utwig/utwigc.c.o
+  CC       obj/debug/src/uqm/comm/vux/vuxc.c.o
+  CC       obj/debug/src/uqm/comm/yehat/yehatc.c.o
+  CC       obj/debug/src/uqm/comm/zoqfot/zoqfotc.c.o
+  CC       obj/debug/src/uqm/planets/calc.c.o
+  CC       obj/debug/src/uqm/planets/cargo.c.o
+  CC       obj/debug/src/uqm/planets/devices.c.o
+  CC       obj/debug/src/uqm/planets/gentopo.c.o
+  CC       obj/debug/src/uqm/planets/lander.c.o
+  CC       obj/debug/src/uqm/planets/orbits.c.o
+  CC       obj/debug/src/uqm/planets/oval.c.o
+  CC       obj/debug/src/uqm/planets/pl_stuff.c.o
+  CC       obj/debug/src/uqm/planets/planets.c.o
+src/uqm/planets/planets.c: In function ‘DoPlanetOrbit’:
+src/uqm/planets/planets.c:414:17: warning: this statement may fall through [-Wimplicit-fallthrough=]
+  414 |                 {
+      |                 ^
+src/uqm/planets/planets.c:437:17: note: here
+  437 |                 case NAVIGATION:
+      |                 ^~~~
+  CC       obj/debug/src/uqm/planets/plangen.c.o
+  CC       obj/debug/src/uqm/planets/pstarmap.c.o
+  CC       obj/debug/src/uqm/planets/report.c.o
+src/uqm/planets/report.c: In function ‘MakeReport’:
+src/uqm/planets/report.c:186:48: warning: dangling pointer to ‘pNextStr’ may be used [-Wdangling-pointer=]
+  186 |                                         t.pStr = pNextStr;
+      |                                         ~~~~~~~^~~~~~~~~~
+src/uqm/planets/report.c:114:32: note: ‘pNextStr’ declared here
+  114 |                 const UNICODE *pNextStr;
+      |                                ^~~~~~~~
+src/uqm/planets/report.c:146:38: warning: dangling pointer ‘pStr’ to ‘pNextStr’ may be used [-Wdangling-pointer=]
+  146 |                                 pStr = pNextStr;
+      |                                 ~~~~~^~~~~~~~~~
+src/uqm/planets/report.c:114:32: note: ‘pNextStr’ declared here
+  114 |                 const UNICODE *pNextStr;
+      |                                ^~~~~~~~
+  CC       obj/debug/src/uqm/planets/roster.c.o
+  CC       obj/debug/src/uqm/planets/scan.c.o
+  CC       obj/debug/src/uqm/planets/solarsys.c.o
+  CC       obj/debug/src/uqm/planets/surface.c.o
+  CC       obj/debug/src/uqm/planets/generate/gendefault.c.o
+  CC       obj/debug/src/uqm/planets/generate/genand.c.o
+  CC       obj/debug/src/uqm/planets/generate/genburv.c.o
+  CC       obj/debug/src/uqm/planets/generate/genchmmr.c.o
+  CC       obj/debug/src/uqm/planets/generate/gencol.c.o
+  CC       obj/debug/src/uqm/planets/generate/gendru.c.o
+  CC       obj/debug/src/uqm/planets/generate/genilw.c.o
+  CC       obj/debug/src/uqm/planets/generate/genmel.c.o
+  CC       obj/debug/src/uqm/planets/generate/genmyc.c.o
+  CC       obj/debug/src/uqm/planets/generate/genorz.c.o
+  CC       obj/debug/src/uqm/planets/generate/genpet.c.o
+  CC       obj/debug/src/uqm/planets/generate/genpku.c.o
+  CC       obj/debug/src/uqm/planets/generate/genrain.c.o
+  CC       obj/debug/src/uqm/planets/generate/gensam.c.o
+  CC       obj/debug/src/uqm/planets/generate/genshof.c.o
+  CC       obj/debug/src/uqm/planets/generate/gensly.c.o
+  CC       obj/debug/src/uqm/planets/generate/gensol.c.o
+  CC       obj/debug/src/uqm/planets/generate/genspa.c.o
+  CC       obj/debug/src/uqm/planets/generate/gensup.c.o
+  CC       obj/debug/src/uqm/planets/generate/gensyr.c.o
+  CC       obj/debug/src/uqm/planets/generate/genthrad.c.o
+  CC       obj/debug/src/uqm/planets/generate/gentrap.c.o
+  CC       obj/debug/src/uqm/planets/generate/genutw.c.o
+  CC       obj/debug/src/uqm/planets/generate/genvault.c.o
+  CC       obj/debug/src/uqm/planets/generate/genvux.c.o
+  CC       obj/debug/src/uqm/planets/generate/genwreck.c.o
+  CC       obj/debug/src/uqm/planets/generate/genyeh.c.o
+  CC       obj/debug/src/uqm/planets/generate/genzfpscout.c.o
+  CC       obj/debug/src/uqm/planets/generate/genzoq.c.o
+  CC       obj/debug/src/uqm/ships/androsyn/androsyn.c.o
+  CC       obj/debug/src/uqm/ships/arilou/arilou.c.o
+  CC       obj/debug/src/uqm/ships/blackurq/blackurq.c.o
+  CC       obj/debug/src/uqm/ships/chenjesu/chenjesu.c.o
+  CC       obj/debug/src/uqm/ships/chmmr/chmmr.c.o
+  CC       obj/debug/src/uqm/ships/druuge/druuge.c.o
+  CC       obj/debug/src/uqm/ships/human/human.c.o
+  CC       obj/debug/src/uqm/ships/ilwrath/ilwrath.c.o
+  CC       obj/debug/src/uqm/ships/lastbat/lastbat.c.o
+  CC       obj/debug/src/uqm/ships/melnorme/melnorme.c.o
+  CC       obj/debug/src/uqm/ships/mmrnmhrm/mmrnmhrm.c.o
+  CC       obj/debug/src/uqm/ships/mycon/mycon.c.o
+  CC       obj/debug/src/uqm/ships/orz/orz.c.o
+  CC       obj/debug/src/uqm/ships/pkunk/pkunk.c.o
+  CC       obj/debug/src/uqm/ships/probe/probe.c.o
+  CC       obj/debug/src/uqm/ships/shofixti/shofixti.c.o
+  CC       obj/debug/src/uqm/ships/sis_ship/sis_ship.c.o
+  CC       obj/debug/src/uqm/ships/slylandr/slylandr.c.o
+  CC       obj/debug/src/uqm/ships/spathi/spathi.c.o
+  CC       obj/debug/src/uqm/ships/supox/supox.c.o
+  CC       obj/debug/src/uqm/ships/syreen/syreen.c.o
+  CC       obj/debug/src/uqm/ships/thradd/thradd.c.o
+  CC       obj/debug/src/uqm/ships/umgah/umgah.c.o
+  CC       obj/debug/src/uqm/ships/urquan/urquan.c.o
+  CC       obj/debug/src/uqm/ships/utwig/utwig.c.o
+  CC       obj/debug/src/uqm/ships/vux/vux.c.o
+  CC       obj/debug/src/uqm/ships/yehat/yehat.c.o
+  CC       obj/debug/src/uqm/ships/zoqfot/zoqfot.c.o
+  CC       obj/debug/src/uqm/supermelee/buildpick.c.o
+  CC       obj/debug/src/uqm/supermelee/loadmele.c.o
+  CC       obj/debug/src/uqm/supermelee/melee.c.o
+  CC       obj/debug/src/uqm/supermelee/meleesetup.c.o
+  CC       obj/debug/src/uqm/supermelee/pickmele.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/checkbuf.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/checksum.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/crc.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/netconnection.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/netinput.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/netmelee.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/netmisc.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/netoptions.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/netrcv.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/netsend.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/netstate.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/notify.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/notifyall.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/packet.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/packethandlers.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/packetsenders.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/packetq.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/proto/npconfirm.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/proto/ready.c.o
+  CC       obj/debug/src/uqm/supermelee/netplay/proto/reset.c.o
+  LINK     uqm-debug

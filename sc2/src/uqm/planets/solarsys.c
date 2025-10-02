@@ -217,7 +217,7 @@ static void
 GenerateMoons (SOLARSYS_STATE *system, PLANET_DESC *planet)
 {
 	COUNT i;
-	COUNT facing;
+	COUNT facing __attribute__((unused));
 	PLANET_DESC *pMoonDesc;
 
 	RandomContext_SeedRandom (SysGenRNG, planet->rand_seed);

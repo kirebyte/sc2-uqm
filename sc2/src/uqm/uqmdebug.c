@@ -1014,7 +1014,7 @@ dumpMoon (FILE *out, const PLANET_DESC *moon)
 		typeStr = planetTypeString (moon->data_index & ~PLANET_SHIELDED);
 	}
 	fprintf (out, "  - Moon %-30c  %s\n",
-			'a' + (moon - &pSolarSysState->MoonDesc[0]), typeStr);
+			(int)('a' + (moon - &pSolarSysState->MoonDesc[0])), typeStr);
 
 	dumpWorld (out, moon);
 }
@@ -1608,7 +1608,7 @@ dumpStrings (FILE *out)
 	
 	if (GAMESTR_COUNT != numStrings) {
 		fprintf(stderr, "Warning: GAMESTR_COUNT is %d, but GameStrings "
-				"contains %d strings.\n", GAMESTR_COUNT, numStrings);
+				"contains %zu strings.\n", GAMESTR_COUNT, numStrings);
 	}
 
 	categoryI = 0;
@@ -1616,7 +1616,7 @@ dumpStrings (FILE *out)
 		while (categoryI < numCategories &&
 				stringI >= categories[categoryI + 1].base)
 			categoryI++;
-		fprintf(out, "[ %s + %d ]  %s\n", categories[categoryI].name,
+		fprintf(out, "[ %s + %zu ]  %s\n", categories[categoryI].name,
 				stringI - categories[categoryI].base, GAME_STRING(stringI));
 	}
 }
@@ -1699,7 +1699,7 @@ countVisibleContexts (void)
 static void
 drawContext (CONTEXT context, double hue /* no pun intended */)
 {
-	FRAME drawFrame;
+	FRAME drawFrame __attribute__((unused));
 	CONTEXT oldContext;
 	FONT oldFont;
 	DrawMode oldMode;
@@ -1707,7 +1707,7 @@ drawContext (CONTEXT context, double hue /* no pun intended */)
 	Color rectCol;
 	Color lineCol;
 	Color textCol;
-	bool haveClippingRect;
+	bool haveClippingRect __attribute__((unused));
 	RECT rect;
 	LINE line;
 	TEXT text;

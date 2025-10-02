@@ -262,7 +262,7 @@ object_animation (ELEMENT *ElementPtr)
 			}
 			else if (ElementPtr->mass_points == EARTHQUAKE_DISASTER)
 			{
-				SIZE s;
+				SIZE s __attribute__((unused));
 
 				if (frame_index >= 13)
 					s = 0;
@@ -432,7 +432,7 @@ static void
 DeltaLanderCrew (SIZE crew_delta, COUNT which_disaster)
 {
 	STAMP s;
-	CONTEXT OldContext;
+	CONTEXT OldContext __attribute__((unused));
 
 	if (crew_delta > 0)
 	{
@@ -479,7 +479,7 @@ FillLanderHold (PLANETSIDE_DESC *pPSD, COUNT scan, COUNT NumRetrieved)
 {
 	COUNT start_count;
 	STAMP s;
-	CONTEXT OldContext;
+	CONTEXT OldContext __attribute__((unused));
 
 	PlaySound (SetAbsSoundIndex (LanderSounds, LANDER_PICKUP),
 			NotPositional (), NULL, GAME_SOUND_PRIORITY);
@@ -859,7 +859,7 @@ lightning_process (ELEMENT *ElementPtr)
 		}
 		else
 		{
-			SIZE s;
+			SIZE s __attribute__((unused));
 			
 			// XXX: Color cycling is largely unused, because the color
 			//   never actually changes RGB values (see MAKE_RGB15 below).
@@ -1116,7 +1116,7 @@ ScrollPlanetSide (SIZE dx, SIZE dy, int landingOffset)
 {
 	POINT new_pt;
 	STAMP lander_s, shadow_s, shield_s;
-	CONTEXT OldContext;
+	CONTEXT OldContext __attribute__((unused));
 
 	new_pt.y = curLanderLoc.y + dy;
 	if (new_pt.y < 0)
@@ -1313,7 +1313,7 @@ AnimateLanderWarmup (void)
 {
 	SIZE num_crew;
 	STAMP s;
-	CONTEXT OldContext;
+	CONTEXT OldContext __attribute__((unused));
 	TimeCount TimeIn = GetTimeCounter ();
 
 	OldContext = SetContext (RadarContext);
@@ -1721,7 +1721,7 @@ SetPlanetMusic (BYTE planet_type)
 static void
 ReturnToOrbit (void)
 {
-	CONTEXT OldContext;
+	CONTEXT OldContext __attribute__((unused));
 	RECT r;
 
 	OldContext = SetContext (PlanetContext);

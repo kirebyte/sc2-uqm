@@ -181,7 +181,7 @@ PacketHandler_Fleet(NetConnection *conn, const Packet_Fleet *packet) {
 	size_t i;
 	size_t len;
 	int player;
-	BattleStateData *battleStateData;
+	BattleStateData *battleStateData __attribute__((unused));
 
 	if (conn->stateFlags.reset.localReset)
 		return 0;
@@ -244,7 +244,7 @@ int
 PacketHandler_TeamName(NetConnection *conn, const Packet_TeamName *packet) {
 	size_t nameLen;
 	int side;
-	BattleStateData *battleStateData;
+	BattleStateData *battleStateData __attribute__((unused));
 
 	if (conn->stateFlags.reset.localReset)
 		return 0;
@@ -413,7 +413,7 @@ PacketHandler_HandshakeCancelAck(NetConnection *conn,
 int
 PacketHandler_SeedRandom(NetConnection *conn,
 		const Packet_SeedRandom *packet) {
-	BattleStateData *battleStateData;
+	BattleStateData *battleStateData __attribute__((unused));
 
 	if (conn->stateFlags.reset.localReset)
 		return 0;
@@ -437,7 +437,7 @@ PacketHandler_SeedRandom(NetConnection *conn,
 int
 PacketHandler_InputDelay(NetConnection *conn,
 		const Packet_InputDelay *packet) {
-	BattleStateData *battleStateData;
+	BattleStateData *battleStateData __attribute__((unused));
 	uint32 delay;
 
 	if (conn->stateFlags.reset.localReset)
@@ -466,7 +466,7 @@ int
 PacketHandler_SelectShip(NetConnection *conn,
 		const Packet_SelectShip *packet) {
 	bool updateResult;
-	BattleStateData *battleStateData;
+	BattleStateData *battleStateData __attribute__((unused));
 
 	if (conn->stateFlags.reset.localReset)
 		return 0;
@@ -521,7 +521,7 @@ PacketHandler_BattleInput(NetConnection *conn,
 int
 PacketHandler_FrameCount(NetConnection *conn,
 		const Packet_FrameCount *packet) {
-	BattleStateData *battleStateData;
+	BattleStateData *battleStateData __attribute__((unused));
 	BattleFrameCounter frameCount;
 
 	if (conn->stateFlags.reset.localReset)

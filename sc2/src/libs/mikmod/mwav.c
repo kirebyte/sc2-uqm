@@ -30,15 +30,27 @@
 */
 
 #ifdef HAVE_CONFIG_H
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include "config.h"
 #endif
 
 #ifdef HAVE_UNISTD_H
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include <unistd.h>
 #endif
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include <string.h>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include "mikmod_internals.h"
 
 #ifdef SUNOS
@@ -386,3 +398,5 @@ static void extract_channel(const char *src, char *dst, int num_chan, int num_sa
 }
 
 /* ex:set ts=8: */
+
+#pragma GCC diagnostic pop

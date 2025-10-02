@@ -1045,7 +1045,7 @@ DMS_ScrapEscortShip (MENU_STATE *pMS, HSHIPFRAG hStarShip)
 {
 	SHIP_FRAGMENT *StarShipPtr =
 			LockShipFrag (&GLOBAL (built_ship_q), hStarShip);
-	BYTE slotNr;
+	BYTE slotNr __attribute__((unused));
 
 	SetFlashRect (NULL);
 	ShowCombatShip (pMS, pMS->CurState, StarShipPtr);

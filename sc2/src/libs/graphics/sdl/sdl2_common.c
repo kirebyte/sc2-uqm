@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 //Copyright Paul Reiche, Fred Ford. 1992-2002
 
 /*
@@ -220,3 +222,5 @@ TFB_SupportsHardwareScaling (void)
 	return 1;
 }
 #endif
+
+#pragma GCC diagnostic pop

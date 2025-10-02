@@ -32,6 +32,9 @@
 #include "config.h"
 #endif
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+
 #include <string.h>
 #include <stdarg.h>
 #ifdef SRANDOM_IN_MATH_H
@@ -3425,5 +3428,7 @@ MIKMODAPI int Player_GetRow(void)
 	MUTEX_UNLOCK(vars);
 	return ret;
 }
+
+#pragma GCC diagnostic pop
 
 /* ex:set ts=4: */

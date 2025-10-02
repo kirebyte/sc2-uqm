@@ -27,14 +27,26 @@
 ==============================================================================*/
 
 #ifdef HAVE_CONFIG_H
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include "config.h"
 #endif
 
 #ifdef HAVE_MEMORY_H
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include <memory.h>
 #endif
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include <string.h>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wsign-compare"
 #include "mikmod_internals.h"
 
 #ifdef SUNOS
@@ -328,3 +340,5 @@ void UniVolEffect(UWORD eff,UBYTE dat)
 }
 
 /* ex:set ts=4: */
+
+#pragma GCC diagnostic pop

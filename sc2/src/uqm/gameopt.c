@@ -398,7 +398,7 @@ DrawSaveNameString (UNICODE *Str, COUNT CursorPos, COUNT state, COUNT gameIndex)
 
 	if (!(state & DDSHS_EDIT))
 	{
-		TEXT t;
+		TEXT t __attribute__((unused));
 
 		SetContextForeGroundColor (BLACK_COLOR);
 		DrawFilledRectangle (&r);
@@ -884,6 +884,7 @@ DrawSavegameSummary (PICK_GAME_STATE *pickState, COUNT gameIndex)
 					break;
 				}
 			}
+			/* FALLTHROUGH */
 			default:
 				buf[0] = '\0';
 				break;

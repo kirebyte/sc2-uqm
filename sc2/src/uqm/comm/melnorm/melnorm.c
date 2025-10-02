@@ -1195,7 +1195,7 @@ DoSell (RESPONSE_REF R)
 	{
 		if (PLAYER_SAID (R, sell_life_data))
 		{
-			DWORD TimeIn;
+			DWORD TimeIn __attribute__((unused));
 
 			added_credit = GLOBAL_SIS (TotalBioMass) * BIO_CREDIT_VALUE;
 
@@ -1500,6 +1500,7 @@ yack1_respond (void)
 			break;
 		case 1:
 			Response (what_factors, DoFirstMeeting);
+			/* FALLTHROUGH */
 		case 2:
 			Response (get_on_with_business, NatureOfConversation);
 			break;

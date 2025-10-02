@@ -1041,7 +1041,7 @@ static BOOLEAN
 DiscussDevices (BOOLEAN TalkAbout)
 {
 	COUNT i, VuxBeastIndex, PhraseIndex;
-	BOOLEAN Undiscussed;
+	BOOLEAN Undiscussed __attribute__((unused));
 
 	if (TalkAbout)
 		NPCPhrase (DEVICE_HEAD);

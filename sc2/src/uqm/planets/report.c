@@ -83,7 +83,7 @@ ClearReportArea (void)
 static void
 MakeReport (SOUND ReadOutSounds, UNICODE *pStr, COUNT StrLen)
 {
-	BYTE ButtonState;
+	BYTE ButtonState __attribute__((unused));
 	int end_page_len;
 	UNICODE end_page_buf[200];
 	UniChar last_c = 0;

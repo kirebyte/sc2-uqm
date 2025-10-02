@@ -567,8 +567,9 @@ stdio_openEntries(uio_PDirHandle *pDirHandle) {
 	}
 	
 	result = stdio_EntriesIterator_new(dirHandle);
-	result->status = readdir_r(dirHandle, result->direntBuffer,
-			&result->entry);
+	errno = 0;
+	result->entry = readdir(dirHandle);
+	result->status = errno;
 #ifndef WIN32
 #	ifdef DEBUG
 	if (result->status != 0) {
@@ -611,8 +612,8 @@ stdio_readEntries(stdio_EntriesIterator **iteratorPtr,
 			&iterator->findData))
 #else
 	for (; iterator->status == 0 && iterator->entry != NULL;
-			iterator->status = readdir_r(iterator->dirHandle,
-			iterator->direntBuffer, &iterator->entry))
+			errno = 0, iterator->entry = readdir(iterator->dirHandle),
+			iterator->status = errno)
 #endif
 	{
 #ifdef WIN32

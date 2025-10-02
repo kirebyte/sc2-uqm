@@ -203,7 +203,7 @@ Widget_DrawMenuScreen (WIDGET *_self, int x, int y)
 {
 	RECT r;
 	Color title, oldtext;
-	Color inactive, default_color, selected;
+	Color inactive __attribute__((unused)), default_color __attribute__((unused)), selected __attribute__((unused));
 	FONT  oldfont = 0;
 	FRAME oldFontEffect = SetContextFontEffect (NULL);
 	TEXT t;
@@ -402,7 +402,7 @@ Widget_DrawSlider(WIDGET *_self, int x, int y)
 {
 	WIDGET_SLIDER *self = (WIDGET_SLIDER *)_self;
 	Color oldtext;
-	Color inactive, default_color, selected;
+	Color inactive __attribute__((unused)), default_color __attribute__((unused)), selected __attribute__((unused));
 	FONT  oldfont = 0;
 	FRAME oldFontEffect = SetContextFontEffect (NULL);
 	TEXT t;
