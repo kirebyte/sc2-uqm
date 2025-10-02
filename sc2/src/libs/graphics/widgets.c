@@ -10,7 +10,11 @@
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
+ *  along with this progrWidget_DrawControlEntry(WIDGET *_self, int x, int y)
+{
+	WIDGET_CONTROLENTRY *self = (WIDGET_CONTROLENTRY *)_self;
+	Color oldtext;
+	Color inactive __attribute__((unused)), default_color __attribute__((unused)), selected __attribute__((unused));f not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
@@ -612,7 +616,7 @@ Widget_DrawControlEntry (WIDGET *_self, int x, int y)
 {
 	WIDGET_CONTROLENTRY *self = (WIDGET_CONTROLENTRY *)_self;
 	Color oldtext;
-	Color inactive, default_color, selected;
+	Color inactive __attribute__((unused)), default_color __attribute__((unused)), selected __attribute__((unused));
 	FONT  oldfont = 0;
 	FRAME oldFontEffect = SetContextFontEffect (NULL);
 	TEXT t;

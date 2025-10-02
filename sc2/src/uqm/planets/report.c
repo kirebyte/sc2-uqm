@@ -143,7 +143,10 @@ MakeReport (SOUND ReadOutSounds, UNICODE *pStr, COUNT StrLen)
 			pStr = t.pStr;
 			pNextStr = t.pStr;
 			while (UniChar_isGraph (getCharFromString (&pNextStr)))
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdangling-pointer"
 				pStr = pNextStr;
+#pragma GCC diagnostic pop
 
 			word_chars = utf8StringCountN (t.pStr, pStr);
 			if ((col_cells += word_chars) <= NUM_CELL_COLS)
@@ -183,7 +186,10 @@ MakeReport (SOUND ReadOutSounds, UNICODE *pStr, COUNT StrLen)
 							BatchGraphics ();
 						}
 					}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdangling-pointer"
 					t.pStr = pNextStr;
+#pragma GCC diagnostic pop
 					t.baseline.x += r.extent.width + 1;
 				}
 

@@ -36,7 +36,7 @@ static SDL_Window *window = NULL;
 static SDL_Renderer *renderer = NULL;
 static const char *rendererBackend = NULL;
 
-static int ScreenFilterMode;
+static int ScreenFilterMode __attribute__((unused));
 
 static TFB_ScaleFunc scaler = NULL;
 

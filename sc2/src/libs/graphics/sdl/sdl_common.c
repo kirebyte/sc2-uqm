@@ -53,8 +53,8 @@ volatile int GameActive = 1; // Track the SDL_ACTIVEEVENT state SDL_APPACTIVE
 int
 TFB_InitGraphics (int driver, int flags, const char *renderer, int width, int height)
 {
-	int result, i;
-	char caption[200];
+	int result __attribute__((unused)), i;
+	char caption[200] __attribute__((unused));
 
 	/* Null out screen pointers the first time */
 	for (i = 0; i < TFB_GFX_NUMSCREENS; i++)

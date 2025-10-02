@@ -411,7 +411,10 @@ DoPlanetOrbit (MENU_STATE *pMS)
 				return FALSE; // abort or load
 			break;
 		case STARMAP:
+#pragma GCC diagnostic push  
+#pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
 		{
+#pragma GCC diagnostic pop
 			BOOLEAN AutoPilotSet;
 			InputFrameCallback *oldCallback;
 
@@ -432,7 +435,7 @@ DoPlanetOrbit (MENU_STATE *pMS)
 				DrawOrbitalDisplay (DRAW_ORBITAL_FULL);
 				break;
 			}
-			// Fall through !!!
+			/* FALLTHROUGH */
 		}
 		case NAVIGATION:
 			return FALSE;

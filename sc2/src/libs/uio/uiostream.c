@@ -66,6 +66,7 @@ uio_fopen(uio_DirHandle *dir, const char *path, const char *mode) {
 			break;
 		case 'a':
 			openFlags = O_WRONLY| O_CREAT | O_APPEND;
+			break;
 		default:
 			errno = EINVAL;
 			fprintf(stderr, "Invalid mode string in call to uio_fopen().\n");

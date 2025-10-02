@@ -789,7 +789,7 @@ static int DoPTEffect9(UWORD tick, UWORD flags, MP_CONTROL *a, MODULE *mod, SWOR
 		if (dat) a->soffset=(UWORD)dat<<8;
 		a->main.start=a->hioffset|a->soffset;
 
-		if ((a->main.s)&&(a->main.start>a->main.s->length))
+		if ((a->main.s)&&((ULONG)a->main.start>a->main.s->length))
 			a->main.start=a->main.s->flags&(SF_LOOP|SF_BIDI)?
 			    a->main.s->loopstart:a->main.s->length;
 	}
@@ -2012,7 +2012,7 @@ static int DoITEffectS0(UWORD tick, UWORD flags, MP_CONTROL *a, MODULE *mod, SWO
 			a->hioffset=inf<<16;
 			a->main.start=a->hioffset|a->soffset;
 
-			if ((a->main.s)&&(a->main.start>a->main.s->length))
+			if ((a->main.s)&&(a->main.start>(SLONG)a->main.s->length))
 				a->main.start=a->main.s->flags&(SF_LOOP|SF_BIDI)?
 				    a->main.s->loopstart:a->main.s->length;
 		}
@@ -2099,11 +2099,9 @@ static int DoULTEffect9(UWORD tick, UWORD flags, MP_CONTROL *a, MODULE *mod, SWO
 		a->ultoffset=offset;
 
 	a->main.start=a->ultoffset<<2;
-	if ((a->main.s)&&(a->main.start>a->main.s->length))
-		a->main.start=a->main.s->flags&(SF_LOOP|SF_BIDI)?
-		    a->main.s->loopstart:a->main.s->length;
-
-	return 0;
+		if ((a->main.s)&&(a->main.start>(SLONG)a->main.s->length))
+			a->main.start=a->main.s->flags&(SF_LOOP|SF_BIDI)?
+			    a->main.s->loopstart:a->main.s->length;	return 0;
 }
 
 /*========== OctaMED effects */
@@ -2348,7 +2346,7 @@ static void pt_UpdateVoices(MODULE *mod, int max_volume)
 
 		if ((aout->main.kick==KICK_NOTE)||(aout->main.kick==KICK_KEYOFF)) {
 			Voice_Play_internal(channel,s,(aout->main.start==-1)?
-			    ((s->flags&SF_UST_LOOP)?s->loopstart:0):aout->main.start);
+			    ((s->flags&SF_UST_LOOP)?(ULONG)s->loopstart:(ULONG)0):(ULONG)aout->main.start);
 			aout->main.fadevol=32768;
 			aout->aswppos=0;
 		}
@@ -3283,7 +3281,7 @@ static void Player_ToggleMute_internal(SLONG arg1,va_list ap)
 			    (arg2>arg3)||(arg3>=pf->numchn))
 				return;
 			for (t=0;t<pf->numchn;t++) {
-				if ((t>=arg2) && (t<=arg3))
+				if (((SLONG)t>=arg2) && ((SLONG)t<=arg3))
 					continue;
 				pf->control[t].muted=1-pf->control[t].muted;
 			}

@@ -159,7 +159,7 @@ void *
 _GetSoundBankData (uio_Stream *fp, DWORD length)
 {
 	int snd_ct, n;
-	DWORD opos;
+	DWORD opos __attribute__((unused));
 	char CurrentLine[1024], filename[1024];
 #define MAX_FX 256
 	TFB_SoundSample *sndfx[MAX_FX];

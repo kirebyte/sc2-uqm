@@ -439,14 +439,19 @@ getStringFromChar(unsigned char *ptr, size_t size, UniChar ch)
 	{
 		case 5: ptr[5] = (ch & 0x3f) | 0x80;
 				ch >>= 6;
+				/* FALLTHROUGH */
 		case 4: ptr[4] = (ch & 0x3f) | 0x80;
 				ch >>= 6;
+				/* FALLTHROUGH */
 		case 3: ptr[3] = (ch & 0x3f) | 0x80;
 				ch >>= 6;
+				/* FALLTHROUGH */
 		case 2: ptr[2] = (ch & 0x3f) | 0x80;
 				ch >>= 6;
+				/* FALLTHROUGH */
 		case 1: ptr[1] = (ch & 0x3f) | 0x80;
 				ch >>= 6;
+				/* FALLTHROUGH */
 		case 0: ptr[0] = (ch & def->mask) | def->marker;
 	}
 

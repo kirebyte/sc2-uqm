@@ -33,7 +33,7 @@ int zoomSurfaceRGBA(SDL_Surface * src, SDL_Surface * dst, int smooth)
     int x, y, sx, sy, *sax, *say, *csax, *csay, csx, csy, ex, ey, t1, t2, sstep;
     tColorRGBA *c00, *c01, *c10, *c11;
     tColorRGBA *sp, *csp, *dp;
-    int sgap, dgap;
+    int sgap __attribute__((unused)), dgap;
 
     /*
      * Variable setup 
@@ -503,7 +503,7 @@ void transformSurfaceRGBA(SDL_Surface * src, SDL_Surface * dst, int cx, int cy, 
 static
 void transformSurfaceY(SDL_Surface * src, SDL_Surface * dst, int cx, int cy, int isin, int icos)
 {
-    int x, y, dx, dy, xd, yd, sdx, sdy, ax, ay, sw, sh;
+    int x, y, dx, dy, xd, yd, sdx, sdy, ax, ay, sw __attribute__((unused)), sh __attribute__((unused));
     tColorY *pc, *sp;
     int gap;
     Uint32 colorkey = 0;

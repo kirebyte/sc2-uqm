@@ -195,7 +195,7 @@ static void
 key_init (void)
 {
 	unsigned int i;
-	int num_keys; // Temp to match type of param for SDL_GetKeyState().
+	int num_keys __attribute__((unused)); // Temp to match type of param for SDL_GetKeyState().
 	pool = allocate_key_chunk ();
 	for (i = 0; i < KEYBOARD_INPUT_BUCKETS; i++)
 		bindings[i] = NULL;

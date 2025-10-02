@@ -206,7 +206,7 @@ uio_getStdioAccess(uio_DirHandle *dir, const char *path, int flags,
 			}
 #endif
 			
-			snprintf(tempDirName, sizeof(tempDirName), "%08lx", (unsigned long) dirNum + i);
+			snprintf(tempDirName, 9, "%08lx", (unsigned long) (dirNum + i) & 0xFFFFFFUL);
 			
 			res = uio_mkdir(tempDir, tempDirName, 0700);
 			if (res == -1) {

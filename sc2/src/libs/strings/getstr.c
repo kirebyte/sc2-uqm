@@ -119,7 +119,7 @@ _GetConversationData (const char *path, RESOURCE_DATA *resdata)
 	void *result;
 	int stringI;
 	int path_len;
-	int num_data_sets;
+	int num_data_sets __attribute__((unused));
 	DWORD opos;
 	
 	char *namedata = NULL;
