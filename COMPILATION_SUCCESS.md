@@ -71,6 +71,25 @@ cd sc2 && ./uqm-debug --help  # Ver todas las opciones
 2. **Directorio de trabajo**: Resuelto ejecutando desde `sc2/`
 3. **Warnings de compilación**: No críticos, código funcional
 
+### Optimización del Proyecto
+
+**Archivos/directorios eliminados (no necesarios para WSL2):**
+- `symbian/` - Código específico para Symbian OS
+- `tools/` - Herramientas de desarrollo de assets (no requeridas para ejecución)
+- `misc/` - Paquetes de audio opcionales
+- `sc2/build/msvc6/` - Proyecto Visual Studio 6
+- `sc2/build/win32_install/` - Instalador Windows
+- `sc2/build/unix_installer/` - Instalador Unix
+- `sc2/src/darwin/` - Código específico macOS
+- `sc2/src/symbian/` - Código específico Symbian
+- `sc2/src/config_vc6.h`, `config_win.h.in` - Headers Windows
+- `sc2/src/res/*.ico`, `UrQuanMasters.rc` - Recursos Windows
+- `sc2/INSTALL.macos`, `INSTALL.symbian`, `INSTALL.win32` - Docs otras plataformas
+- `sc2/doc/devel/` - Documentación de desarrollo
+- `sc2/uqm.lsm`, `README-SDL` - Archivos de distribución innecesarios
+
+**Resultado:** Proyecto optimizado de 549MB → 360MB (reducción 34%)
+
 ### Estado Final
 
 🎮 **The Ur-Quan Masters está completamente funcional** 
