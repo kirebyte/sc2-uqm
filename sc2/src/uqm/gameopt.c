@@ -105,6 +105,7 @@ enum
 	CYBORG_NORMAL_SETTING,
 	CYBORG_DOUBLE_SETTING,
 	CYBORG_SUPER_SETTING,
+	CHEAT_ON_SETTING,
 	CHANGE_CAPTAIN_SETTING,
 	CHANGE_SHIP_SETTING,
 	EXIT_SETTINGS_MENU,
@@ -158,6 +159,12 @@ FeedbackSetting (BYTE which_setting)
 					? GAME_STRING (OPTION_STRING_BASE + 3) :
 					GAME_STRING (OPTION_STRING_BASE + 4),
 					tmpstr);
+			break;
+		case CHEAT_ON_SETTING:
+			snprintf (buf, sizeof (buf) - 1, "Cheat Mode %s",
+					GLOBAL (glob_flags) & CHEAT_ENABLED
+					? GAME_STRING (OPTION_STRING_BASE + 4) :
+					GAME_STRING (OPTION_STRING_BASE + 3));
 			break;
 		case CHANGE_CAPTAIN_SETTING:
 		case CHANGE_SHIP_SETTING:
@@ -569,6 +576,10 @@ DoSettings (MENU_STATE *pMS)
 			case MUSIC_OFF_SETTING:
 				ToggleMusic ();
 				pMS->CurState ^= 1;
+				DrawMenuStateStrings (PM_SOUND_ON, pMS->CurState);
+				break;
+			case CHEAT_ON_SETTING:
+				ToggleCheatMode();
 				DrawMenuStateStrings (PM_SOUND_ON, pMS->CurState);
 				break;
 			case CHANGE_CAPTAIN_SETTING:

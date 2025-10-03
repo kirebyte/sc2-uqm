@@ -84,6 +84,41 @@ ToggleSoundEffect (void)
 }
 
 void
+ToggleCheatMode (void)
+{
+	GLOBAL (glob_flags) ^= CHEAT_ENABLED;
+}
+
+BOOLEAN
+IsCheatModeEnabled (void)
+{
+	return (GLOBAL (glob_flags) & CHEAT_ENABLED) != 0;
+}
+
+void
+ApplyCheatModeEffects (void)
+{
+	if (IsCheatModeEnabled ())
+	{
+		// Example cheat effects - you can modify these as needed
+		// Add extra resources when cheat mode is enabled
+		// Note: These are examples, you should implement based on your needs
+		
+		// Example: Give extra crew
+		// GLOBAL_SIS (CrewEnlisted) += 50;
+		
+		// Example: Give extra fuel
+		// GLOBAL_SIS (FuelOnBoard) += 100;
+		
+		// Example: Give extra resource units (RU)
+		// GLOBAL_SIS (ResUnits) += 1000;
+		
+		// For now, we'll just log that cheat mode is active
+		// (You can add actual cheat effects here)
+	}
+}
+
+void
 PlaySoundEffect (SOUND S, COUNT Channel, SoundPosition Pos,
 		void *PositionalObject, BYTE Priority)
 {

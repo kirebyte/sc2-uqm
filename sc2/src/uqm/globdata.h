@@ -890,6 +890,7 @@ END_GAME_STATE
 #define MUSIC_DISABLED (1 << 3)
 #define SOUND_DISABLED (1 << 4)
 #define CYBORG_ENABLED (1 << 5)
+#define CHEAT_ENABLED (1 << 2)
 
 enum
 {

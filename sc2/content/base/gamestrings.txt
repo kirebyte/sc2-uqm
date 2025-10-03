@@ -2142,6 +2142,10 @@ music
 cyborg
 
 
+#(cheat on)
+cheats
+
+
 #(captain)
 captain
 
