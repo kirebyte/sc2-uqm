@@ -28,6 +28,9 @@
 #include "../shipcont.h"
 #include "../units.h"
 #include "../hyper.h"
+#include "../settings.h"
+#include "port.h"
+#include SDL_INCLUDE(SDL.h)
 #include "../sis.h"
 		// for DrawHyperCoords(), DrawStatusMessage()
 #include "../settings.h"
@@ -1317,6 +1320,34 @@ DoMoveCursor (MENU_STATE *pMS)
 			UpdateCursorLocation (sx, sy, NULL);
 			UpdateCursorInfo (last_buf);
 			UpdateFuelRequirement ();
+		}
+
+		// Cheat mode: Check for 'T' key press
+		if (IsCheatModeEnabled())
+		{
+#if SDL_MAJOR_VERSION == 1
+			const Uint8* keystate = SDL_GetKeyState(NULL);
+			static Uint8 prev_t_state = 0;
+			
+			// Check for 'T' key press (rising edge detection) - SDL 1.x uses SDLK_t
+			if (keystate[SDLK_t] && !prev_t_state)
+			{
+				// Play the device invocation sound (menusnd04.wav)
+				PlayMenuSound (MENU_SOUND_INVOKED);
+			}
+			prev_t_state = keystate[SDLK_t];
+#else
+			const Uint8* keystate = SDL_GetKeyboardState(NULL);
+			static Uint8 prev_t_state = 0;
+			
+			// Check for 'T' key press (rising edge detection) - SDL 2.x uses SDL_SCANCODE_T
+			if (keystate[SDL_SCANCODE_T] && !prev_t_state)
+			{
+				// Play the device invocation sound (menusnd04.wav)
+				PlayMenuSound (MENU_SOUND_INVOKED);
+			}
+			prev_t_state = keystate[SDL_SCANCODE_T];
+#endif
 		}
 
 		SleepThreadUntil (TimeIn + MIN_ACCEL_DELAY);
