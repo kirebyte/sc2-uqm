@@ -1328,24 +1328,40 @@ DoMoveCursor (MENU_STATE *pMS)
 #if SDL_MAJOR_VERSION == 1
 			const Uint8* keystate = SDL_GetKeyState(NULL);
 			static Uint8 prev_t_state = 0;
-			
 			// Check for 'T' key press (rising edge detection) - SDL 1.x uses SDLK_t
 			if (keystate[SDLK_t] && !prev_t_state)
-			{
-				// Play the device invocation sound (menusnd04.wav)
-				PlayMenuSound (MENU_SOUND_INVOKED);
-			}
-			prev_t_state = keystate[SDLK_t];
 #else
 			const Uint8* keystate = SDL_GetKeyboardState(NULL);
 			static Uint8 prev_t_state = 0;
-			
 			// Check for 'T' key press (rising edge detection) - SDL 2.x uses SDL_SCANCODE_T
 			if (keystate[SDL_SCANCODE_T] && !prev_t_state)
+#endif
 			{
-				// Play the device invocation sound (menusnd04.wav)
+				// 1) Play the device invocation sound
 				PlayMenuSound (MENU_SOUND_INVOKED);
+
+				// 2) Flash tipo sun_device (FadeScreen)
+				SleepThreadUntil(FadeScreen(FadeAllToWhite, ONE_SECOND / 2));
+				FadeScreen(FadeAllToColor, ONE_SECOND * 2);
+
+				// 3) Teleport the ship to the cursor location
+				GLOBAL(autopilot) = cursorLoc;
+
+				if (inHQSpace())
+				{
+					doInstantMove();
+				}
+				else if (LOBYTE(GLOBAL(CurrentActivity)) == IN_INTERPLANETARY)
+				{
+					GLOBAL(CurrentActivity) |= END_INTERPLANETARY;
+					debugHook = doInstantMove;
+				}
+
+				return FALSE;
 			}
+#if SDL_MAJOR_VERSION == 1
+			prev_t_state = keystate[SDLK_t];
+#else
 			prev_t_state = keystate[SDL_SCANCODE_T];
 #endif
 		}
