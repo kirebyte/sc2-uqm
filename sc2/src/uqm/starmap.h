@@ -27,7 +27,7 @@ extern "C" {
 extern STAR_DESC *CurStarDescPtr;
 extern STAR_DESC *star_array;
 
-#define NUM_SOLAR_SYSTEMS 502
+#define NUM_SOLAR_SYSTEMS 503
 
 extern STAR_DESC* FindStar (STAR_DESC *pLastStar, POINT *puniverse,
 		SIZE xbounds, SIZE ybounds);

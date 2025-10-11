@@ -530,6 +530,10 @@ Lentilis
 UNKNOWN
 
 
+#(Kitsune)
+Kitsune
+
+
 #(devices) -- DEVICE_STRING_BASE
 devices
 

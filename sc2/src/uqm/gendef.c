@@ -50,6 +50,7 @@ extern GenerateFunctions generateWreckFunctions;
 extern GenerateFunctions generateYehatFunctions;
 extern GenerateFunctions generateZoqFotPikFunctions;
 extern GenerateFunctions generateZoqFotPikScoutFunctions;
+extern GenerateFunctions generateKitsuneFunctions;
 
 
 const GenerateFunctions *
@@ -130,6 +131,8 @@ getGenerateFunctions (BYTE Index)
 			return &generateRainbowWorldFunctions;
 		case ILWRATH_DEFINED:
 			return &generateIlwrathFunctions;
+		case KITSUNE_DEFINED:
+			return &generateKitsuneFunctions;
 		default:
 			return &generateDefaultFunctions;
 	}
