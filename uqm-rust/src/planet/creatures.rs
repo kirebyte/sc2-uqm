@@ -1,9 +1,9 @@
-✅ Total Tests:        54
-✅ Success Rate:      100%
-✅ Code Coverage:     100% (core)
-✅ Build Status:      Clean
-✅ Binary Status:     Working
-✅ Python Tests:      All passing//! Planetary creatures and life forms
+//! Planetary creatures and life forms
+///
+/// This module handles creatures, life forms, and biological systems
+/// on planets during exploration missions.
+///
+/// TODO: Implement in Phase 7 (Planet Landing System)
 
 /// Creature system stub
 ///
