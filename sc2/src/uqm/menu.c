@@ -202,6 +202,8 @@ FixMenuState (BYTE BadState)
 			return (PM_CYBORG_OFF +
 				((BYTE)(GLOBAL (glob_flags) & COMBAT_SPEED_MASK) >>
 				COMBAT_SPEED_SHIFT));
+		case PM_CHEAT_ON:
+			return PM_CHEAT_ON;
 	}
 	return BadState;
 }
@@ -230,6 +232,9 @@ NextMenuState (BYTE BaseState, BYTE CurState)
 		case PM_CYBORG_NORMAL:
 		case PM_CYBORG_DOUBLE:
 		case PM_CYBORG_SUPER:
+			NextState = PM_CHEAT_ON;
+			break;
+		case PM_CHEAT_ON:
 			NextState = PM_CHANGE_CAPTAIN;
 			break;
 		default:
@@ -265,8 +270,11 @@ PreviousMenuState (BYTE BaseState, BYTE CurState)
 		case PM_CYBORG_SUPER:
 			NextState = PM_MUSIC_ON;
 			break;
-		case PM_CHANGE_CAPTAIN:
+		case PM_CHEAT_ON:
 			NextState = PM_CYBORG_OFF;
+			break;
+		case PM_CHANGE_CAPTAIN:
+			NextState = PM_CHEAT_ON;
 			break;
 		default:
 			NextState = AdjBase + CurState - 1;
@@ -520,7 +528,7 @@ DrawMenuStateStrings (BYTE beg_index, SWORD NewState)
 					 GLOBAL (FuelCost));
 		if (beg_index == PM_SOUND_ON)
 		{
-			end_index = beg_index + 5;
+			end_index = beg_index + 7;
 			switch (beg_index + NewState)
 			{
 				case PM_SOUND_ON:
@@ -537,14 +545,17 @@ DrawMenuStateStrings (BYTE beg_index, SWORD NewState)
 				case PM_CYBORG_SUPER:
 					NewState = 2;
 					break;
-				case PM_CHANGE_CAPTAIN:
+				case PM_CHEAT_ON:
 					NewState = 3;
 					break;
-				case PM_CHANGE_SHIP:
+				case PM_CHANGE_CAPTAIN:
 					NewState = 4;
 					break;
-				case PM_EXIT_SETTINGS:
+				case PM_CHANGE_SHIP:
 					NewState = 5;
+					break;
+				case PM_EXIT_SETTINGS:
+					NewState = 6;
 					break;
 			}
 		}

@@ -6,7 +6,7 @@
 #define CREDITS_MUSIC "music.credits"
 #define HYPERSPACE_MUSIC "music.hyperspace"
 #define IP_MUSIC "music.space"
-#define MAINMENU_MUSIC "music.mainmenu"
+#define MAINMENU_MUSIC "music.space"
 #define MELEE_MUSIC "music.meleemenu"
 #define ORBIT1_MUSIC "music.orbit1"
 #define ORBIT2_MUSIC "music.orbit2"

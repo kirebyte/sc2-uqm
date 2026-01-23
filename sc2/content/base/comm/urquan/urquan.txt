@@ -219,17 +219,17 @@ Well, it's been less than uplifting. Bye.
 Farewell human. I hope your species survives.
 
 #(SEND_MESSAGE)	urquan-027.ogg
-Attention interloper - heed this recorded message!
-This drone-vessel speaks with the voice and authority of the Ur-Quan.
-You are trespassing within Ur-Quan space.
-This world, Earth, may not be approached for any reason.
-Nor will hostilities against our orbital platform be tolerated.
-In addition, your ship does not respond to standard Hierarchy identification transmissions
-and is therefore deemed to be... independent.
-This is not permissible -- only subservience shall be tolerated.
-This drone now leaves to inform the Ur-Quan of your transgressions.
-You are commanded to remain here and await the arrival of the Ur-Quan.
-Disobedience will be punished.
+Atencion intruso! ¡Escucha este mensaje grabado!
+Esta nave-dron habla con la voz y autoridad de los Ur-Quan.
+Estas invadiendo el espacio Ur-Quan.
+Este mundo, la Tierra, no puede ser visitado por ninguna razon.
+Tampoco se toleraran hostilidades contra nuestra plataforma orbital.
+Ademas, tu nave no responde a las transmisiones estandar de identificacion de la Jerarquia
+y por lo tanto se considera... independiente.
+Esto no es permisible -- solo se tolerara la sumision.
+Esta nave-dron parte ahora para informar a los Ur-Quan de tus transgresiones.
+Se te ordena permanecer aqui y esperar la llegada de los Ur-Quan.
+La desobediencia sera castigada.
 
 #(INIT_HELLO)	urquan-028.ogg
 WHAT! A human in a Precursor service vehicle?!

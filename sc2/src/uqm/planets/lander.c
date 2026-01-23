@@ -34,6 +34,7 @@
 #include "libs/graphics/gfx_common.h"
 #include "libs/mathlib.h"
 #include "libs/log.h"
+#include "uqm/settings.h"
 
 
 //define SPIN_ON_LAUNCH to let the planet spin while
@@ -448,6 +449,12 @@ DeltaLanderCrew (SIZE crew_delta, COUNT which_disaster)
 			return; // irrelevant -- all dead
 		
 		shieldHit = GET_GAME_STATE (LANDER_SHIELDS);
+		if (IsCheatModeEnabled()) {
+			shieldHit |= (1 << EARTHQUAKE_DISASTER)
+					  | (1 << BIOLOGICAL_DISASTER)
+					  | (1 << LIGHTNING_DISASTER)
+					  | (1 << LAVASPOT_DISASTER);
+		}
 		shieldHit &= 1 << which_disaster;
 		if (!shieldHit || TFB_Random () % 100 >= 95)
 		{	// No shield, or it did not help
@@ -1541,13 +1548,13 @@ DoPlanetSide (LanderInputState *pMS)
 		weapon_wait = 0;
 
 		angle = FACING_TO_ANGLE (GetFrameIndex (LanderFrame[0]));
-		landerSpeedNumer = GET_GAME_STATE (IMPROVED_LANDER_SPEED) ?
+		if (IsCheatModeEnabled()) {
+			landerSpeedNumer = WORLD_TO_VELOCITY (30); // velocidad extrema
+		} else {
+			landerSpeedNumer = GET_GAME_STATE (IMPROVED_LANDER_SPEED) ?
 				WORLD_TO_VELOCITY (2 * 14) :
 				WORLD_TO_VELOCITY (2 * 8);
-
-#ifdef FAST_FAST
-landerSpeedNumer = WORLD_TO_VELOCITY (48);
-#endif
+		}
 
 		SetVelocityComponents (&GLOBAL (velocity),
 				COSINE (angle, landerSpeedNumer) / LANDER_SPEED_DENOM,
@@ -1608,13 +1615,13 @@ landerSpeedNumer = WORLD_TO_VELOCITY (48);
 				LanderFrame[0] = SetAbsFrameIndex (LanderFrame[0], index);
 
 				angle = FACING_TO_ANGLE (index);
-				landerSpeedNumer = GET_GAME_STATE (IMPROVED_LANDER_SPEED) ?
+				if (IsCheatModeEnabled()) {
+					landerSpeedNumer = WORLD_TO_VELOCITY (120); // velocidad extrema
+				} else {
+					landerSpeedNumer = GET_GAME_STATE (IMPROVED_LANDER_SPEED) ?
 						WORLD_TO_VELOCITY (2 * 14) :
 						WORLD_TO_VELOCITY (2 * 8);
-
-#ifdef FAST_FAST
-landerSpeedNumer = WORLD_TO_VELOCITY (48);
-#endif
+				}
 
 				SetVelocityComponents (&GLOBAL (velocity),
 						COSINE (angle, landerSpeedNumer) / LANDER_SPEED_DENOM,
@@ -2035,6 +2042,12 @@ InitLander (BYTE LanderFlags)
 		if (LanderFlags == 0)
 		{
 			ShieldFlags = GET_GAME_STATE (LANDER_SHIELDS);
+			if (IsCheatModeEnabled()) {
+				ShieldFlags |= (1 << EARTHQUAKE_DISASTER)
+							| (1 << BIOLOGICAL_DISASTER)
+							| (1 << LIGHTNING_DISASTER)
+							| (1 << LAVASPOT_DISASTER);
+			}
 			capacity_shift = GET_GAME_STATE (IMPROVED_LANDER_CARGO);
 		}
 		else

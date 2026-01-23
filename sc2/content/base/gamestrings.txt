@@ -530,6 +530,10 @@ Lentilis
 UNKNOWN
 
 
+#(Kitsune)
+Kitsune
+
+
 #(devices) -- DEVICE_STRING_BASE
 devices
 
@@ -2140,6 +2144,10 @@ music
 
 #(cyborg)
 cyborg
+
+
+#(cheat on)
+cheats
 
 
 #(captain)

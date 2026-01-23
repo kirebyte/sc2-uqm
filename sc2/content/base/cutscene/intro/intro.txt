@@ -72,8 +72,9 @@ FTC 3000
 #(Synchronize)
 SYNC 5000
 #(Text fade-in)
-TFI Based on the source code of STAR CONTROL II
-(All trademarks belong to their respective owners)
+TFI Basado en el codigo fuente de STAR CONTROL II
+(Todas las marcas registradas pertenecen a sus
+ respectivos propietarios)
 #(Synchronize)
 SYNC 8000
 #(Text fade-out)
@@ -81,9 +82,9 @@ TFO
 #(Wait)
 WAIT 200
 #(Text fade-in)
-TFI Originally Created by
-Fred Ford and Paul Reiche III
-in 1992
+TFI Creado originalmente por
+Fred Ford y Paul Reiche III
+en 1992
 #(Synchronize)
 SYNC 12000
 #(Text fade-out)
@@ -91,8 +92,8 @@ TFO
 #(Wait)
 WAIT 200
 #(Text fade-in)
-TFI Set free into the Open Source community
-in 2002
+TFI Liberado a la comunidad de Codigo Abierto
+en 2002
 
 #(Synchronize)
 SYNC 16000
@@ -124,7 +125,7 @@ DRAW 0
 #(Fade-in a slide; param1=fade time)
 FTC 700
 #(Text fade-in)
-TFI There were many great battles...
+TFI Hubo muchas grandes batallas...
 #(Wait)
 WAIT 2500
 #(Text fade-out)
@@ -135,8 +136,8 @@ DRAW 0
 WAIT 500
 
 #(Text fade-in)
-TFI Earth and her partners in the
-Alliance of Free Stars...
+TFI La Tierra y sus socios en la
+Alianza de Estrellas Libres...
 #(Wait)
 WAIT 3000
 #(Text fade-out)
@@ -147,8 +148,8 @@ DRAW 0
 WAIT 500
 
 #(Text fade-in)
-TFI Against the evil Ur-Quan and its
-Hierarchy of Battle Thralls.
+TFI Contra los malvados Ur-Quan y su
+Jerarquia de Esclavos de Batalla.
 #(!!! Milestone Sync 2 !!!)
 SYNC 35000
 #(Text fade-out)
@@ -159,7 +160,7 @@ DRAW 0
 WAIT 500
 
 #(Text fade-in)
-TFI ...and the Ur-Quan were winning...
+TFI ...y los Ur-Quan estaban ganando...
 #(Wait)
 WAIT 2000
 #(Text fade-out)
@@ -170,9 +171,9 @@ DRAW 0
 WAIT 500
 
 #(Text fade-in)
-TFI Meanwhile, on the edge of the
-known frontier, an amazing
-discovery was made...
+TFI Mientras tanto, en el borde de la
+frontera conocida, se hizo un
+asombroso descubrimiento...
 #(!!! Milestone Sync 3 !!!)
 SYNC 41000
 #(Wait)
@@ -185,8 +186,8 @@ DRAW 0
 WAIT 500
 
 #(Text fade-in)
-TFI far beneath the surface of an
-unexplored, alien world...
+TFI muy por debajo de la superficie
+de un mundo alienigena inexplorado...
 #(Wait)
 WAIT 4000
 #(Text fade-out)
@@ -211,7 +212,7 @@ DRAW 1
 FTC 700
 
 #(Text fade-in)
-TFI A huge underground city...
+TFI Una enorme ciudad subterranea...
 #(Wait)
 WAIT 3500
 #(Text fade-out)
@@ -222,9 +223,9 @@ DRAW 1
 WAIT 500
 
 #(Text fade-in)
-TFI Filled with the technological
-wonders of an advanced alien
-race, the Precursors...
+TFI Llena de maravillas tecnologicas
+de una avanzada raza alienigena,
+los Precursores...
 #(Wait)
 WAIT 6000
 #(Text fade-out)
@@ -235,8 +236,8 @@ DRAW 1
 WAIT 500
 
 #(Text fade-in)
-TFI Who vanished a thousand
-centuries ago.
+TFI Que desaparecieron hace mil
+siglos.
 #(Wait)
 WAIT 4000
 #(Text fade-out)
@@ -247,9 +248,9 @@ DRAW 1
 WAIT 500
 
 #(Text fade-in)
-TFI But then the main Ur-Quan fleet
-broke through the Alliance's
-defensive line...
+TFI Pero entonces la flota principal
+de los Ur-Quan rompio la linea
+defensiva de la Alianza...
 #(Wait)
 WAIT 6500
 #(Text fade-out)
@@ -260,9 +261,9 @@ DRAW 1
 WAIT 500
 
 #(Text fade-in)
-TFI Isolating the planet, stranding
-the scientists a hundred light
-years away from Earth.
+TFI Aislando el planeta, dejando
+a los cientificos varados a 
+distancia luz de la Tierra.
 #(Wait)
 WAIT 6500
 #(Text fade-out)
@@ -273,8 +274,8 @@ DRAW 1
 WAIT 500
 
 #(Text fade-in)
-TFI They waited hopefully for a
-rescue vessel...
+TFI Esperaron con esperanza una
+nave de rescate...
 #(Wait)
 WAIT 3500
 #(Text fade-out)
@@ -285,7 +286,7 @@ DRAW 1
 WAIT 500
 
 #(Text fade-in)
-TFI which never came.
+TFI ...que nunca llego.
 #(Wait)
 WAIT 3000
 #(Text fade-out)
@@ -310,7 +311,7 @@ DRAW 2
 FTC 700
 
 #(Text fade-in)
-TFI 20 years have passed...
+TFI Han pasado 2 decadas...
 #(Wait)
 WAIT 3000
 #(Text fade-out)
@@ -321,8 +322,9 @@ DRAW 2
 WAIT 500
 
 #(Text fade-in)
-TFI We, the survivors of the research
-mission have colonized this world.
+TFI Nosotros, los sobrevivientes de la
+mision de investigacion, hemos 
+colonizado este mundo.
 #(Wait)
 WAIT 4500
 #(Text fade-out)
@@ -333,8 +335,8 @@ DRAW 2
 WAIT 500
 
 #(Text fade-in)
-TFI We continued our investigation of
-the underground city...
+TFI Continuamos nuestra investigacion
+de la ciudad subterranea...
 #(Wait)
 WAIT 4500
 #(Text fade-out)
@@ -345,8 +347,8 @@ DRAW 2
 WAIT 500
 
 #(Text fade-in)
-TFI And we have discovered its
-purpose...
+TFI Y hemos descubierto su
+proposito...
 #(Wait)
 WAIT 4000
 #(Text fade-out)
@@ -357,7 +359,7 @@ DRAW 2
 WAIT 500
 
 #(Text fade-in)
-TFI It is a factory. 
+TFI Es una fabrica!
 #(Wait)
 WAIT 3000
 #(Text fade-out)
@@ -382,7 +384,8 @@ DRAW 3
 FTC 700
 
 #(Text fade-in)
-TFI A factory for building starships!
+TFI ¡Una fabrica para construir
+naves espaciales!
 #(Wait)
 WAIT 4500
 #(Text fade-out)
@@ -393,8 +396,9 @@ DRAW 3
 WAIT 500
 
 #(Text fade-in)
-TFI But there aren't enough materials
-to make a complete vessel.
+TFI Pero no hay suficientes
+materiales para hacer una
+nave completa.
 #(Wait)
 WAIT 5000
 #(Text fade-out)
@@ -405,8 +409,9 @@ DRAW 3
 WAIT 500
 
 #(Text fade-in)
-TFI We can finish only the skeleton
-of one starship.
+TFI Solo podemos terminar el
+esqueleto de una nave
+espacial.
 #(Wait)
 WAIT 5000
 #(Text fade-out)
@@ -417,7 +422,7 @@ DRAW 3
 WAIT 500
 
 #(Text fade-in)
-TFI But that must be enough --
+TFI Pero eso debe ser suficiente
 #(Wait)
 WAIT 3500
 #(Text fade-out)
@@ -428,8 +433,8 @@ DRAW 3
 WAIT 500
 
 #(Text fade-in)
-TFI Because YOU must captain the
-vessel...
+TFI Porque Tu debes dirigir la
+nave...
 #(Wait)
 WAIT 4000
 #(Text fade-out)
@@ -440,7 +445,7 @@ DRAW 3
 WAIT 500
 
 #(Text fade-in)
-TFI And return to Earth!
+TFI ¡Y regresar a la Tierra!
 #(Wait)
 WAIT 4000
 #(Text fade-out)
@@ -465,9 +470,9 @@ DRAW 4
 FTC 700
 
 #(Text fade-in)
-TFI To travel the great distance,
-you must push through into
-HyperSpace...
+TFI Para recorrer la gran distancia,
+debes atravesar hacia el
+HiperEspacio...
 #(Wait)
 WAIT 6000
 #(Text fade-out)
@@ -478,8 +483,8 @@ DRAW 4
 WAIT 500
 
 #(Text fade-in)
-TFI Find out what has happened over
-these many years...
+TFI Descubre lo que ha sucedido
+durante este tiempo...
 #(Wait)
 WAIT 5000
 #(Text fade-out)
@@ -490,7 +495,8 @@ DRAW 4
 WAIT 500
 
 #(Text fade-in)
-TFI Tell Earth of our plight!
+TFI ¡Dile a la Tierra de
+nuestra situacion!
 #(Wait)
 WAIT 4000
 #(Text fade-out)
@@ -501,8 +507,8 @@ DRAW 4
 WAIT 500
 
 #(Text fade-in)
-TFI And if the war with the Ur-Quan
-still rages...
+TFI Y si la guerra con los
+Ur-Quan sigue en pie...
 #(Wait)
 WAIT 5000
 #(Text fade-out)
@@ -513,8 +519,8 @@ DRAW 4
 WAIT 500
 
 #(Text fade-in)
-TFI Fight for Earth and the Alliance,
-as well as you can...
+TFI ¡Lucha por la Tierra y la Alianza,
+tanto como puedas...!
 #(Wait)
 WAIT 6000
 #(Text fade-out)
