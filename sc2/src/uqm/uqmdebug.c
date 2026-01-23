@@ -798,6 +798,195 @@ dumpUniverseToFile (void)
 			// in particular for special planet generation.
 }
 
+// -------------------- JSON export --------------------
+typedef struct {
+	FILE *out;
+	bool firstStar;
+	bool firstPlanet;
+	bool firstMoon;
+} DumpUniverseJsonArg;
+
+static void json_escape_and_print(FILE *out, const char *s)
+{
+	fputc('"', out);
+	for (; *s; ++s) {
+		unsigned char c = (unsigned char)*s;
+		switch (c) {
+			case '"': fputs("\\\"", out); break;
+			case '\\': fputs("\\\\", out); break;
+			case '\n': fputs("\\n", out); break;
+			case '\r': fputs("\\r", out); break;
+			case '\t': fputs("\\t", out); break;
+			default:
+				if (c < 0x20) {
+					fprintf(out, "\\u%04x", c);
+				} else {
+					fputc(c, out);
+				}
+		}
+	}
+	fputc('"', out);
+}
+
+static const char *starTypeJson (BYTE type)
+{ return starTypeString(type); }
+static const char *bodyColorJson (BYTE col)
+{ return bodyColorString(col); }
+
+static void dumpSystemJsonCallback (const STAR_DESC *star, const SOLARSYS_STATE *system, void *arg)
+{
+	(void)system; // not used here
+	DumpUniverseJsonArg *ctx = (DumpUniverseJsonArg*)arg;
+	if (!ctx->firstStar) fputs(",\n", ctx->out);
+	ctx->firstStar = false;
+
+	// Star object header
+	fputs("  {\n", ctx->out);
+	UNICODE starName[256];
+	GetClusterName (star, starName);
+	fputs("    \"name\": ", ctx->out); json_escape_and_print(ctx->out, starName);
+	fputs(", ", ctx->out);
+	fputs("    \"x\": ", ctx->out); fprintf(ctx->out, "%d", star->star_pt.x);
+	fputs(", \"y\": ", ctx->out); fprintf(ctx->out, "%d", star->star_pt.y);
+	BYTE typeCode = STAR_TYPE(star->Type);
+	BYTE colorCode = STAR_COLOR(star->Type);
+	fputs(", \"type\": ", ctx->out); json_escape_and_print(ctx->out, starTypeJson(typeCode));
+	fputs(", \"typeCode\": ", ctx->out); fprintf(ctx->out, "%u", (unsigned)typeCode);
+	fputs(", \"color\": ", ctx->out); json_escape_and_print(ctx->out, bodyColorJson(colorCode));
+	fputs(", \"colorCode\": ", ctx->out); fprintf(ctx->out, "%u", (unsigned)colorCode);
+	fputs(", \"presence\": ", ctx->out); json_escape_and_print(ctx->out, starPresenceString(star->Index));
+	fputs(", \"presenceIndex\": ", ctx->out); fprintf(ctx->out, "%u", (unsigned)star->Index);
+	fputs(", \"prefix\": ", ctx->out); fprintf(ctx->out, "%d", star->Prefix);
+	fputs(", \"postfix\": ", ctx->out); fprintf(ctx->out, "%d", star->Postfix);
+	fputs(", \"planets\": [\n", ctx->out);
+	ctx->firstPlanet = true;
+}
+
+static void dumpSystemJsonPostCallback (const STAR_DESC *star, const SOLARSYS_STATE *system, void *arg)
+{
+	(void)star; (void)system;
+	DumpUniverseJsonArg *ctx = (DumpUniverseJsonArg*)arg;
+	fputs("\n    ]\n  }", ctx->out);
+}
+
+static void dumpPlanetJsonCallback (const PLANET_DESC *planet, void *arg)
+{
+	DumpUniverseJsonArg *ctx = (DumpUniverseJsonArg*)arg;
+	if (!ctx->firstPlanet) fputs(",\n", ctx->out);
+	ctx->firstPlanet = false;
+
+	// Ensure name and analysis are current
+	(*pSolarSysState->genFuncs->generateName) (pSolarSysState, planet);
+	DoPlanetaryAnalysis (&pSolarSysState->SysInfo, planet);
+	(*pSolarSysState->genFuncs->generateOrbital) (pSolarSysState, planet);
+
+	fputs("      {\n", ctx->out);
+	fputs("        \"name\": ", ctx->out); json_escape_and_print(ctx->out, GLOBAL_SIS (PlanetName)); fputs(",\n", ctx->out);
+	fputs("        \"type\": ", ctx->out); json_escape_and_print(ctx->out, planetTypeString(planet->data_index & ~PLANET_SHIELDED)); fputs(",\n", ctx->out);
+	fputs("        \"shielded\": ", ctx->out); fputs((planet->data_index & PLANET_SHIELDED) ? "true,\n" : "false,\n", ctx->out);
+	fputs("        \"radius\": ", ctx->out); fprintf(ctx->out, "%d,\n", pSolarSysState->SysInfo.PlanetInfo.PlanetToSunDist);
+	fputs("        \"moons\": [\n", ctx->out);
+	ctx->firstMoon = true;
+
+	// Generate moons list
+	RandomContext_SeedRandom (SysGenRNG, planet->rand_seed);
+	(*pSolarSysState->genFuncs->generateMoons) (pSolarSysState, (PLANET_DESC*)planet);
+
+	// Iterate through moons
+	COUNT i;
+	for (i = 0; i < planet->NumPlanets; ++i) {
+		PLANET_DESC *moon = &pSolarSysState->MoonDesc[i];
+		if (!ctx->firstMoon) fputs(",\n", ctx->out);
+		ctx->firstMoon = false;
+
+		const char *typeStr;
+		if (moon->data_index == HIERARCHY_STARBASE)
+			typeStr = "StarBase";
+		else if (moon->data_index == SA_MATRA)
+			typeStr = "Sa-Matra";
+		else
+			typeStr = planetTypeString (moon->data_index & ~PLANET_SHIELDED);
+
+		fputs("          {\n", ctx->out);
+		fputs("            \"type\": ", ctx->out); json_escape_and_print(ctx->out, typeStr); fputs(",\n", ctx->out);
+		fputs("            \"shielded\": ", ctx->out); fputs((moon->data_index & PLANET_SHIELDED) ? "true\n" : "false\n", ctx->out);
+		fputs("          }", ctx->out);
+	}
+
+	fputs("\n        ]\n      }", ctx->out);
+}
+
+void dumpUniverseToJsonFile (const char *path)
+{
+	FILE *out = fopen(path, "w");
+	if (!out) {
+		fprintf(stderr, "Error: Could not open JSON output '%s'\n", path);
+		return;
+	}
+
+	DumpUniverseJsonArg ctx;
+	ctx.out = out;
+	ctx.firstStar = true;
+	ctx.firstPlanet = true;
+	ctx.firstMoon = true;
+
+	fputs("{\n  \"stars\": [\n", out);
+
+	UniverseRecurseArg uni;
+	uni.systemFuncPre = dumpSystemJsonCallback;
+	uni.systemFuncPost = dumpSystemJsonPostCallback;
+	uni.planetFuncPre = dumpPlanetJsonCallback;
+	uni.planetFuncPost = NULL;
+	uni.moonFunc = NULL; // we dump moons inside planet callback after generation
+	uni.arg = &ctx;
+		fputs("        \"radius\": ", ctx->out); fprintf(ctx->out, "%d,\n", pSolarSysState->SysInfo.PlanetInfo.PlanetToSunDist);
+
+		// Detailed planet info
+		PLANET_INFO *info = &pSolarSysState->SysInfo.PlanetInfo;
+		fputs("        \"info\": {\n", ctx->out);
+		fprintf(ctx->out, "          \"AxialTilt\": %d,\n", info->AxialTilt);
+		fprintf(ctx->out, "          \"Tectonics\": %d,\n", info->Tectonics);
+		fprintf(ctx->out, "          \"Weather\": %d,\n", info->Weather);
+		fprintf(ctx->out, "          \"PlanetDensity\": %d,\n", info->PlanetDensity);
+		fprintf(ctx->out, "          \"PlanetRadius\": %d,\n", info->PlanetRadius);
+		fprintf(ctx->out, "          \"SurfaceGravity\": %d,\n", info->SurfaceGravity);
+		fprintf(ctx->out, "          \"SurfaceTemperature\": %d,\n", info->SurfaceTemperature);
+		fprintf(ctx->out, "          \"RotationPeriod\": %d,\n", info->RotationPeriod);
+		fprintf(ctx->out, "          \"AtmoDensity\": %d,\n", info->AtmoDensity);
+		fprintf(ctx->out, "          \"LifeChance\": %d,\n", info->LifeChance);
+		fprintf(ctx->out, "          \"PlanetToSunDist\": %d\n", info->PlanetToSunDist);
+		fputs("        },\n", ctx->out);
+
+		// Resource summaries (skip for shielded)
+		if (!(planet->data_index & PLANET_SHIELDED)) {
+			COUNT minerals[NUM_ELEMENT_CATEGORIES];
+			COUNT bio[NUM_CREATURE_TYPES + NUM_SPECIAL_CREATURE_TYPES];
+			int i;
+			COUNT mVal = calculateMineralValue (pSolarSysState, planet);
+			COUNT bVal = calculateBioValue (pSolarSysState, planet);
+			generateMineralIndex (pSolarSysState, planet, minerals);
+			generateBioIndex (pSolarSysState, planet, bio);
+			fprintf(ctx->out, "        \"mineralValue\": %d,\n", mVal);
+			fprintf(ctx->out, "        \"bioValue\": %d,\n", bVal);
+			fputs("        \"mineralIndex\": [", ctx->out);
+			for (i = 0; i < NUM_ELEMENT_CATEGORIES; ++i) {
+				if (i) fputc(',', ctx->out);
+				fprintf(ctx->out, "%d", minerals[i]);
+			}
+			fputs("],\n", ctx->out);
+			fputs("        \"bioIndex\": [", ctx->out);
+			for (i = 0; i < NUM_CREATURE_TYPES + NUM_SPECIAL_CREATURE_TYPES; ++i) {
+				if (i) fputc(',', ctx->out);
+				fprintf(ctx->out, "%d", bio[i]);
+			}
+			fputs("],\n", ctx->out);
+		}
+	UniverseRecurse(&uni);
+
+	fputs("\n  ]\n}\n", out);
+	fclose(out);
+}
+
 static void
 dumpSystemCallback (const STAR_DESC *star, const SOLARSYS_STATE *system,
 		void *arg)
@@ -816,8 +1005,52 @@ dumpSystem (FILE *out, const STAR_DESC *star, const SOLARSYS_STATE *system)
 	snprintf (buf, sizeof buf, "%s %s",
 			bodyColorString (STAR_COLOR(star->Type)),
 			starTypeString (STAR_TYPE(star->Type)));
+			fputs("            \"letter\": ", ctx->out); json_escape_and_print(ctx->out, (const char[]){ (char)('a' + i), '\0' }); fputs(",\n", ctx->out);
 	fprintf (out, "%-22s  (%3d.%1d, %3d.%1d) %-19s  %s\n",
 			name,
+			// Detailed moon info if not special station / Sa-Matra
+			if (moon->data_index != HIERARCHY_STARBASE && moon->data_index != SA_MATRA) {
+				pSolarSysState->pOrbitalDesc = moon;
+				DoPlanetaryAnalysis (&pSolarSysState->SysInfo, moon);
+				(*pSolarSysState->genFuncs->generateOrbital) (pSolarSysState, moon);
+				PLANET_INFO *mi = &pSolarSysState->SysInfo.PlanetInfo;
+				fputs(",\n            \"info\": {\n", ctx->out);
+				fprintf(ctx->out, "              \"AxialTilt\": %d,\n", mi->AxialTilt);
+				fprintf(ctx->out, "              \"Tectonics\": %d,\n", mi->Tectonics);
+				fprintf(ctx->out, "              \"Weather\": %d,\n", mi->Weather);
+				fprintf(ctx->out, "              \"PlanetDensity\": %d,\n", mi->PlanetDensity);
+				fprintf(ctx->out, "              \"PlanetRadius\": %d,\n", mi->PlanetRadius);
+				fprintf(ctx->out, "              \"SurfaceGravity\": %d,\n", mi->SurfaceGravity);
+				fprintf(ctx->out, "              \"SurfaceTemperature\": %d,\n", mi->SurfaceTemperature);
+				fprintf(ctx->out, "              \"RotationPeriod\": %d,\n", mi->RotationPeriod);
+				fprintf(ctx->out, "              \"AtmoDensity\": %d,\n", mi->AtmoDensity);
+				fprintf(ctx->out, "              \"LifeChance\": %d,\n", mi->LifeChance);
+				fprintf(ctx->out, "              \"PlanetToSunDist\": %d\n", mi->PlanetToSunDist);
+				fputs("            }", ctx->out);
+
+				if (!(moon->data_index & PLANET_SHIELDED)) {
+					COUNT minerals[NUM_ELEMENT_CATEGORIES];
+					COUNT bio[NUM_CREATURE_TYPES + NUM_SPECIAL_CREATURE_TYPES];
+					int j;
+					COUNT mVal = calculateMineralValue (pSolarSysState, moon);
+					COUNT bVal = calculateBioValue (pSolarSysState, moon);
+					generateMineralIndex (pSolarSysState, moon, minerals);
+					generateBioIndex (pSolarSysState, moon, bio);
+					fprintf(ctx->out, ",\n            \"mineralValue\": %d,\n", mVal);
+					fprintf(ctx->out, "            \"bioValue\": %d,\n", bVal);
+					fputs("            \"mineralIndex\": [", ctx->out);
+					for (j = 0; j < NUM_ELEMENT_CATEGORIES; ++j) {
+						if (j) fputc(',', ctx->out);
+						fprintf(ctx->out, "%d", minerals[j]);
+					}
+					fputs("],\n            \"bioIndex\": [", ctx->out);
+					for (j = 0; j < NUM_CREATURE_TYPES + NUM_SPECIAL_CREATURE_TYPES; ++j) {
+						if (j) fputc(',', ctx->out);
+						fprintf(ctx->out, "%d", bio[j]);
+					}
+					fputs("]", ctx->out);
+				}
+			}
 			star->star_pt.x / 10, star->star_pt.x % 10,
 			star->star_pt.y / 10, star->star_pt.y % 10,
 			buf,

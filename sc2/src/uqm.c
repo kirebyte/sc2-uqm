@@ -46,6 +46,7 @@
 #include "options.h"
 #include "uqmversion.h"
 #include "uqm/comm.h"
+#include "uqm/uqmdebug.h"
 #ifdef NETPLAY
 #	include "libs/callback.h"
 #	include "libs/alarm.h"
@@ -131,6 +132,8 @@ struct options_struct
 	DECL_CONFIG_OPTION(float, sfxVolumeScale);
 	DECL_CONFIG_OPTION(float, speechVolumeScale);
 	DECL_CONFIG_OPTION(bool, safeMode);
+	// Tooling: dump starmap JSON and exit
+	const char *dumpStarmapPath;
 
 #define INIT_CONFIG_OPTION(name, val) \
 	{ val, false }
@@ -266,6 +269,8 @@ main (int argc, char *argv[])
 		INIT_CONFIG_OPTION(  sfxVolumeScale,    1.0f ),
 		INIT_CONFIG_OPTION(  speechVolumeScale, 1.0f ),
 		INIT_CONFIG_OPTION(  safeMode,          false ),
+		/* tooling */
+		.dumpStarmapPath = NULL,
 	};
 	struct options_struct defaults = options;
 	int optionsResult;
@@ -401,6 +406,16 @@ main (int argc, char *argv[])
 #if 0
 	initTempDir ();
 #endif
+
+	// If requested, dump starmap to JSON and exit before initializing graphics/threads.
+	if (options.dumpStarmapPath != NULL)
+	{
+		dumpUniverseToJsonFile (options.dumpStarmapPath);
+		log_add (log_User, "Starmap JSON written to %s", options.dumpStarmapPath);
+		log_showBox (false, false);
+		HFree (options.addons);
+		return EXIT_SUCCESS;
+	}
 
 	InitTimeSystem ();
 	InitTaskSystem ();
@@ -713,6 +728,7 @@ enum
 	ACCEL_OPT,
 	SAFEMODE_OPT,
 	RENDERER_OPT,
+	DUMPSTARMAP_OPT,
 #ifdef NETPLAY
 	NETHOST1_OPT,
 	NETPORT1_OPT,
@@ -761,6 +777,7 @@ static struct option longOptions[] =
 	{"accel", 1, NULL, ACCEL_OPT},
 	{"safe", 0, NULL, SAFEMODE_OPT},
 	{"renderer", 1, NULL, RENDERER_OPT},
+	{"dumpstarmap", 1, NULL, DUMPSTARMAP_OPT},
 #ifdef NETPLAY
 	{"nethost1", 1, NULL, NETHOST1_OPT},
 	{"netport1", 1, NULL, NETPORT1_OPT},
@@ -1058,6 +1075,9 @@ parseOptions (int argc, char *argv[], struct options_struct *options)
 			case RENDERER_OPT:
 				options->graphicsBackend = optarg;
 				break;
+			case DUMPSTARMAP_OPT:
+				options->dumpStarmapPath = optarg;
+				break;
 #ifdef NETPLAY
 			case NETHOST1_OPT:
 				netplayOptions.peer[0].isServer = false;
@@ -1223,6 +1243,7 @@ usage (FILE *out, const struct options_struct *defaults)
 	log_add (log_User, "  --stereosfx (enables positional sound effects, "
 			"currently only for openal)");
 	log_add (log_User, "  --safe (start in safe mode)");
+    log_add (log_User, "  --dumpstarmap=FILE (dump starmap as JSON to FILE and exit)");
 #ifdef NETPLAY
 	log_add (log_User, "  --nethostN=HOSTNAME (server to connect to for "
 			"player N (1=bottom, 2=top)");

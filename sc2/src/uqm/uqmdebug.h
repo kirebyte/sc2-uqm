@@ -105,6 +105,10 @@ typedef struct
 // Must be called on the Starcon2Main thread.
 void UniverseRecurse (UniverseRecurseArg *universeRecurseArg);
 
+// Dump the entire universe (stars, planets, moons) to a JSON file.
+// Must be called from the Starcon2Main thread after kernel/content init.
+void dumpUniverseToJsonFile (const char *path);
+
 // Describe the entire universe. Must be called on the Starcon2Main thread.
 void dumpUniverse (FILE *out);
 // Describe the entire universe, output to a file "./PlanetInfo".
