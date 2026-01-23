@@ -1,0 +1,14 @@
+/home/kirebyte/Projects/FoxyByte/sc2-uqm/uqm-rust/target/debug/deps/serde-ac4143f44981d191.d: /home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/kirebyte/Projects/FoxyByte/sc2-uqm/uqm-rust/target/debug/build/serde-75fa2c20b24ed502/out/private.rs
+
+/home/kirebyte/Projects/FoxyByte/sc2-uqm/uqm-rust/target/debug/deps/libserde-ac4143f44981d191.rlib: /home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/kirebyte/Projects/FoxyByte/sc2-uqm/uqm-rust/target/debug/build/serde-75fa2c20b24ed502/out/private.rs
+
+/home/kirebyte/Projects/FoxyByte/sc2-uqm/uqm-rust/target/debug/deps/libserde-ac4143f44981d191.rmeta: /home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/kirebyte/Projects/FoxyByte/sc2-uqm/uqm-rust/target/debug/build/serde-75fa2c20b24ed502/out/private.rs
+
+/home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs:
+/home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs:
+/home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs:
+/home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs:
+/home/kirebyte/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs:
+/home/kirebyte/Projects/FoxyByte/sc2-uqm/uqm-rust/target/debug/build/serde-75fa2c20b24ed502/out/private.rs:
+
+# env-dep:OUT_DIR=/home/kirebyte/Projects/FoxyByte/sc2-uqm/uqm-rust/target/debug/build/serde-75fa2c20b24ed502/out
