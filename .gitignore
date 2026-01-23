@@ -1,57 +1,109 @@
-.DS_Store
-*.app
-
-# Build system generated files
-# (sc2 is the project root for build artifacts)
-sc2/build.vars
-sc2/build.vars.in
-sc2/config.state
-sc2/config_unix.h
-
-# Legacy/modern build artifacts
-sc2/build/
+# Build directories and artifacts
+build/
+obj/
+bin/
+Release/
+Debug/
+RelWithDebInfo/
+MinSizeRel/
 sc2/obj/
-sc2/uqm
+sc2/build/
+sc2/bin/
+
+# Compiled Object files
+*.o
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+uqm-debug
+uqm-refactored
+simple-test
+foundation-test
 sc2/uqm-debug
 sc2/uqm-wrapper
-sc2/*.exe
-sc2/*.dll
-sc2/*.so
-sc2/*.a
-sc2/*.lib
-sc2/*.pdb
+sc2/uqm
+sc2/simple-test
+sc2/foundation-test
 
-# Binaries from modern Makefile
-sc2/build/Debug/
-sc2/build/Release/
+# Build configuration files
+build.vars
+config.state
+config_unix.h
 
-# Object and dependency files
-**/*.o
-**/*.obj
-**/*.d
-
-# Logs and reports
-**/*.log
-**/*.out
-**/*.info
-**/coverage/
-**/coverage_html/
-
-# Documentation outputs
-sc2/docs/html/
-sc2/docs/latex/
-
-# Editor/OS junk
-*~
-*.swp
-*.swo
-.vscode/
-.idea/
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Archives
+# Package files
+*.deb
+*.rpm
 *.tar.gz
 *.zip
-*.7z
+
+# IDE files
+.vscode/
+.vs/
+*.vcxproj*
+*.sln
+*.suo
+*.user
+.idea/
+*.cbp
+*.depend
+*.layout
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# Backup files
+*.bak
+*.swp
+*.swo
+*.tmp
+*.temp
+
+# Log files
+*.log
+
+# Coverage files
+coverage.info
+coverage_html/
+*.gcov
+*.gcda
+*.gcno
+
+# Doxygen generated documentation
+doc/html/
+doc/latex/
+doc/man/
+
+# Test results
+test_results/
+TestResults/
+
+# Memory dumps
+core
+core.*
+*.dmp

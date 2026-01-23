@@ -1,0 +1,443 @@
+# Modern Makefile for The Ur-Quan Masters Refactored
+# Following 2025 best practices for C/C++ projects
+# 
+# Author: The Ur-Quan Masters Refactoring Team
+# Version: 2.0.0
+# Date: 2025-01-27
+
+# ============================================================================
+# PROJECT CONFIGURATION
+# ============================================================================
+
+PROJECT_NAME := logging-test
+VERSION_MAJOR := 2
+VERSION_MINOR := 0
+VERSION_PATCH := 0
+VERSION := $(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_PATCH)
+
+# Build configuration
+BUILD_TYPE ?= Release
+VERBOSE ?= 0
+PARALLEL_JOBS ?= $(shell nproc 2>/dev/null || echo 4)
+
+# Directory structure
+ROOT_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+SRC_DIR := $(ROOT_DIR)/src
+BUILD_DIR := $(ROOT_DIR)/build/$(BUILD_TYPE)
+OBJ_DIR := $(BUILD_DIR)/obj
+BIN_DIR := $(BUILD_DIR)/bin
+DOC_DIR := $(ROOT_DIR)/docs
+TEST_DIR := $(ROOT_DIR)/tests
+
+# Create build directories
+$(shell mkdir -p $(OBJ_DIR) $(BIN_DIR) $(DOC_DIR))
+
+# ============================================================================
+# TOOLCHAIN CONFIGURATION
+# ============================================================================
+
+# Compiler configuration
+CC := gcc
+CXX := g++
+LD := $(CC)
+AR := ar
+STRIP := strip
+
+# Tool configuration
+DOXYGEN := doxygen
+VALGRIND := valgrind
+CPPCHECK := cppcheck
+CLANG_TIDY := clang-tidy
+GCOV := gcov
+LCOV := lcov
+
+# ============================================================================
+# COMPILER FLAGS
+# ============================================================================
+
+# Base C standard and warnings
+CFLAGS_BASE := -std=c17 -pedantic -Wall -Wextra -Werror
+
+# Enhanced warnings for better code quality
+CFLAGS_WARNINGS := \
+	-Wshadow -Wcast-align -Wunused -Wpedantic \
+	-Wconversion -Wsign-conversion -Wnull-dereference \
+	-Wdouble-promotion -Wformat=2 -Wformat-security \
+	-Wformat-signedness -Wformat-truncation -Wformat-overflow \
+	-Wstringop-overflow -Warray-bounds -Wattribute-alias \
+	-Wimplicit-fallthrough -Wlogical-op -Wduplicated-cond \
+	-Wduplicated-branches -Wrestrict -Walloc-zero -Walloca \
+	-Wvla -Wstack-protector
+
+# Architecture-specific optimizations
+ARCH_FLAGS := -march=native -mtune=native
+
+# Debug configuration
+ifeq ($(BUILD_TYPE),Debug)
+    CFLAGS_BUILD := -O0 -g3 -ggdb -fno-omit-frame-pointer
+    CFLAGS_DEBUG := -DDEBUG -DUQM_DEBUG_MEMORY -DUQM_DEBUG_LOGGING
+    CFLAGS_SANITIZE := -fsanitize=address,undefined -fstack-protector-strong
+    LDFLAGS_DEBUG := -fsanitize=address,undefined
+else ifeq ($(BUILD_TYPE),RelWithDebInfo)
+    CFLAGS_BUILD := -O2 -g -fno-omit-frame-pointer
+    CFLAGS_DEBUG := -DNDEBUG -DUQM_PROFILE
+    ARCH_FLAGS := -march=native -mtune=native
+else ifeq ($(BUILD_TYPE),MinSizeRel)
+    CFLAGS_BUILD := -Os -g0 -DNDEBUG
+    CFLAGS_OPTIMIZE := -ffunction-sections -fdata-sections
+    LDFLAGS_OPTIMIZE := -Wl,--gc-sections -Wl,--strip-all
+else # Release
+    CFLAGS_BUILD := -O3 -g0 -DNDEBUG
+    CFLAGS_OPTIMIZE := -flto -ffunction-sections -fdata-sections \
+                      -fmerge-all-constants -fomit-frame-pointer
+    LDFLAGS_OPTIMIZE := -flto -Wl,--gc-sections -Wl,--strip-all
+endif
+
+# Security hardening flags
+CFLAGS_SECURITY := \
+	-D_FORTIFY_SOURCE=2 -fstack-protector-strong \
+	-fPIE -Wl,-z,relro -Wl,-z,now
+
+# Modern C features
+CFLAGS_MODERN := \
+	-DUQM_VERSION_MAJOR=$(VERSION_MAJOR) \
+	-DUQM_VERSION_MINOR=$(VERSION_MINOR) \
+	-DUQM_VERSION_PATCH=$(VERSION_PATCH) \
+	-DUQM_VERSION_STRING=\"$(VERSION)\" \
+	-D_GNU_SOURCE
+
+# Include paths
+INCLUDES := \
+	-I$(SRC_DIR) \
+	-I$(SRC_DIR)/shared \
+	-I$(SRC_DIR)/shared/common \
+	-I$(SRC_DIR)/shared/logging \
+	-I$(SRC_DIR)/shared/memory \
+	-I$(SRC_DIR)/libs \
+	-I$(SRC_DIR)/uqm
+
+# Package config for system libraries
+PKG_CONFIG_PACKAGES := sdl2 SDL2_mixer SDL2_image openal libpng zlib
+CFLAGS_PKG := $(shell pkg-config --cflags $(PKG_CONFIG_PACKAGES) 2>/dev/null)
+LDFLAGS_PKG := $(shell pkg-config --libs $(PKG_CONFIG_PACKAGES) 2>/dev/null)
+
+# Combine all CFLAGS
+CFLAGS := $(CFLAGS_BASE) $(CFLAGS_WARNINGS) $(CFLAGS_BUILD) $(CFLAGS_DEBUG) \
+          $(CFLAGS_SANITIZE) $(CFLAGS_OPTIMIZE) $(CFLAGS_SECURITY) \
+          $(CFLAGS_MODERN) $(ARCH_FLAGS) $(INCLUDES) $(CFLAGS_PKG)
+
+# Linker flags
+LDFLAGS := $(LDFLAGS_DEBUG) $(LDFLAGS_OPTIMIZE) $(LDFLAGS_PKG) \
+           -lpthread -lm -ldl -lrt
+
+# ============================================================================
+# SOURCE FILES
+# ============================================================================
+
+# Phase 2: Foundation + Logging System
+SHARED_SOURCES := \
+	$(SRC_DIR)/shared/common/common_types.c \
+	$(SRC_DIR)/shared/logging/modern_logger.c
+
+# Test program for Phase 2
+TEST_MAIN := $(SRC_DIR)/test_logging.c
+
+# For Phase 2 Week 1, we compile foundation + logging + tests
+ALL_SOURCES := $(SHARED_SOURCES) $(TEST_MAIN)
+
+# Generate object file paths
+SHARED_OBJECTS := $(SHARED_SOURCES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+TEST_OBJECTS := $(TEST_MAIN:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+LIBS_OBJECTS := $(LIBS_SOURCES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+UQM_OBJECTS := $(UQM_SOURCES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+MAIN_OBJECTS := $(MAIN_SOURCES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+ALL_OBJECTS := $(SHARED_OBJECTS) $(TEST_OBJECTS) $(LIBS_OBJECTS) $(UQM_OBJECTS) $(MAIN_OBJECTS)
+
+# Generate dependency files
+DEPS := $(ALL_OBJECTS:.o=.d)
+
+# ============================================================================
+# BUILD TARGETS
+# ============================================================================
+
+.PHONY: all clean distclean install uninstall test doc check format help
+
+# Default target
+all: $(BIN_DIR)/$(PROJECT_NAME)
+
+# Main executable
+$(BIN_DIR)/$(PROJECT_NAME): $(ALL_OBJECTS)
+	@echo "Linking $@"
+	@$(CC) $(ALL_OBJECTS) -o $@ $(LDFLAGS)
+	@echo "Build complete: $@"
+
+# Shared library (optional)
+$(BIN_DIR)/lib$(PROJECT_NAME).so: $(SHARED_OBJECTS) $(LIBS_OBJECTS) $(UQM_OBJECTS)
+	@echo "Creating shared library $@"
+	@$(CC) -shared $(SHARED_OBJECTS) $(LIBS_OBJECTS) $(UQM_OBJECTS) -o $@ $(LDFLAGS)
+
+# Static library (optional)
+$(BIN_DIR)/lib$(PROJECT_NAME).a: $(SHARED_OBJECTS) $(LIBS_OBJECTS) $(UQM_OBJECTS)
+	@echo "Creating static library $@"
+	@$(AR) rcs $@ $(SHARED_OBJECTS) $(LIBS_OBJECTS) $(UQM_OBJECTS)
+
+# Compile C source files
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@echo "Compiling $<"
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
+
+# Include dependency files
+-include $(DEPS)
+
+# ============================================================================
+# DEVELOPMENT TARGETS
+# ============================================================================
+
+# Debug build
+debug:
+	@$(MAKE) BUILD_TYPE=Debug
+
+# Release build with debug info
+relwithdebinfo:
+	@$(MAKE) BUILD_TYPE=RelWithDebInfo
+
+# Minimum size release
+minsizerel:
+	@$(MAKE) BUILD_TYPE=MinSizeRel
+
+# Run the application
+run: $(BIN_DIR)/$(PROJECT_NAME)
+	@echo "Running $(PROJECT_NAME)..."
+	@cd $(BIN_DIR) && ./$(PROJECT_NAME)
+
+# Run with debugging
+debug-run: debug
+	@echo "Running $(PROJECT_NAME) with GDB..."
+	@cd $(BIN_DIR) && gdb --args ./$(PROJECT_NAME)
+
+# Run with memory checking
+memcheck: debug
+	@echo "Running memory check with Valgrind..."
+	@cd $(BIN_DIR) && $(VALGRIND) --tool=memcheck --leak-check=full \
+		--show-leak-kinds=all --track-origins=yes ./$(PROJECT_NAME)
+
+# ============================================================================
+# CODE QUALITY TARGETS
+# ============================================================================
+
+# Static analysis with cppcheck
+check:
+	@echo "Running static analysis..."
+	@$(CPPCHECK) --enable=all --std=c17 --inconclusive \
+		--suppress=missingIncludeSystem \
+		--template='{file}:{line}: {severity}: {message}' \
+		$(SRC_DIR)
+
+# Modern linting with clang-tidy
+lint:
+	@echo "Running clang-tidy..."
+	@find $(SRC_DIR) -name "*.c" -exec $(CLANG_TIDY) {} -- $(CFLAGS) \;
+
+# Code formatting with clang-format
+format:
+	@echo "Formatting code..."
+	@find $(SRC_DIR) -name "*.c" -o -name "*.h" | xargs clang-format -i
+
+# Generate documentation
+doc:
+	@echo "Generating documentation..."
+	@mkdir -p $(DOC_DIR)
+	@$(DOXYGEN) Doxyfile
+
+# Code coverage analysis
+coverage: debug
+	@echo "Running coverage analysis..."
+	@$(MAKE) test
+	@$(LCOV) --capture --directory $(OBJ_DIR) --output-file $(BUILD_DIR)/coverage.info
+	@$(LCOV) --remove $(BUILD_DIR)/coverage.info '/usr/*' --output-file $(BUILD_DIR)/coverage.info
+	@genhtml $(BUILD_DIR)/coverage.info --output-directory $(BUILD_DIR)/coverage_html
+
+# ============================================================================
+# TESTING TARGETS
+# ============================================================================
+
+# Build and run tests
+test: $(BIN_DIR)/$(PROJECT_NAME)
+	@echo "Running tests..."
+	@echo "TODO: Implement test suite"
+
+# Unit tests
+unit-test:
+	@echo "Running unit tests..."
+	@echo "TODO: Implement unit tests"
+
+# Integration tests
+integration-test:
+	@echo "Running integration tests..."
+	@echo "TODO: Implement integration tests"
+
+# Performance benchmarks
+benchmark:
+	@echo "Running benchmarks..."
+	@echo "TODO: Implement benchmarks"
+
+# ============================================================================
+# INSTALLATION TARGETS
+# ============================================================================
+
+# Installation configuration
+PREFIX ?= /usr/local
+BINDIR := $(PREFIX)/bin
+DATADIR := $(PREFIX)/share/$(PROJECT_NAME)
+DOCDIR := $(PREFIX)/share/doc/$(PROJECT_NAME)
+
+# Install the application
+install: $(BIN_DIR)/$(PROJECT_NAME)
+	@echo "Installing $(PROJECT_NAME)..."
+	@install -d $(DESTDIR)$(BINDIR)
+	@install -m 755 $(BIN_DIR)/$(PROJECT_NAME) $(DESTDIR)$(BINDIR)/
+	@install -d $(DESTDIR)$(DATADIR)
+	@cp -r content/* $(DESTDIR)$(DATADIR)/ 2>/dev/null || true
+	@install -d $(DESTDIR)$(DOCDIR)
+	@install -m 644 README.md $(DESTDIR)$(DOCDIR)/ 2>/dev/null || true
+	@echo "Installation complete"
+
+# Uninstall the application
+uninstall:
+	@echo "Uninstalling $(PROJECT_NAME)..."
+	@rm -f $(DESTDIR)$(BINDIR)/$(PROJECT_NAME)
+	@rm -rf $(DESTDIR)$(DATADIR)
+	@rm -rf $(DESTDIR)$(DOCDIR)
+	@echo "Uninstallation complete"
+
+# ============================================================================
+# PACKAGING TARGETS
+# ============================================================================
+
+# Create source distribution
+dist:
+	@echo "Creating source distribution..."
+	@tar -czf $(PROJECT_NAME)-$(VERSION).tar.gz \
+		--exclude='.git*' --exclude='build' --exclude='*.tar.gz' \
+		--transform 's,^,$(PROJECT_NAME)-$(VERSION)/,' *
+
+# Create binary distribution
+bindist: $(BIN_DIR)/$(PROJECT_NAME)
+	@echo "Creating binary distribution..."
+	@mkdir -p $(BUILD_DIR)/$(PROJECT_NAME)-$(VERSION)
+	@cp $(BIN_DIR)/$(PROJECT_NAME) $(BUILD_DIR)/$(PROJECT_NAME)-$(VERSION)/
+	@cp README.md $(BUILD_DIR)/$(PROJECT_NAME)-$(VERSION)/ 2>/dev/null || true
+	@cp -r content $(BUILD_DIR)/$(PROJECT_NAME)-$(VERSION)/ 2>/dev/null || true
+	@tar -czf $(PROJECT_NAME)-$(VERSION)-$(shell uname -m).tar.gz \
+		-C $(BUILD_DIR) $(PROJECT_NAME)-$(VERSION)
+	@rm -rf $(BUILD_DIR)/$(PROJECT_NAME)-$(VERSION)
+
+# ============================================================================
+# CLEANUP TARGETS
+# ============================================================================
+
+# Clean build artifacts
+clean:
+	@echo "Cleaning build artifacts..."
+	@rm -rf $(BUILD_DIR)
+
+# Clean everything including documentation and distributions
+distclean: clean
+	@echo "Cleaning everything..."
+	@rm -rf $(DOC_DIR)/html $(DOC_DIR)/latex
+	@rm -f *.tar.gz
+	@rm -f compile_commands.json
+
+# Clean and rebuild everything
+rebuild: clean all
+
+# ============================================================================
+# UTILITY TARGETS
+# ============================================================================
+
+# Show build information
+info:
+	@echo "Build Information:"
+	@echo "  Project: $(PROJECT_NAME) v$(VERSION)"
+	@echo "  Build Type: $(BUILD_TYPE)"
+	@echo "  Compiler: $(CC) $(shell $(CC) --version | head -n1)"
+	@echo "  Source Files: $(words $(ALL_SOURCES))"
+	@echo "  Object Files: $(words $(ALL_OBJECTS))"
+	@echo "  Build Directory: $(BUILD_DIR)"
+	@echo "  CFLAGS: $(CFLAGS)"
+	@echo "  LDFLAGS: $(LDFLAGS)"
+
+# Generate compile_commands.json for IDE support
+compile-commands:
+	@echo "Generating compile_commands.json..."
+	@echo '[' > compile_commands.json
+	@for src in $(ALL_SOURCES); do \
+		echo '  {' >> compile_commands.json; \
+		echo '    "directory": "$(ROOT_DIR)",' >> compile_commands.json; \
+		echo '    "command": "$(CC) $(CFLAGS) -c $$src",' >> compile_commands.json; \
+		echo '    "file": "'$$src'"' >> compile_commands.json; \
+		echo '  },' >> compile_commands.json; \
+	done
+	@sed -i '$$s/,$$//' compile_commands.json
+	@echo ']' >> compile_commands.json
+
+# Show help
+help:
+	@echo "The Ur-Quan Masters Refactored - Build System"
+	@echo "=============================================="
+	@echo ""
+	@echo "Build Targets:"
+	@echo "  all            - Build the main executable (default)"
+	@echo "  debug          - Build debug version"
+	@echo "  relwithdebinfo - Build release with debug info"
+	@echo "  minsizerel     - Build minimum size release"
+	@echo ""
+	@echo "Development Targets:"
+	@echo "  run            - Build and run the application"
+	@echo "  debug-run      - Build and run with GDB"
+	@echo "  memcheck       - Run with Valgrind memory checking"
+	@echo ""
+	@echo "Code Quality:"
+	@echo "  check          - Run static analysis (cppcheck)"
+	@echo "  lint           - Run modern linting (clang-tidy)"
+	@echo "  format         - Format code with clang-format"
+	@echo "  doc            - Generate documentation"
+	@echo "  coverage       - Generate code coverage report"
+	@echo ""
+	@echo "Testing:"
+	@echo "  test           - Run all tests"
+	@echo "  unit-test      - Run unit tests"
+	@echo "  integration-test - Run integration tests"
+	@echo "  benchmark      - Run performance benchmarks"
+	@echo ""
+	@echo "Installation:"
+	@echo "  install        - Install the application"
+	@echo "  uninstall      - Uninstall the application"
+	@echo ""
+	@echo "Packaging:"
+	@echo "  dist           - Create source distribution"
+	@echo "  bindist        - Create binary distribution"
+	@echo ""
+	@echo "Cleanup:"
+	@echo "  clean          - Clean build artifacts"
+	@echo "  distclean      - Clean everything"
+	@echo "  rebuild        - Clean and rebuild"
+	@echo ""
+	@echo "Utilities:"
+	@echo "  info           - Show build information"
+	@echo "  compile-commands - Generate compile_commands.json"
+	@echo "  help           - Show this help"
+	@echo ""
+	@echo "Variables:"
+	@echo "  BUILD_TYPE={Debug|Release|RelWithDebInfo|MinSizeRel}"
+	@echo "  VERBOSE={0|1}"
+	@echo "  PREFIX=/usr/local"
+
+# Verbose output control
+ifeq ($(VERBOSE),1)
+    Q :=
+else
+    Q := @
+endif
