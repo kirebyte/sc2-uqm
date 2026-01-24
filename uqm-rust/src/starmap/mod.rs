@@ -2,6 +2,7 @@
 //!
 //! Galaxy navigation, star system management, and hyperspace travel.
 
+pub mod encounter;
 pub mod encounters;
 pub mod events;
 pub mod map;
